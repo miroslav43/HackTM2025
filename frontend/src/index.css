@@ -1,0 +1,181 @@
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 255 255 255;
+    --foreground: 15 23 42;
+
+    --card: 255 255 255;
+    --card-foreground: 15 23 42;
+
+    --popover: 255 255 255;
+    --popover-foreground: 15 23 42;
+
+    --primary: 30 58 138;
+    --primary-foreground: 255 255 255;
+
+    --secondary: 248 250 252;
+    --secondary-foreground: 30 41 59;
+
+    --muted: 248 250 252;
+    --muted-foreground: 100 116 139;
+
+    --accent: 248 250 252;
+    --accent-foreground: 30 41 59;
+
+    --destructive: 239 68 68;
+    --destructive-foreground: 255 255 255;
+
+    --border: 226 232 240;
+    --input: 226 232 240;
+    --ring: 30 58 138;
+
+    --radius: 0.75rem;
+
+    --sidebar-background: 255 255 255;
+    --sidebar-foreground: 51 65 85;
+    --sidebar-primary: 30 58 138;
+    --sidebar-primary-foreground: 255 255 255;
+    --sidebar-accent: 248 250 252;
+    --sidebar-accent-foreground: 30 58 138;
+    --sidebar-border: 226 232 240;
+    --sidebar-ring: 30 58 138;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans;
+  }
+}
+
+@layer components {
+  .hover-lift {
+    @apply transition-all duration-300 hover:scale-105 hover:shadow-lg;
+  }
+  
+  .gradient-bg {
+    background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+  }
+  
+  .glass-effect {
+    @apply backdrop-blur-sm bg-white/80 border border-white/20;
+  }
+
+  /* Înlocuirea completă a culorilor pink cu purple pentru contrast mai bun */
+  .text-pink-50 {
+    @apply text-purple-800;
+  }
+  
+  .text-pink-100 {
+    @apply text-purple-800;
+  }
+  
+  .text-pink-200 {
+    @apply text-purple-700;
+  }
+  
+  .text-pink-300 {
+    @apply text-purple-700;
+  }
+  
+  .text-pink-400 {
+    @apply text-purple-600;
+  }
+  
+  .text-pink-500 {
+    @apply text-purple-600;
+  }
+  
+  .text-pink-600 {
+    @apply text-purple-700;
+  }
+  
+  .text-pink-700 {
+    @apply text-purple-800;
+  }
+  
+  .text-pink-800 {
+    @apply text-purple-900;
+  }
+  
+  .text-pink-900 {
+    @apply text-purple-900;
+  }
+  
+  .bg-pink-50 {
+    @apply bg-purple-50;
+  }
+  
+  .bg-pink-100 {
+    @apply bg-purple-100;
+  }
+  
+  .bg-pink-200 {
+    @apply bg-purple-200;
+  }
+  
+  .bg-pink-300 {
+    @apply bg-purple-300;
+  }
+  
+  .bg-pink-400 {
+    @apply bg-purple-400;
+  }
+  
+  .bg-pink-500 {
+    @apply bg-purple-500;
+  }
+  
+  .bg-pink-600 {
+    @apply bg-purple-600;
+  }
+  
+  .border-pink-200 {
+    @apply border-purple-200;
+  }
+  
+  .border-pink-300 {
+    @apply border-purple-300;
+  }
+  
+  .border-pink-400 {
+    @apply border-purple-400;
+  }
+  
+  .border-pink-500 {
+    @apply border-purple-500;
+  }
+  
+  .border-pink-600 {
+    @apply border-purple-600;
+  }
+  
+  /* Hover states pentru pink -> purple */
+  .hover\:text-pink-500:hover {
+    @apply text-purple-600;
+  }
+  
+  .hover\:text-pink-600:hover {
+    @apply text-purple-700;
+  }
+  
+  .hover\:bg-pink-50:hover {
+    @apply bg-purple-50;
+  }
+  
+  .hover\:bg-pink-100:hover {
+    @apply bg-purple-100;
+  }
+  
+  .hover\:border-pink-300:hover {
+    @apply border-purple-300;
+  }
+}
