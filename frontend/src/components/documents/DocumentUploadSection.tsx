@@ -1,25 +1,50 @@
-
 /**
  * Main document upload section component
  * Refactored to use smaller, focused components
  */
 
-import React from 'react';
-import { AlertCircle } from 'lucide-react';
-import { Alert, AlertDescription } from '@/components/ui/alert';
-import { useDocuments } from '@/hooks/useDocuments';
-import DocumentUploadCard from './DocumentUploadCard';
-import DocumentHistory from './DocumentHistory';
+import { Alert, AlertDescription } from "@/components/ui/alert";
+import { useDocuments } from "@/hooks/useDocuments";
+import { AlertCircle } from "lucide-react";
+import React from "react";
+import DocumentHistory from "./DocumentHistory";
+import DocumentUploadCard from "./DocumentUploadCard";
 
 const documentTypes = [
-  { id: 'id', name: 'Carte de identitate', description: 'Copie după cartea de identitate (față și verso)' },
-  { id: 'landRegistry', name: 'Extras carte funciară', description: 'Document recent (max. 30 de zile)' },
-  { id: 'income', name: 'Adeverință de venit', description: 'Document pentru calculul taxelor' },
-  { id: 'property', name: 'Certificat de proprietate', description: 'Dovada proprietății imobiliare' },
-  { id: 'other', name: 'Alte documente', description: 'Documente suplimentare relevante' }
+  {
+    id: "id",
+    name: "Carte de identitate",
+    description: "Copie după cartea de identitate (față și verso)",
+  },
+  {
+    id: "landRegistry",
+    name: "Extras carte funciară",
+    description: "Document recent (max. 30 de zile)",
+  },
+  {
+    id: "income",
+    name: "Adeverință de venit",
+    description: "Document pentru calculul taxelor",
+  },
+  {
+    id: "property",
+    name: "Certificat de proprietate",
+    description: "Dovada proprietății imobiliare",
+  },
+  {
+    id: "other",
+    name: "Alte documente",
+    description: "Documente suplimentare relevante",
+  },
 ];
 
-const DocumentUploadSection: React.FC = () => {
+interface DocumentUploadSectionProps {
+  onProfileDataUpdate?: (data: any) => void;
+}
+
+const DocumentUploadSection: React.FC<DocumentUploadSectionProps> = ({
+  onProfileDataUpdate,
+}) => {
   const { documents, isLoading, error, handleFileUpload } = useDocuments();
 
   if (isLoading) {
@@ -43,8 +68,8 @@ const DocumentUploadSection: React.FC = () => {
       {/* Document upload cards */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {documentTypes.map((docType) => {
-          const existingDoc = documents.find(doc => doc.type === docType.id);
-          
+          const existingDoc = documents.find((doc) => doc.type === docType.id);
+
           return (
             <DocumentUploadCard
               key={docType.id}
@@ -55,6 +80,7 @@ const DocumentUploadSection: React.FC = () => {
                   handleFileUpload(type, files[0]);
                 }
               }}
+              onProfileDataUpdate={onProfileDataUpdate}
             />
           );
         })}

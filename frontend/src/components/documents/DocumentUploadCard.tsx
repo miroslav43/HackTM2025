@@ -18,11 +18,21 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 import { Progress } from "@/components/ui/progress";
 import {
   Calendar,
   Check,
   Clock,
+  Copy,
   CreditCard,
   Download,
   Eye,
@@ -30,6 +40,7 @@ import {
   MapPin,
   Upload,
   User,
+  UserPlus,
   X,
 } from "lucide-react";
 import React, { useEffect, useState } from "react";
@@ -66,12 +77,14 @@ interface DocumentUploadCardProps {
   docType: DocumentType;
   existingDoc?: DocumentData;
   onFileUpload: (type: string, files: FileList | null) => void;
+  onProfileDataUpdate?: (data: any) => void;
 }
 
 const DocumentUploadCard: React.FC<DocumentUploadCardProps> = ({
   docType,
   existingDoc,
   onFileUpload,
+  onProfileDataUpdate,
 }) => {
   const [isUploadDialogOpen, setIsUploadDialogOpen] = useState(false);
   const [extractedMetadata, setExtractedMetadata] =
@@ -79,6 +92,7 @@ const DocumentUploadCard: React.FC<DocumentUploadCardProps> = ({
   const [ocrMetadata, setOcrMetadata] = useState<OCRMetadata | null>(null);
   const [isLoadingOCR, setIsLoadingOCR] = useState(false);
   const [showJsonView, setShowJsonView] = useState(false);
+  const [isDetailViewOpen, setIsDetailViewOpen] = useState(false);
 
   // Load OCR metadata when document exists
   useEffect(() => {
@@ -124,6 +138,38 @@ const DocumentUploadCard: React.FC<DocumentUploadCardProps> = ({
     }
   };
 
+  const handleViewDetails = () => {
+    setIsDetailViewOpen(true);
+  };
+
+  const handleUpdateProfile = () => {
+    if (!ocrMetadata?.extractedData && !extractedMetadata?.extractedData) {
+      toast.error("Nu există date pentru actualizarea profilului");
+      return;
+    }
+
+    const dataToUpdate =
+      ocrMetadata?.extractedData || extractedMetadata?.extractedData;
+
+    // Prepare profile data from OCR
+    const profileData = {
+      name: `${dataToUpdate?.prenume || ""} ${dataToUpdate?.nume || ""}`.trim(),
+      cnp: dataToUpdate?.cnp,
+      address: dataToUpdate?.adresa,
+      // Add more fields as needed
+    };
+
+    if (onProfileDataUpdate) {
+      onProfileDataUpdate(profileData);
+      toast.success("Datele din document au fost aplicate la profil!");
+    }
+  };
+
+  const copyToClipboard = (text: string, label: string) => {
+    navigator.clipboard.writeText(text);
+    toast.success(`${label} copiat în clipboard!`);
+  };
+
   const getStatusIcon = (status: string) => {
     switch (status) {
       case "verified":
@@ -131,7 +177,7 @@ const DocumentUploadCard: React.FC<DocumentUploadCardProps> = ({
       case "rejected":
         return <X className="h-4 w-4 text-red-600" />;
       case "pending":
-        return <Clock className="h-4 w-4 text-amber-600" />;
+        return <Clock className="h-4 w-4 text-blue-600" />;
       default:
         return null;
     }
@@ -144,7 +190,7 @@ const DocumentUploadCard: React.FC<DocumentUploadCardProps> = ({
       case "rejected":
         return "bg-red-100 text-red-800 border-red-200";
       case "pending":
-        return "bg-amber-100 text-amber-800 border-amber-200";
+        return "bg-blue-100 text-blue-800 border-blue-200";
       default:
         return "bg-gray-100 text-gray-800 border-gray-200";
     }
@@ -250,7 +296,11 @@ const DocumentUploadCard: React.FC<DocumentUploadCardProps> = ({
             <div className="flex items-center space-x-2">
               {existingDoc && (
                 <>
-                  <Button variant="outline" size="sm">
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={handleViewDetails}
+                  >
                     <Eye className="h-4 w-4" />
                   </Button>
                   <Button variant="outline" size="sm" onClick={handleDownload}>
@@ -298,6 +348,18 @@ const DocumentUploadCard: React.FC<DocumentUploadCardProps> = ({
                   >
                     {showJsonView ? "Ascunde JSON" : "Vezi JSON"}
                   </Button>
+                  {(ocrMetadata.extractedData.nume ||
+                    ocrMetadata.extractedData.prenume) && (
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      onClick={handleUpdateProfile}
+                      className="text-xs h-6"
+                    >
+                      <UserPlus className="h-3 w-3 mr-1" />
+                      Aplică la Profil
+                    </Button>
+                  )}
                 </div>
               </div>
 
@@ -310,16 +372,34 @@ const DocumentUploadCard: React.FC<DocumentUploadCardProps> = ({
               ) : (
                 <div className="grid grid-cols-1 gap-2 text-sm">
                   {Object.entries(ocrMetadata.extractedData)
-                    .filter(([_, value]) => value && value.trim() !== "")
+                    .filter(
+                      ([_, value]) =>
+                        value &&
+                        typeof value === "string" &&
+                        value.trim() !== ""
+                    )
                     .map(([field, value]) => (
                       <div key={field} className="flex items-center space-x-2">
                         {getMetadataIcon(field)}
                         <span className="font-medium text-gray-700 min-w-0 flex-shrink-0">
                           {getFieldLabel(field)}:
                         </span>
-                        <span className="text-gray-900 truncate" title={value}>
+                        <span
+                          className="text-gray-900 truncate flex-1"
+                          title={value}
+                        >
                           {value}
                         </span>
+                        <Button
+                          variant="ghost"
+                          size="sm"
+                          onClick={() =>
+                            copyToClipboard(value, getFieldLabel(field))
+                          }
+                          className="h-6 w-6 p-0 hover:bg-blue-100"
+                        >
+                          <Copy className="h-3 w-3" />
+                        </Button>
                       </div>
                     ))}
                 </div>
@@ -370,7 +450,10 @@ const DocumentUploadCard: React.FC<DocumentUploadCardProps> = ({
 
               <div className="grid grid-cols-1 gap-2 text-sm">
                 {Object.entries(extractedMetadata.extractedData)
-                  .filter(([_, value]) => value && value.trim() !== "")
+                  .filter(
+                    ([_, value]) =>
+                      value && typeof value === "string" && value.trim() !== ""
+                  )
                   .map(([field, value]) => (
                     <div key={field} className="flex items-center space-x-2">
                       {getMetadataIcon(field)}
@@ -409,6 +492,116 @@ const DocumentUploadCard: React.FC<DocumentUploadCardProps> = ({
         onDocumentProcessed={handleDocumentProcessed}
         documentType={docType}
       />
+
+      {/* Detail View Dialog */}
+      <Dialog open={isDetailViewOpen} onOpenChange={setIsDetailViewOpen}>
+        <DialogContent className="sm:max-w-[600px] max-h-[80vh] overflow-y-auto">
+          <DialogHeader>
+            <DialogTitle className="flex items-center space-x-2">
+              <FileText className="h-5 w-5" />
+              <span>Detalii Complete Document</span>
+            </DialogTitle>
+            <DialogDescription>
+              Vizualizează și copiază informațiile extrase din document
+            </DialogDescription>
+          </DialogHeader>
+
+          {(ocrMetadata || extractedMetadata) && (
+            <div className="space-y-4">
+              <div className="flex items-center justify-between">
+                <h3 className="text-lg font-medium">Informații Extrase</h3>
+                <div className="flex items-center space-x-2">
+                  <Badge variant="secondary">
+                    Încredere:{" "}
+                    {Math.round(
+                      (ocrMetadata?.confidence ||
+                        extractedMetadata?.confidence ||
+                        0) * 100
+                    )}
+                    %
+                  </Badge>
+                  {(ocrMetadata?.extractedData.nume ||
+                    extractedMetadata?.extractedData.nume) && (
+                    <Button onClick={handleUpdateProfile} size="sm">
+                      <UserPlus className="h-4 w-4 mr-2" />
+                      Aplică la Profil
+                    </Button>
+                  )}
+                </div>
+              </div>
+
+              <div className="grid gap-3">
+                {Object.entries(
+                  ocrMetadata?.extractedData ||
+                    extractedMetadata?.extractedData ||
+                    {}
+                )
+                  .filter(
+                    ([_, value]) =>
+                      value && typeof value === "string" && value.trim() !== ""
+                  )
+                  .map(([field, value]) => (
+                    <div
+                      key={field}
+                      className="grid grid-cols-4 items-center gap-4 p-3 border rounded-lg"
+                    >
+                      <div className="flex items-center space-x-2">
+                        {getMetadataIcon(field)}
+                        <Label className="text-sm font-medium">
+                          {getFieldLabel(field)}:
+                        </Label>
+                      </div>
+                      <div className="col-span-2">
+                        <Input
+                          value={value}
+                          readOnly
+                          className="bg-gray-50 border-gray-200"
+                        />
+                      </div>
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        onClick={() =>
+                          copyToClipboard(value, getFieldLabel(field))
+                        }
+                        className="w-full"
+                      >
+                        <Copy className="h-4 w-4 mr-2" />
+                        Copiază
+                      </Button>
+                    </div>
+                  ))}
+              </div>
+
+              {(ocrMetadata?.transcribedText || extractedMetadata) && (
+                <div className="mt-6">
+                  <h4 className="text-md font-medium mb-2">Text Complet OCR</h4>
+                  <div className="bg-gray-50 p-3 rounded-lg border max-h-40 overflow-y-auto">
+                    <pre className="text-xs text-gray-700 whitespace-pre-wrap">
+                      {ocrMetadata?.transcribedText ||
+                        "Text OCR nu este disponibil"}
+                    </pre>
+                  </div>
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={() =>
+                      copyToClipboard(
+                        ocrMetadata?.transcribedText || "",
+                        "Text OCR"
+                      )
+                    }
+                    className="mt-2"
+                  >
+                    <Copy className="h-4 w-4 mr-2" />
+                    Copiază Text Complet
+                  </Button>
+                </div>
+              )}
+            </div>
+          )}
+        </DialogContent>
+      </Dialog>
     </>
   );
 };

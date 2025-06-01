@@ -187,3 +187,42 @@
     @apply text-primary-700 bg-primary-50;
   }
 }
+
+/* Prevent unwanted yellow backgrounds and ensure proper overlay hierarchy */
+body {
+  background-color: white !important;
+}
+
+.toast-viewport {
+  z-index: 50 !important;
+}
+
+/* Override any potential yellow backgrounds from libraries */
+[style*="background-color: yellow"],
+[style*="background: yellow"],
+[class*="yellow"],
+[class*="amber-"] {
+  background-color: transparent !important;
+}
+
+/* Ensure proper stacking context for overlays */
+.overlay {
+  z-index: 40;
+}
+
+.modal {
+  z-index: 45;
+}
+
+.toast {
+  z-index: 50;
+}
+
+/* Debug utility - open browser console and run this to find yellow elements:
+   Array.from(document.querySelectorAll('*')).filter(el => {
+     const style = window.getComputedStyle(el);
+     return style.backgroundColor.includes('255, 255, 0') || 
+            style.backgroundColor.includes('yellow') ||
+            style.backgroundColor.includes('amber');
+   });
+*/

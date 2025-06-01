@@ -1,15 +1,20 @@
-
 /**
  * Document history display component
  * Shows all uploaded documents with their status
  */
 
-import React from 'react';
-import { FileText, Eye } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
-import { DocumentData } from '@/api/documentsApi';
+import { DocumentData } from "@/api/documentsApi";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Eye, FileText } from "lucide-react";
+import React from "react";
 
 interface DocumentHistoryProps {
   documents: DocumentData[];
@@ -18,35 +23,45 @@ interface DocumentHistoryProps {
 const DocumentHistory: React.FC<DocumentHistoryProps> = ({ documents }) => {
   const getStatusIcon = (status: string) => {
     const icons = {
-      verified: '✓',
-      rejected: '✗',
-      pending: '⏳'
+      verified: "✓",
+      rejected: "✗",
+      pending: "⏳",
     };
-    return icons[status as keyof typeof icons] || '?';
+    return icons[status as keyof typeof icons] || "?";
   };
 
   const getStatusColor = (status: string) => {
     switch (status) {
-      case 'verified': return 'bg-green-100 text-green-800 border-green-200';
-      case 'rejected': return 'bg-red-100 text-red-800 border-red-200';
-      case 'pending': return 'bg-amber-100 text-amber-800 border-amber-200';
-      default: return 'bg-gray-100 text-gray-800 border-gray-200';
+      case "verified":
+        return "bg-green-100 text-green-800 border-green-200";
+      case "rejected":
+        return "bg-red-100 text-red-800 border-red-200";
+      case "pending":
+        return "bg-blue-100 text-blue-800 border-blue-200";
+      default:
+        return "bg-gray-100 text-gray-800 border-gray-200";
     }
   };
 
   const getStatusText = (status: string) => {
     switch (status) {
-      case 'verified': return 'Verificat';
-      case 'rejected': return 'Respins';
-      case 'pending': return 'În verificare';
-      default: return 'Necunoscut';
+      case "verified":
+        return "Verificat";
+      case "rejected":
+        return "Respins";
+      case "pending":
+        return "În verificare";
+      default:
+        return "Necunoscut";
     }
   };
 
   return (
     <Card>
       <CardHeader>
-        <CardTitle className="text-gray-800">Istoricul documentelor încărcate</CardTitle>
+        <CardTitle className="text-gray-800">
+          Istoricul documentelor încărcate
+        </CardTitle>
         <CardDescription className="text-gray-600">
           Toate documentele încărcate și statusul lor
         </CardDescription>
@@ -54,9 +69,9 @@ const DocumentHistory: React.FC<DocumentHistoryProps> = ({ documents }) => {
       <CardContent>
         <div className="space-y-3">
           {documents.map((doc, index) => (
-            <div 
-              key={doc.id} 
-              className="p-4 border rounded-lg animate-scale-in hover:bg-gray-50 transition-colors" 
+            <div
+              key={doc.id}
+              className="p-4 border rounded-lg animate-scale-in hover:bg-gray-50 transition-colors"
               style={{ animationDelay: `${index * 0.1}s` }}
             >
               <div className="flex items-center justify-between">
@@ -65,7 +80,8 @@ const DocumentHistory: React.FC<DocumentHistoryProps> = ({ documents }) => {
                   <div>
                     <p className="font-medium text-gray-800">{doc.name}</p>
                     <p className="text-sm text-gray-600">
-                      {doc.size} • {new Date(doc.uploadDate).toLocaleDateString('ro-RO')}
+                      {doc.size} •{" "}
+                      {new Date(doc.uploadDate).toLocaleDateString("ro-RO")}
                     </p>
                   </div>
                 </div>

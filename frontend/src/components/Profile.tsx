@@ -199,6 +199,56 @@ const Profile = () => {
     }
   };
 
+  // Handle auto-populate from OCR data
+  const handleProfileDataUpdate = async (ocrData: any) => {
+    if (!ocrData) return;
+
+    // Extract names from full name or use separate fields
+    let first_name = formData.first_name;
+    let last_name = formData.last_name;
+
+    if (ocrData.name && ocrData.name.trim()) {
+      const nameParts = ocrData.name.trim().split(" ");
+      if (nameParts.length >= 2) {
+        first_name = nameParts[0];
+        last_name = nameParts.slice(1).join(" ");
+      }
+    }
+
+    // Create updated form data
+    const updatedFormData = {
+      first_name: first_name || formData.first_name,
+      last_name: last_name || formData.last_name,
+      phone: formData.phone, // Keep existing phone
+      address: ocrData.address || formData.address,
+      cnp: ocrData.cnp || formData.cnp,
+    };
+
+    // Update form data
+    setFormData(updatedFormData);
+
+    // Auto-save if in editing mode
+    if (isEditing) {
+      try {
+        setSaving(true);
+        const updatedUser = await updateProfile(updatedFormData);
+        setUser(updatedUser);
+        toast.success("Profilul a fost actualizat cu datele din document!");
+      } catch (error) {
+        console.error("Error updating profile with OCR data:", error);
+        toast.error("Eroare la actualizarea profilului cu datele OCR");
+      } finally {
+        setSaving(false);
+      }
+    } else {
+      // If not in editing mode, just show success and suggest editing
+      toast.success(
+        "Datele au fost aplicate! Apasă 'Editează' pentru a salva."
+      );
+      setIsEditing(true); // Automatically enter edit mode
+    }
+  };
+
   if (loading) {
     return (
       <div className="flex items-center justify-center p-8">
@@ -564,7 +614,9 @@ const Profile = () => {
         </TabsContent>
 
         <TabsContent value="documents">
-          <DocumentUploadSection />
+          <DocumentUploadSection
+            onProfileDataUpdate={handleProfileDataUpdate}
+          />
         </TabsContent>
 
         <TabsContent value="activity">

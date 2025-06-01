@@ -501,7 +501,7 @@ const MetadataDisplay: React.FC<{ metadata: AutoArchiveMetadata }> = ({
                 (metadata.confidence_score || 0) > 0.7
                   ? "text-green-600"
                   : (metadata.confidence_score || 0) > 0.4
-                  ? "text-yellow-600"
+                  ? "text-blue-600"
                   : "text-red-600"
               }`}
             >

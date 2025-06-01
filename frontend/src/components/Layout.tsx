@@ -65,7 +65,7 @@ const Layout = () => {
   const isAutoArchiveActive = location.pathname.startsWith("/auto-archive");
 
   return (
-    <div className="min-h-screen bg-secondary-50 flex">
+    <div className="min-h-screen bg-white flex">
       {/* Mobile sidebar overlay */}
       {sidebarOpen && (
         <div
