@@ -13,7 +13,7 @@ import logging
 from app.core.config import settings
 from app.db.database import create_tables, check_database_connection, get_db
 from app.db.init_data import initialize_default_data
-from app.api.routes import auth, users, documents, archive, dashboard, ai, parking, settings as settings_routes, search, auto_archive
+from app.api.routes import auth, users, documents, archive, dashboard, ai, parking, settings as settings_routes, search, auto_archive, personal_documents
 
 # Set up logging
 logging.basicConfig(level=logging.INFO)
@@ -108,6 +108,7 @@ app.include_router(parking.router, prefix="/api/parking", tags=["Parking"])
 app.include_router(settings_routes.router, prefix="/api/settings", tags=["Settings"])
 app.include_router(search.router, prefix="/api/search", tags=["Advanced Search"])
 app.include_router(auto_archive.router, prefix="/api/auto-archive", tags=["Auto Archive & OCR"])
+app.include_router(personal_documents.router, prefix="/api/personal-documents", tags=["Personal Documents"])
 
 
 @app.get("/")

@@ -5,6 +5,7 @@ from .auth_token import AuthToken
 from .notification import SystemNotification
 from .parking import ParkingZone, UserVehicle, ParkingSession
 from .settings import UserSettings
+from .chat import ChatSession, ChatMessage, AgentExecution
 
 __all__ = [
     "User",
@@ -18,5 +19,8 @@ __all__ = [
     "ParkingZone",
     "UserVehicle",
     "ParkingSession",
-    "UserSettings"
+    "UserSettings",
+    "ChatSession",
+    "ChatMessage",
+    "AgentExecution"
 ] 

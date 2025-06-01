@@ -53,6 +53,9 @@ class User(Base):
         CheckConstraint("role IN ('citizen', 'official')", name='users_role_check'),
     )
     
+    # Add this relationship to existing relationships section
+    chat_sessions = relationship("ChatSession", back_populates="user", cascade="all, delete-orphan")
+    
     def __repr__(self):
         return f"<User(id={self.id}, email={self.email}, role={self.role})>"
 

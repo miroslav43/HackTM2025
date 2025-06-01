@@ -22,6 +22,28 @@ from ...utils.file_handler import file_handler
 router = APIRouter()
 
 
+def document_to_response_dict(document) -> dict:
+    """
+    Convert a document object to a dictionary compatible with DocumentResponse schema.
+    Handles UUID to string conversion.
+    """
+    return {
+        "id": str(document.id),
+        "user_id": str(document.user_id),
+        "name": document.name,
+        "type": document.type,
+        "status": document.status,
+        "file_path": document.file_path,
+        "file_size": document.file_size,
+        "mime_type": document.mime_type,
+        "verification_progress": document.verification_progress,
+        "rejection_reason": document.rejection_reason,
+        "uploaded_at": document.uploaded_at,
+        "verified_at": document.verified_at,
+        "verified_by": str(document.verified_by) if document.verified_by else None
+    }
+
+
 @router.post("/upload", response_model=DocumentResponse, status_code=status.HTTP_201_CREATED)
 async def upload_document(
     file: UploadFile = File(...),
@@ -51,7 +73,10 @@ async def upload_document(
             document_data
         )
         
-        return DocumentResponse.model_validate(document)
+        # Convert UUID fields to strings for Pydantic validation
+        doc_dict = document_to_response_dict(document)
+        
+        return DocumentResponse.model_validate(doc_dict)
         
     except HTTPException:
         raise
@@ -81,7 +106,13 @@ async def get_user_documents(
         offset=offset
     )
     
-    return [DocumentResponse.model_validate(doc) for doc in documents]
+    # Convert UUID fields to strings for Pydantic validation
+    document_responses = []
+    for doc in documents:
+        doc_dict = document_to_response_dict(doc)
+        document_responses.append(DocumentResponse.model_validate(doc_dict))
+    
+    return document_responses
 
 
 @router.get("/{document_id}", response_model=DocumentResponse)
@@ -109,7 +140,10 @@ async def get_document(
             detail="Access denied"
         )
     
-    return DocumentResponse.model_validate(document)
+    # Convert UUID fields to strings for Pydantic validation
+    doc_dict = document_to_response_dict(document)
+    
+    return DocumentResponse.model_validate(doc_dict)
 
 
 @router.get("/{document_id}/download")
@@ -176,7 +210,10 @@ async def verify_document(
             detail="Document not found"
         )
     
-    return DocumentResponse.model_validate(updated_document)
+    # Convert UUID fields to strings for Pydantic validation
+    doc_dict = document_to_response_dict(updated_document)
+    
+    return DocumentResponse.model_validate(doc_dict)
 
 
 @router.put("/{document_id}/reject", response_model=DocumentResponse)
@@ -203,7 +240,10 @@ async def reject_document(
             detail="Document not found"
         )
     
-    return DocumentResponse.model_validate(updated_document)
+    # Convert UUID fields to strings for Pydantic validation
+    doc_dict = document_to_response_dict(updated_document)
+    
+    return DocumentResponse.model_validate(doc_dict)
 
 
 @router.delete("/{document_id}", response_model=SuccessResponse)

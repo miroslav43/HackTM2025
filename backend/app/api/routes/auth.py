@@ -7,6 +7,7 @@ from fastapi import APIRouter, Depends, HTTPException, status
 from fastapi.security import HTTPBearer
 from sqlalchemy.ext.asyncio import AsyncSession
 import logging
+from pydantic import BaseModel
 
 from ...db.database import get_db
 from ...services.user_service import UserService
@@ -18,6 +19,10 @@ from ...models.user import User
 router = APIRouter()
 security = HTTPBearer()
 logger = logging.getLogger(__name__)
+
+
+class RefreshTokenRequest(BaseModel):
+    refresh_token: str
 
 
 @router.post("/register", response_model=dict, status_code=status.HTTP_201_CREATED)
@@ -112,14 +117,14 @@ async def login_user(
 
 @router.post("/refresh", response_model=dict)
 async def refresh_access_token(
-    refresh_token: str,
+    request: RefreshTokenRequest,
     db: AsyncSession = Depends(get_db)
 ):
     """
     Refresh access token using refresh token
     """
     # Verify refresh token
-    payload = verify_token(refresh_token)
+    payload = verify_token(request.refresh_token)
     if not payload:
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,

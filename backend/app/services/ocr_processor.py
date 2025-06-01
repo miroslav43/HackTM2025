@@ -3,8 +3,7 @@ import base64
 import sqlite3
 import datetime
 from pathlib import Path
-from google import genai
-from google.genai import types
+import google.generativeai as genai
 import logging
 from dotenv import load_dotenv
 
@@ -26,8 +25,9 @@ class LegalDocumentOCR:
         if not self.api_key:
             raise ValueError("GEMINI_API_KEY environment variable must be set or api_key provided")
         
-        self.client = genai.Client(api_key=self.api_key)
-        self.model_name = "gemini-1.5-flash"
+        # Configure the API key
+        genai.configure(api_key=self.api_key)
+        self.model = genai.GenerativeModel("gemini-1.5-flash")
         # Use a separate database for OCR documents
         self.db_path = "legal_documents_ocr.db"
         self._setup_database()
@@ -157,14 +157,7 @@ ANALIZEAZĂ DOCUMENTUL ȘI RETURNEAZĂ JSON-ul:"""
         try:
             metadata_prompt = self._get_metadata_extraction_prompt(text, document_type)
             
-            contents = [
-                types.Content(
-                    role="user",
-                    parts=[types.Part.from_text(text=metadata_prompt)],
-                ),
-            ]
-            
-            generate_content_config = types.GenerateContentConfig(
+            generation_config = genai.GenerationConfig(
                 response_mime_type="application/json",
                 temperature=0.3,
                 top_p=0.9,
@@ -172,10 +165,9 @@ ANALIZEAZĂ DOCUMENTUL ȘI RETURNEAZĂ JSON-ul:"""
             )
             
             logger.info("Sending request to Gemini for metadata extraction...")
-            response = self.client.models.generate_content(
-                model=self.model_name,
-                contents=contents,
-                config=generate_content_config,
+            response = self.model.generate_content(
+                metadata_prompt,
+                generation_config=generation_config,
             )
             
             logger.info(f"Received response from Gemini: {response.text[:200]}...")
@@ -198,7 +190,7 @@ ANALIZEAZĂ DOCUMENTUL ȘI RETURNEAZĂ JSON-ul:"""
             logger.error(f"Raw response: {response.text if 'response' in locals() else 'No response'}")
             return self._get_fallback_metadata(document_type)
         except Exception as e:
-            logger.error(f"Error extracting metadata: {str(e)}")
+            logger.error(f"Metadata extraction error: {str(e)}")
             return self._get_fallback_metadata(document_type)
     
     def _validate_and_clean_metadata(self, metadata: dict, document_type: str = None) -> dict:
@@ -365,44 +357,32 @@ ANALIZEAZĂ DOCUMENTUL ȘI RETURNEAZĂ JSON-ul:"""
 
     def process_pdf_file(self, pdf_path, document_type=None):
         """
-        Process a PDF file for OCR transcription
+        Process a PDF file using Google's Gemini model for OCR transcription
         
         Args:
-            pdf_path (str or Path): Path to the PDF file
-            document_type (str): Type of legal document (contract, statute, etc.)
+            pdf_path (str): Path to the PDF file
+            document_type (str): Optional document type classification
             
         Returns:
-            dict: Processing result with transcribed text and metadata
+            dict: Processing results including transcribed text and metadata
         """
         pdf_path = Path(pdf_path)
         
         if not pdf_path.exists():
-            raise FileNotFoundError(f"PDF file not found: {pdf_path}")
-        
-        if pdf_path.stat().st_size > 50 * 1024 * 1024:  # 50MB limit
-            raise ValueError("PDF file exceeds 50MB size limit")
-        
-        logger.info(f"Processing PDF file: {pdf_path}")
+            return {
+                "success": False,
+                "error": f"File not found: {pdf_path}",
+                "filename": pdf_path.name
+            }
         
         try:
+            logger.info(f"Starting PDF processing: {pdf_path}")
+            
             # Upload the PDF file to Gemini
-            uploaded_file = self.client.files.upload(file=str(pdf_path))
+            uploaded_file = genai.upload_file(str(pdf_path))
             logger.info(f"File uploaded successfully: {uploaded_file.uri}")
             
-            # Create the transcription request
-            contents = [
-                types.Content(
-                    role="user",
-                    parts=[
-                        types.Part.from_text(text=self._get_legal_ocr_prompt()),
-                        types.Part(file_data=types.FileData(file_uri=uploaded_file.uri, mime_type=uploaded_file.mime_type))
-                    ],
-                ),
-            ]
-            
-            # Configure generation settings for high accuracy
-            generate_content_config = types.GenerateContentConfig(
-                response_mime_type="text/plain",
+            generation_config = genai.GenerationConfig(
                 temperature=0.1,  # Low temperature for consistency
                 top_p=0.95,
                 max_output_tokens=65535
@@ -411,16 +391,15 @@ ANALIZEAZĂ DOCUMENTUL ȘI RETURNEAZĂ JSON-ul:"""
             logger.info("Starting OCR transcription...")
             
             # Generate the transcription
-            response = self.client.models.generate_content(
-                model=self.model_name,
-                contents=contents,
-                config=generate_content_config,
-            )
+            response = self.model.generate_content([
+                self._get_legal_ocr_prompt(),
+                uploaded_file
+            ], generation_config=generation_config)
             
             transcribed_text = response.text
             
             if not transcribed_text:
-                raise ValueError("No text was transcribed from the document")
+                raise ValueError("No text was transcribed from the PDF")
             
             # Perform quality verification
             verified_text = self._verify_transcription(transcribed_text, str(pdf_path))
@@ -444,7 +423,7 @@ ANALIZEAZĂ DOCUMENTUL ȘI RETURNEAZĂ JSON-ul:"""
                 "processing_date": datetime.datetime.now().isoformat()
             }
             
-            logger.info(f"OCR processing completed successfully. Document ID: {doc_id}")
+            logger.info(f"PDF processing completed successfully. Document ID: {doc_id}")
             return result
             
         except Exception as e:
@@ -454,50 +433,35 @@ ANALIZEAZĂ DOCUMENTUL ȘI RETURNEAZĂ JSON-ul:"""
                 "error": str(e),
                 "filename": pdf_path.name
             }
-    
+
     def process_image_file(self, image_path, document_type=None):
         """
-        Process an image file for OCR transcription
+        Process an image file using Google's Gemini model for OCR transcription
         
         Args:
-            image_path (str or Path): Path to the image file
-            document_type (str): Type of legal document
+            image_path (str): Path to the image file  
+            document_type (str): Optional document type classification
             
         Returns:
-            dict: Processing result with transcribed text and metadata
+            dict: Processing results including transcribed text and metadata
         """
         image_path = Path(image_path)
         
         if not image_path.exists():
-            raise FileNotFoundError(f"Image file not found: {image_path}")
-        
-        if image_path.stat().st_size > 7 * 1024 * 1024:  # 7MB limit for images
-            raise ValueError("Image file exceeds 7MB size limit")
-        
-        logger.info(f"Processing image file: {image_path}")
+            return {
+                "success": False,
+                "error": f"File not found: {image_path}",
+                "filename": image_path.name
+            }
         
         try:
-            # Read image file as bytes
-            with open(image_path, 'rb') as f:
-                image_bytes = f.read()
+            logger.info(f"Starting image processing: {image_path}")
             
-            # Determine MIME type
-            mime_type = self._get_image_mime_type(image_path.suffix.lower())
+            # Upload the image file
+            uploaded_file = genai.upload_file(str(image_path))
+            logger.info(f"Image uploaded successfully: {uploaded_file.uri}")
             
-            # Create the transcription request
-            contents = [
-                types.Content(
-                    role="user",
-                    parts=[
-                        types.Part.from_text(text=self._get_legal_ocr_prompt()),
-                        types.Part(inline_data=types.InlineData(data=image_bytes, mime_type=mime_type))
-                    ],
-                ),
-            ]
-            
-            # Configure generation settings
-            generate_content_config = types.GenerateContentConfig(
-                response_mime_type="text/plain",
+            generation_config = genai.GenerationConfig(
                 temperature=0.1,
                 top_p=0.95,
                 max_output_tokens=65535
@@ -506,11 +470,10 @@ ANALIZEAZĂ DOCUMENTUL ȘI RETURNEAZĂ JSON-ul:"""
             logger.info("Starting OCR transcription...")
             
             # Generate the transcription
-            response = self.client.models.generate_content(
-                model=self.model_name,
-                contents=contents,
-                config=generate_content_config,
-            )
+            response = self.model.generate_content([
+                self._get_legal_ocr_prompt(),
+                uploaded_file
+            ], generation_config=generation_config)
             
             transcribed_text = response.text
             
@@ -549,7 +512,7 @@ ANALIZEAZĂ DOCUMENTUL ȘI RETURNEAZĂ JSON-ul:"""
                 "error": str(e),
                 "filename": image_path.name
             }
-    
+
     def _get_image_mime_type(self, extension):
         """Get MIME type for image extensions"""
         mime_types = {
@@ -559,7 +522,7 @@ ANALIZEAZĂ DOCUMENTUL ȘI RETURNEAZĂ JSON-ul:"""
             '.webp': 'image/webp'
         }
         return mime_types.get(extension, 'image/jpeg')
-    
+
     def _verify_transcription(self, transcribed_text, file_path):
         """
         Perform additional verification and quality checks on the transcribed text
@@ -589,24 +552,15 @@ If the transcription is accurate and complete, return it exactly as provided.
 IMPORTANT: Only return the final, verified transcription text - no explanations or commentary."""
         
         try:
-            contents = [
-                types.Content(
-                    role="user",
-                    parts=[types.Part.from_text(text=verification_prompt)],
-                ),
-            ]
-            
-            generate_content_config = types.GenerateContentConfig(
-                response_mime_type="text/plain",
+            generation_config = genai.GenerationConfig(
                 temperature=0.05,  # Very low temperature for verification
                 top_p=0.9,
                 max_output_tokens=65535
             )
             
-            response = self.client.models.generate_content(
-                model=self.model_name,
-                contents=contents,
-                config=generate_content_config,
+            response = self.model.generate_content(
+                verification_prompt,
+                generation_config=generation_config,
             )
             
             verified_text = response.text.strip()

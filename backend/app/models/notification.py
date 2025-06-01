@@ -10,11 +10,12 @@ from sqlalchemy.sql import func, text
 from ..db.database import Base
 
 
-class ChatMessage(Base):
+class SimpleChatMessage(Base):
     """
-    AI chat messages between users and the assistant
+    Simple chat messages between users and basic assistant (legacy)
+    Note: For AI Agent conversations, use ChatMessage from models.chat
     """
-    __tablename__ = "chat_messages"
+    __tablename__ = "simple_chat_messages"
     
     id = Column(UUID(as_uuid=True), primary_key=True, server_default=text("gen_random_uuid()"))
     user_id = Column(UUID(as_uuid=True), ForeignKey("users.id", ondelete="CASCADE"), nullable=False)
@@ -25,7 +26,7 @@ class ChatMessage(Base):
     
     # Add check constraint for role
     __table_args__ = (
-        CheckConstraint("role IN ('user', 'assistant')", name='chat_messages_role_check'),
+        CheckConstraint("role IN ('user', 'assistant')", name='simple_chat_messages_role_check'),
     )
 
 

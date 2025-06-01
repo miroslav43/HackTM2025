@@ -4,9 +4,10 @@ Uses Pydantic Settings for environment variable management.
 """
 
 from pydantic_settings import BaseSettings
-from typing import List, Optional
+from typing import List, Optional, Dict
 import os
 from urllib.parse import urlparse, parse_qs
+from pydantic import Field
 
 
 class Settings(BaseSettings):
@@ -52,6 +53,15 @@ class Settings(BaseSettings):
     # Frontend URL for email links
     FRONTEND_URL: str = "http://localhost:3000"
     
+    # AI Agent Configuration
+    gemini_key: Optional[str] = Field(None, env="GEMINI_KEY")
+    perplexity_api_key: Optional[str] = Field(None, env="PERPLEXITY_API_KEY")
+    
+    # AI Agent Settings
+    ai_agent_enabled: bool = Field(True, env="AI_AGENT_ENABLED")
+    ai_agent_timeout: int = Field(120, env="AI_AGENT_TIMEOUT")  # seconds
+    ai_agent_max_retries: int = Field(3, env="AI_AGENT_MAX_RETRIES")
+    
     @property
     def database_url(self) -> str:
         """
@@ -74,6 +84,20 @@ class Settings(BaseSettings):
             db_url = db_url.replace("&sslmode=require", "")
         
         return db_url
+    
+    def validate_ai_agent_config(self) -> Dict[str, bool]:
+        """Validate AI agent configuration"""
+        validation = {
+            "gemini_key_set": bool(self.gemini_key),
+            "perplexity_key_set": bool(self.perplexity_api_key),
+            "agent_enabled": self.ai_agent_enabled
+        }
+        validation["fully_configured"] = all([
+            validation["gemini_key_set"],
+            validation["perplexity_key_set"],
+            validation["agent_enabled"]
+        ])
+        return validation
     
     class Config:
         env_file = ".env"
