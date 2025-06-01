@@ -1,4 +1,3 @@
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -69,45 +68,45 @@
     @apply backdrop-blur-sm bg-white/80 border border-white/20;
   }
 
-  /* Înlocuirea completă a culorilor pink cu purple pentru contrast mai bun */
+  /* Înlocuirea completă a culorilor pink cu gray/slate pentru contrast mai bun pe fundal alb */
   .text-pink-50 {
-    @apply text-purple-800;
+    @apply text-slate-700;
   }
   
   .text-pink-100 {
-    @apply text-purple-800;
+    @apply text-slate-700;
   }
   
   .text-pink-200 {
-    @apply text-purple-700;
+    @apply text-slate-600;
   }
   
   .text-pink-300 {
-    @apply text-purple-700;
+    @apply text-slate-600;
   }
   
   .text-pink-400 {
-    @apply text-purple-600;
+    @apply text-slate-700;
   }
   
   .text-pink-500 {
-    @apply text-purple-600;
+    @apply text-slate-800;
   }
   
   .text-pink-600 {
-    @apply text-purple-700;
+    @apply text-slate-800;
   }
   
   .text-pink-700 {
-    @apply text-purple-800;
+    @apply text-slate-900;
   }
   
   .text-pink-800 {
-    @apply text-purple-900;
+    @apply text-slate-900;
   }
   
   .text-pink-900 {
-    @apply text-purple-900;
+    @apply text-slate-900;
   }
   
   .bg-pink-50 {
@@ -158,13 +157,13 @@
     @apply border-purple-600;
   }
   
-  /* Hover states pentru pink -> purple */
+  /* Hover states pentru pink -> purple/slate */
   .hover\:text-pink-500:hover {
-    @apply text-purple-600;
+    @apply text-slate-800;
   }
   
   .hover\:text-pink-600:hover {
-    @apply text-purple-700;
+    @apply text-slate-900;
   }
   
   .hover\:bg-pink-50:hover {
@@ -177,5 +176,14 @@
   
   .hover\:border-pink-300:hover {
     @apply border-purple-300;
+  }
+
+  /* Stil specific pentru navbar ca să evităm textul invizibil pe fundal alb */
+  .navbar-link-inactive {
+    @apply text-slate-600 hover:text-primary-700;
+  }
+  
+  .navbar-link-active {
+    @apply text-primary-700 bg-primary-50;
   }
 }

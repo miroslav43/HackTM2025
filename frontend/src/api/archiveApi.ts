@@ -123,11 +123,10 @@ export const archiveApi = {
       }
 
       // Use a custom fetch for FormData because apiClient adds Content-Type: application/json
-      const token = localStorage.getItem('authToken');
-      const response = await fetch('http://localhost:8000/api/archive/documents', {
+      const response = await fetch('/api/archive/documents', {
         method: 'POST',
         headers: {
-          ...(token && { 'Authorization': `Bearer ${token}` })
+          'Authorization': `Bearer ${localStorage.getItem('authToken')}`,
         },
         body: formData,
       });
@@ -148,5 +147,5 @@ export const archiveApi = {
       console.error('Error adding document to archive:', error);
       throw error;
     }
-  }
+  },
 };

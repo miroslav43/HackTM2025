@@ -1,0 +1,75 @@
+================================================================================
+REZULTATE CĂUTARE PERPLEXITY AI - FOCUS PE ROMÂNIA
+================================================================================
+
+Întrebarea originală: Ce documente îmi trebuie și unde trebuie să merg să îmi înnoiesc buletinul în Timișoara?
+Cererea îmbunătățită: În România,Timisoara: Ce documente îmi trebuie și unde trebuie să merg să îmi înnoiesc buletinul în Timișoara?
+Data căutării: 2025-05-31 00:26:40
+Data de referință: 2025-05-30
+Model: sonar-pro
+--------------------------------------------------------------------------------
+
+FILTRE API DE CĂUTARE APLICATE:
+📅 Interval de date: 1/1/2005 până la 5/30/2025
+🇷🇴 Locație: România (RO)
+📍 Coordonate: 45.7489, 21.2087
+--------------------------------------------------------------------------------
+
+REZULTATELE CĂUTĂRII:
+--------------------
+Pentru a-ți înnoi buletinul (cartea de identitate) în Timișoara, trebuie să urmezi câțiva pași clari și să pregătești un set de documente obligatorii. Mai jos găsești instrucțiunile detaliate, inclusiv unde trebuie să mergi și ce acte să ai la tine.
+
+## Documente necesare pentru înnoirea buletinului în Timișoara
+
+Pregătește următoarele documente, în original și copie, după caz:
+
+- Cerere pentru eliberarea actului de identitate (formular tip, se poate descărca de pe site-ul Primăriei Timișoara sau se completează la ghișeu)[1][7].
+- Actul de identitate vechi (buletinul expirat sau deteriorat)[1][4][5].
+- Certificatul de naștere[1][4][5].
+- Certificatul de căsătorie, dacă este cazul (pentru persoanele căsătorite sau văduve)[1][4][5].
+- Hotărârea de divorț definitivă și irevocabilă sau certificatul de divorț, dacă este cazul[4][5][7].
+- Certificatul de deces al soțului/soției, dacă este cazul (pentru soțul/soția supraviețuitoare)[4][5][7].
+- Certificatele de naștere ale copiilor sub 14 ani, dacă este cazul[4][5][7].
+- Documentul care dovedește adresa de domiciliu (de exemplu, contract de proprietate, contract de închiriere, adeverință de la asociația de proprietari, etc.)[4][5][7].
+    - Dacă nu ești proprietarul imobilului, proprietarul trebuie să fie prezent la depunerea actelor, cu buletinul și actul de proprietate, și să semneze o declarație pe proprie răspundere[5].
+- Chitanța care dovedește plata taxei pentru cartea de identitate (7 lei)[2][4][5].
+    - Taxa se poate plăti la ghișeul serviciului de evidență a persoanelor, la Poșta Română, la CEC Bank sau la casieria Primăriei[2][5].
+
+## Unde trebuie să mergi
+
+Toate actele se depun la:
+
+**Serviciul Public Comunitar Local de Evidență a Persoanelor Timișoara**  
+Adresa: Bd. Take Ionescu nr. 17, Timișoara
+
+Este recomandat să faci o programare online înainte de a te prezenta la ghișeu, pentru a evita aglomerația și a reduce timpul de așteptare. Programarea se poate face pe platforma oficială a Primăriei Timișoara[3]:
+
+- Programare online: https://evpers.primariatm.ro/programare-carte-identitate
+
+## Pași de urmat
+
+1. **Verifică lista completă a documentelor** pe site-ul oficial al Primăriei Timișoara: https://servicii.primariatm.ro/act-identitate[1].
+2. **Achită taxa de 7 lei** pentru eliberarea cărții de identitate la una dintre locațiile menționate și păstrează chitanța[2][5].
+3. **Fă o programare online** pentru depunerea actelor, accesând platforma dedicată[3].
+4. **Pregătește dosarul** cu toate documentele necesare, în original și copie.
+5. **Prezintă-te la sediul Serviciului de Evidență a Persoanelor** la data și ora programării, cu dosarul complet.
+6. **Depune actele și semnează cererea** în fața funcționarului.
+7. **Ridică noul buletin** la data comunicată de instituție (de obicei, termenul de eliberare este de câteva zile lucrătoare).
+
+## Link-uri utile și resurse oficiale
+
+- Lista completă a documentelor și detalii suplimentare: https://servicii.primariatm.ro/act-identitate[1]
+- Programare online pentru depunerea actelor: https://evpers.primariatm.ro/programare-carte-identitate[3]
+- Informații suplimentare despre taxe și proceduri: https://dept.cjtimis.ro/acte_id_v1/[2]
+
+**Notă:** Dacă situația ta implică circumstanțe speciale (schimbare de domiciliu, pierdere, furt, deteriorare, etc.), verifică pe site-ul oficial sau contactează direct Serviciul de Evidență a Persoanelor pentru a afla dacă sunt necesare documente suplimentare.
+
+Respectă instrucțiunile de pe site-ul oficial și asigură-te că ai toate actele în original și copie pentru a evita întârzieri sau respingerea dosarului.
+
+================================================================================
+REZUMATUL CONFIGURAȚIEI DE CĂUTARE:
+- Restricție geografică: România (RO) prin filtrul de locație API
+- Restricție temporală: 2005-2025 prin filtrele de interval de date API
+- Prioritatea surselor: Guvern românesc > Instituții românești > Surse românești recente
+- Filtrele API asigură returnarea doar a surselor românești și recente
+================================================================================

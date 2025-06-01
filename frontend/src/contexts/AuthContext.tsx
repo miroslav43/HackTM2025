@@ -12,9 +12,14 @@ export type UserRole = "citizen" | "official";
 
 export interface User {
   id: string;
-  name: string;
+  first_name: string;
+  last_name: string;
+  name: string; // computed field from backend
   email: string;
   role: UserRole;
+  phone?: string;
+  address?: string;
+  cnp?: string;
   avatar?: string;
   documents?: {
     id: boolean;
@@ -54,9 +59,16 @@ export const useAuth = () => {
  */
 const transformUser = (backendUser: any): User => ({
   id: backendUser.id,
-  name: backendUser.name,
+  first_name: backendUser.first_name,
+  last_name: backendUser.last_name,
+  name:
+    backendUser.name ||
+    `${backendUser.first_name} ${backendUser.last_name}`.trim(),
   email: backendUser.email,
   role: backendUser.role,
+  phone: backendUser.phone,
+  address: backendUser.address,
+  cnp: backendUser.cnp,
   avatar: backendUser.avatar,
   documents: {
     id: false, // These would need to be determined from actual user documents

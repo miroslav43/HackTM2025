@@ -1,0 +1,86 @@
+RAPORT AGENT - REZULTATE FINALE
+============================================================
+
+ÎNTREBARE ORIGINALĂ:
+cum imi reinoiesc buletinul?
+
+QUERY REFORMULAT:
+"Care este procedura oficială pentru reînnoirea cărții de identitate în Timișoara, România, ce documente sunt necesare, unde trebuie depusă cererea, care sunt taxele de reînnoire și există posibilitatea de programare online?"
+
+
+CONFIGURAȚIE FOLOSITĂ:
+- Config Name: default_agent_config
+- Reformulare activă: True
+- Căutare web activă: True
+- Model Gemini: gemini-2.0-flash
+- Temperature Gemini: 0.1
+- Model Perplexity: sonar-reasoning-pro
+- Temperature Perplexity: 0.1
+- Context Size: high
+
+TIMESTAMP: 2025-05-31 04:55:57
+
+REZULTAT FINAL:
+----------------------------------------
+<think>
+Okay, let's tackle this query about renewing the ID card in Timișoara, Romania. The user wants to know the official procedure, required documents, where to submit the application, the fees, and if online scheduling is available. 
+
+First, I need to go through the search results provided. Let's start with the sources. Result [1] from the Timișoara city website lists the necessary documents, including proof of payment, address proof, and specific cases like loss or theft. It mentions a 30-day processing time, extendable by 15 days. Result [2] talks about online scheduling via a specific link. Result [3] and [4] from Libertatea mention the required documents and fees (7 lei), payment options at Posta Romana or CEC Bank. They also mention the 180-day window before expiration. Result [5] from Economica.net details the procedure, deadlines, and fines for non-compliance. Result [6] from Tion.ro provides info on online scheduling, fees for urgent processing (147 lei), and validity periods. Result [7] lists the fees again, confirming 7 lei for the ID. Result [8] mentions phone numbers for scheduling due to software issues. Result [9] from Stirile Pro TV reiterates documents needed and fees.
+
+Now, structuring the answer. The user is in Timișoara, so focus on local procedures. The main sections should be Documents, Procedure, Fees, Online Scheduling, and Important Notes. 
+
+Documents needed: From [1], [3], [4], [9], the common requirements are the application form, birth certificate, proof of address, old ID, and payment proof. Special cases like loss/theft require police reports. Address proof might need owner consent if not the owner, as per [1].
+
+Procedure: From [5], the steps are scheduling (online or phone), preparing documents, submitting in person. Processing time is 30 days [1][5]. Urgent processing is 5 days with a higher fee [6].
+
+Fees: 7 lei standard [3][4][6][7], 147 lei for urgent [6]. Exemptions for certain groups [4].
+
+Online Scheduling: Available via the link in [2] and [6], but [8] mentions phone options due to technical issues. So, provide both methods.
+
+Important Notes: Validity periods from [6], deadlines (apply 15 days before expiration) [3][5], fines for delays [5].
+
+Need to ensure all info is specific to Timișoara. For example, the online scheduling link in [2] is for Timișoara. Also, the phone numbers in [8] are local. 
+
+Check for conflicting info. All sources agree on the 7 lei fee. Urgent fee is mentioned in [6] as 147 lei. Processing times are consistent (30 days). Documents required are consistent across sources. 
+
+Make sure to cite the sources properly. For example, the online scheduling link is from [2] and [6], fees from multiple sources, etc.
+
+Avoid mentioning sources that are not specific to Timișoara unless necessary. For example, [7] is from Sector 2 in Bucharest, so maybe not relevant, but the fee is the same nationally. However, since the user is in Timișoara, focus on local sources first.
+
+Putting it all together: Start with a summary, then sections for each part of the query. Use bullet points for clarity, include links and phone numbers where applicable. Highlight important details like deadlines and fees.
+</think>
+
+Procedura de reînnoire a cărții de identitate în Timișoara implică următorii pași și cerințe oficiale:
+
+### **Documente necesare**
+- **Cerere tip** completată (formular disponibil la ghișeu)  
+- **Certificat de naștere** original și copie  
+- **Actul de identitate expirat** (original și copie)  
+- **Dovada adresei de domiciliu**: contract de vânzare-cumpărare, extras CF la zi sau acord scris al proprietarului (dacă nu sunteți proprietar) [1][3][9]  
+- **Chitanță de plată** a taxei de 7 lei (extras de cont pentru plăți online sau chitanță de la casierie) [1][6][7]  
+- **În caz de pierdere/furt**: raport de la poliție și document oficial cu fotografie recentă (pașaport, permis) [1][6]  
+
+### **Procedura pas cu pas**
+1. **Programare online**  
+   - Accesați platforma dedicată: [Programare act de identitate Timișoara](https://evpers.primariatm.ro/programare-carte-identitate) [2][6]  
+   - Alternativ, programați-vă telefonic la **0747 777 666** sau **0751 999 888** [8]  
+
+2. **Depunerea dosarului**  
+   - Locul: **Direcția de Evidență a Populației Timișoara** (Strada Gheorghe Lazăr nr. 1A)  
+   - Prezentați-vă cu documentele originale și copii la data programării  
+
+3. **Procesare**  
+   - Termen standard: **30 de zile** (prelungibil cu încă 15 zile în cazuri excepționale) [1][5]  
+   - Variantă urgentă (5 zile lucrătoare): taxa de **147 lei** [6]  
+
+### **Taxe**  
+- **Taxa standard**: 7 lei [3][6][7]  
+- **Carte de identitate provizorie**: 1 leu [6][7]  
+- **Scutiri de taxă**: persoane cu handicap grad I-II, orfani, victime ale calamităților [4][6]  
+
+### **Important**  
+- **Termen de depunere**: cel târziu **15 zile înainte de expirarea buletinului** [3][5]  
+- **Valabilitate nouă**: 10 ani pentru persoane peste 25 de ani [6]  
+- Vechiul act rămâne valabil până la emiterea celui nou [5]  
+
+Pentru verificări suplimentare, consultați portalul Primăriei Timișoara: [Acte de identitate](https://servicii.primariatm.ro/act-identitate) [1][2].

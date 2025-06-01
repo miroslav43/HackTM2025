@@ -1,0 +1,154 @@
+RAPORT AGENT - REZULTATE FINALE COMPLETE
+============================================================
+
+ÎNTREBARE ORIGINALĂ:
+reinnoire buletin timisoara
+
+QUERY REFORMULAT:
+"Care este procedura oficială pentru reînnoirea cărții de identitate în Timișoara, România, ce documente sunt necesare, care este costul actualizat, unde se depun actele și dacă este necesară programarea online?"
+
+
+CONFIGURAȚIA FOLOSITĂ:
+- Config Name: default_agent_config
+- Reformulare activă: True
+- Căutare web activă: True
+- Căutare site-uri de încredere activă: True
+- Model Gemini: gemini-2.0-flash
+- Temperature Gemini: 0.1
+- Model Perplexity: sonar-reasoning-pro
+- Temperature Perplexity: 0.1
+- Context Size: high
+- Model Gemini Trusted Sites: gemini-2.5-flash-preview-05-20
+- Model Perplexity Trusted Sites: sonar-reasoning-pro
+
+TIMESTAMP: 2025-05-31 14:52:39
+
+REZULTAT CĂUTARE WEB REGULATĂ:
+----------------------------------------
+<think>
+Okay, let's tackle this query step by step. The user is asking about renewing their ID card in Timișoara, Romania. They want to know the official procedure, required documents, updated costs, where to submit the documents, and if online scheduling is needed.
+
+First, I need to check the search results provided. Let's go through each source to gather the necessary information.
+
+From [1], the Primăria Timișoara page lists the required documents: application form (Anexa 1), valid ID and voter card, birth certificate, marriage certificate if applicable, foreign documents if married abroad, residence permit, and citizenship certificate if needed. It also mentions that the old ID remains valid until the new one is issued.
+
+Result [2] mentions the need for online scheduling via the evpers.primariatm.ro link for ID card renewal, including cases like address change or loss.
+
+Sources [3] and [4] from Libertatea state the fee is 7 lei for the ID card, payable at Posta Română, CEC Bank, or the office where documents are submitted. They also note exemptions for certain groups and that the electronic ID is free for five years under PNRR.
+
+[5] from Economica.net outlines the procedure: applying at the local office, keeping the old ID until the new one is issued, and a 30-day processing time. It also mentions fines for not renewing on time.
+
+Result [6] talks about the electronic ID available in Timișoara, free under PNRR, requiring the same documents as the classic ID, and online scheduling through the HUB Servicii MAI portal.
+
+[7] and [8] confirm the 7 lei fee for the ID card and 1 leu for the provisional one. They also detail the online scheduling process via Primăria Timișoara's website, needing a phone number for SMS confirmation.
+
+[9] from evpcv.ro lists documents needed for address change, including proof of address, which might be relevant if the renewal is due to a move.
+
+[10] from Direcția de Evidență a Persoanelor Timiș reiterates the legal framework and required documents.
+
+Putting this together, the procedure involves scheduling online, preparing the necessary documents, paying the fee, submitting in person, and waiting for processing. The electronic ID is an option now, free under certain conditions. Fees are 7 lei for standard, 1 leu provisional. Exemptions apply for specific groups. Online scheduling is mandatory, done through specific portals. Documents include application form, existing ID, birth certificate, proof of address if applicable, and others depending on the case.
+
+Need to structure this clearly, ensuring all parts of the query are addressed: procedure, documents, cost, submission locations, online scheduling. Also, highlight the electronic ID option and any exemptions. Make sure to cite the sources appropriately.
+</think>
+
+Pentru reînnoirea cărții de identitate în Timișoara, procedura oficială implică următorii pași:
+
+### 1. **Programare online obligatorie**
+- Accesați portalul [HUB Servicii MAI](https://hubservicii.mai.gov.ro) sau [platforma Primăriei Timișoara](https://evpers.primariatm.ro/programare-carte-identitate) pentru a rezerva un interval orar[2][6][8].
+- Introduceți numărul de telefon pentru primirea unui cod SMS de confirmare[8].
+
+### 2. **Documente necesare**
+- **Cerere tip** (Anexa 1) completată și imprimată față-verso pe o singură foaie A4[1][9].
+- **Actul de identitate expirat** și cartea de alegător (dacă este cazul)[1][4].
+- **Certificatul de naștere original** și copie[1][3][9].
+- **Dovada domiciliului**: contract de vânzare-cumpărare, contract de închiriere sau adeverință de la asociația de proprietari (original și copie)[9].
+- **Chitanța de plată** a taxei de 7 lei[3][7].
+
+*Cazuri speciale*:
+- Pentru căsătorie/divorț: certificatul de căsătorie/divorț original și copie[1][9].
+- Pentru cetățeni dobândind cetățenia română: certificat constatator eliberat de Autoritatea pentru Cetățenie[1].
+
+### 3. **Taxe actualizate (2025)**
+- **7 lei** pentru carte standard (plătibili la ghișeul de evidență, Poșta Română sau CEC Bank)[3][7].
+- **1 leu** pentru carte provizorie[3][7].
+- **Gratuit** pentru CEI (Carte Electronică de Identitate) în limita fondurilor PNRR[6].
+
+*Exonerări*: orfani, persoane cu handicap grad I-II, victime ale calamităților[3][4].
+
+### 4. **Depunere documente**
+- **Locație**: Direcția de Evidență a Persoanelor Timișoara (Strada Gheorghe Lazăr nr. 2)[6][8].
+- **Proces**: Prezentarea personală la programarea stabilită, cu dosarul complet[4][5].
+
+### 5. **Emitere și ridicare**
+- **Termen standard**: 30 de zile (extensibil cu încă 15 zile în cazuri excepționale)[5].
+- **Actul vechi** rămâne valabil până la ridicarea noului document[1][5].
+- **CEI** include elemente de securitate avansate și permite semnătură electronică[6].
+
+### Opțiuni suplimentare
+- **CEI (Carte Electronică de Identitate)**: Disponibilă gratuit prin programare pe [HUB Servicii MAI](https://hubservicii.mai.gov.ro), valabilă ca document de călătorie în UE[6].
+- **Urgență**: Termen redus la 3 zile lucrătoare (necesară justificare)[5].
+
+*Notă importantă*: Nerespectarea termenului de 15 zile de la expirare atrage amendă între 40-80 lei[5].
+
+REZULTAT CĂUTARE SITE-URI DE ÎNCREDERE:
+----------------------------------------
+Domenii selectate (7 total):
+   1. depabd.mai.gov.ro
+   2. tm.prefectura.mai.gov.ro
+   3. servicii.primariatm.ro
+   4. hub.mai.gov.ro
+   5. primariatm.ro
+   6. legislatie.just.ro
+   7. monitoruloficial.ro
+
+Rezultate căutare:
+<think>
+Okay, let's tackle this query about renewing an ID card in Timișoara, Romania. The user wants to know the official procedure, required documents, updated cost, where to submit the documents, and if online appointment is needed.
+
+First, I'll check the search results provided. The main sources are from the Timișoara City Hall (primariatm.ro) and the General Directorate for Personal Records (depabd.mai.gov.ro). 
+
+Starting with the documents needed. Search result [1] from servicii.primariatm.ro lists the required documents: application form (Annex 1), valid ID and voter card (if applicable), birth certificate, marriage certificate (if married), proof of address, owner's consent if not the owner, and proof of payment. It also mentions the processing time is 30 days, extendable by 15 days. 
+
+Next, the procedure. Result [2] from evpers.primariatm.ro mentions that appointments for ID renewal can be made online, but when I check the link, it says no available slots. However, result [7] from hub.mai.gov.ro states that online appointments for the electronic ID card don't require an account. So there might be two ways: through the local city hall or the national portal. 
+
+Cost isn't directly mentioned in the results. However, result [1] refers to a fee payment receipt or bank statement if paid online. Since the exact amount isn't listed, I might need to infer that the user should check the latest fee on the city hall's website or contact them directly. 
+
+Where to submit: Result [1] and [3] indicate documents are submitted at the Timișoara City Hall, specifically at bd. C.D. Loga nr. 1, camera 12, as per result [6]. Also, result [10] mentions the Direcția de Evidență a Persoanelor in Timișoara handles ID issuance.
+
+Online appointment necessity: Results [2] and [7] suggest that while online booking is available, availability might vary. The user should check the city hall's portal or the national HUB MAI site for appointments. 
+
+I need to structure this information clearly, citing the sources. Make sure to mention the documents, steps for application (including online appointment if needed), where to submit, and note that the cost might require checking the latest info from the provided links. Also, highlight the processing time and the need for original documents and copies.
+</think>
+
+Procedura oficială pentru reînnoirea cărții de identitate în Timișoara implică următorii pași și documente:
+
+### 1. **Documente necesare** [1][3][10]
+- **Cerere tip** (Anexa 1) completată și semnată, imprimată față-verso pe o foaie A4
+- **Actul de identitate expirat** (original și copie)
+- **Certificatul de naștere** (original și copie)
+- **Certificatul de căsătorie** (pentru persoane căsătorite, original și copie)
+- **Dovada adresei de domiciliu**:
+  - Contract de vânzare-cumpărare/extras CF la zi (original și copie)
+  - Acordul proprietarului/găzduitorului (dacă nu sunteți proprietar)
+- **Chitanță de plată** a taxei (original) sau extras de cont pentru plățile online
+
+### 2. **Procedura de depunere** [1][2][7]
+1. **Programare online**:
+   - Accesați portalul [HUB MAI](https://hub.mai.gov.ro) sau [platforma Primăriei Timișoara](https://evpers.primariatm.ro/programare-carte-identitate)
+   - Selectați motivul "schimbare domiciliu" sau "expirare termen valabilitate"
+2. **Depunere documente**:
+   - **Locație**: Direcția de Evidență a Persoanelor Timișoara, Bd. C.D. Loga nr. 1, camera 12 [6][10]
+   - Program: Luni-Vineri 8:00-16:00 (confirmat la telefon 0256 969)
+
+### 3. **Costuri și termene** [1]
+- **Taxa**: Valoarea exactă nu este specificată în surse – verificați pe [servicii.primariatm.ro/act-identitate](https://servicii.primariatm.ro/act-identitate) sau la casieria primăriei
+- **Termen de eliberare**: 30 de zile calendaristice (prelungibil cu încă 15 z
+
+Fișier detaliat salvat: Care_este_procedura_oficială_pentru_reînnoirea_căr_05_31_14_52.txt
+
+============================================================
+SUMARUL INSTRUMENTELOR FOLOSITE:
+1. Reformulare Query: ✅ DA
+2. Căutare Web Regulată: ✅ DA
+3. Căutare Site-uri de Încredere: ✅ DA
+============================================================

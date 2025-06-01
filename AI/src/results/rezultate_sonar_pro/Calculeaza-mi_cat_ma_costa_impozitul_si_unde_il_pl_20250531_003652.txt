@@ -1,0 +1,79 @@
+================================================================================
+REZULTATE CĂUTARE PERPLEXITY AI - FOCUS PE ROMÂNIA
+================================================================================
+
+Întrebarea originală: Calculeaza-mi cat ma costa impozitul si unde il platesc pe un apartament de 100 mp in Timisoara in 2025?
+Cererea îmbunătățită: Calculeaza-mi cat ma costa impozitul si unde il platesc pe un apartament de 100 mp in Timisoara in 2025?
+Data căutării: 2025-05-31 00:36:52
+Data de referință: 2025-05-30
+Model: sonar-pro
+--------------------------------------------------------------------------------
+
+FILTRE API DE CĂUTARE APLICATE:
+📅 Interval de date: 1/1/2005 până la 5/30/2025
+🇷🇴 Locație: România (RO)
+📍 Coordonate: 45.7489, 21.2087
+--------------------------------------------------------------------------------
+
+REZULTATELE CĂUTĂRII:
+--------------------
+Pentru a calcula impozitul pe un apartament de 100 mp în Timișoara pentru anul 2025 și pentru a afla unde se poate plăti, urmează instrucțiunile de mai jos.
+
+## Calculul impozitului pentru apartament de 100 mp în Timișoara (2025)
+
+**1. Estimarea valorii impozitului:**
+
+- În 2025, impozitul pentru apartamentele din Timișoara a fost ajustat cu rata inflației de 10,4% față de 2024, dar formula de calcul și grila de impozitare au rămas neschimbate[1][2][5][8].
+- Exemplele oficiale oferite de Primăria Timișoara pentru 2025:
+  - Apartament cu o cameră: 60 lei/an (după ajustare)
+  - Apartament cu trei camere: 252 lei/an (după ajustare)[2][5][8]
+
+**Estimare pentru 100 mp:**
+- De regulă, apartamentele cu trei camere în Timișoara au între 65-80 mp, iar pentru acestea impozitul este de 252 lei/an.
+- Pentru un apartament de 100 mp (semnificativ mai mare), impozitul va fi proporțional mai mare. Estimarea rezonabilă, pe baza grilei și a exemplelor oferite, este de aproximativ 315-350 lei/an pentru 100 mp, dacă nu există alte particularități (cum ar fi zona sau vechimea clădirii)[2][5][8].
+
+> **Estimare orientativă:**
+> - Impozitul anual pentru un apartament de 100 mp în Timișoara în 2025 este de aproximativ **315-350 lei**.
+
+**Notă:** Pentru suma exactă, poți verifica direct pe site-ul Direcției Fiscale Timișoara sau folosind platforma online de plată, unde poți introduce datele exacte ale apartamentului tău pentru un calcul personalizat[6].
+
+## Unde și cum poți plăti impozitul
+
+**Modalități de plată:**
+
+1. **Online:**
+   - Prin platforma oficială a Direcției Fiscale Timișoara: [https://plata.dfmt.ro/Plata2/auth/login](https://plata.dfmt.ro/Plata2/auth/login)[6]
+   - Plata online este recomandată pentru a evita cozile și deplasările.
+
+2. **Fizic:**
+   - La casieriile Direcției Fiscale a Municipiului Timișoara, situate pe str. Demetriade nr. 1 (în incinta Iulius Mall)[6].
+   - La oficiile poștale din oraș[6].
+
+**Programul cu publicul la Direcția Fiscală:**
+- Luni – Joi: 08:30 – 16:00
+- Vineri: 08:30 – 14:00[6]
+
+**Reduceri și termene:**
+- Dacă achiți integral impozitul până la 31 martie 2025, beneficiezi de o reducere de 10% din suma datorată[1][3][4][6].
+
+## Rezumat
+
+| Suprafață apartament | Impozit estimat 2025 | Reducere dacă plătești până la 31 martie | Unde plătești |
+|----------------------|---------------------|------------------------------------------|---------------|
+| 100 mp               | 315-350 lei         | 10%                                      | Online (plata.dfmt.ro), casierii DFMT, oficii poștale |
+
+## Linkuri utile și resurse oficiale
+
+- **Plata online impozit Timișoara:** [https://plata.dfmt.ro/Plata2/auth/login](https://plata.dfmt.ro/Plata2/auth/login)[6]
+- **Informații oficiale taxe și impozite 2025:** [primariatm.ro/2025/01/08/taxele-locale-pentru-2025](https://www.primariatm.ro/2025/01/08/taxele-locale-pentru-2025)[1]
+- **Program casierii și detalii suplimentare:** [primariatm.ro/2025/01/16/taxe-locale-2025](https://www.primariatm.ro/2025/01/16/taxe-locale-2025)[6]
+
+**Atenție:** Suma exactă poate varia în funcție de zona în care se află apartamentul, vechimea clădirii și alte criterii stabilite de Consiliul Local. Pentru suma exactă, consultă platforma online sau solicită informații la Direcția Fiscală Timișoara.
+
+================================================================================
+REZUMATUL CONFIGURAȚIEI DE CĂUTARE:
+- Restricție geografică: România (RO) prin filtrul de locație API
+- Restricție temporală: 2005-2025 prin filtrele de interval de date API
+- Prioritatea surselor: Guvern românesc > Instituții românești > Surse românești recente
+- Filtrele API asigură returnarea doar a surselor românești și recente
+================================================================================

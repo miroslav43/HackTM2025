@@ -1,0 +1,80 @@
+================================================================================
+AGENT - REZULTATE FINALE
+================================================================================
+
+Config folosit: reformulation_disabled
+Data procesării: 2025-05-31 03:55:01
+--------------------------------------------------------------------------------
+
+CONFIGURAȚIA FOLOSITĂ:
+• Reformulare Gemini: False
+• Temperature: 0.1
+• Max Tokens: 1000
+• City Hint: timisoara
+• Folosește Perplexity: True
+--------------------------------------------------------------------------------
+
+ÎNTREBAREA ORIGINALĂ:
+taxe locuinta Timisoara
+
+QUERY FOLOSIT PENTRU CĂUTARE:
+taxe locuinta Timisoara
+
+--------------------------------------------------------------------------------
+
+REZULTATELE CĂUTĂRII:
+<think>
+Okay, I need to answer the user's query about "taxe locuinta Timisoara" which translates to "housing taxes in Timisoara." Let me start by looking at the provided search results to gather relevant information.
+
+First, looking at search result [4] and [5], both mention the tax rates for apartments in Timisoara for 2025. They state that for a one-room apartment, the tax increased from 54 lei in 2024 to 60 lei in 2025. That's a 10.4% increase, which aligns with the inflation rate mentioned. These sources also talk about bonuses for early payment by March 31, offering a 10% discount. 
+
+Search result [7] provides details on tax rates for different zones. It lists specific amounts per hectare for zones A, B, C, and D. However, since the user is asking about residential buildings, maybe the zone-based taxes are more relevant for land rather than the buildings themselves. But it's good to note that zones might affect land taxes if the user owns the land.
+
+Result [8] mentions that residential buildings owned by individuals are taxed based on a rate applied to the taxable value, considering factors like location, category, and construction year. This gives a general method of calculation but doesn't specify the exact rates for Timisoara. However, results [4] and [5] already provide concrete numbers for Timisoara, so those are more directly useful.
+
+Results [6] and [7] discuss tax rates for previous years, like 2023 and 2024, which helps show the trend. For example, a one-room apartment was 48 lei in 2023, 54 in 2024, and 60 in 2025. This consistent increase of about 10% each year is important to mention.
+
+The payment methods are covered in [4], [5], and [7]. Online payment via https://plata.dfmt.ro is emphasized, along with in-person options at the DFMT office in Iulius Mall or post offices. The office hours are also specified, which is practical information for the user.
+
+Exemptions and discounts are mentioned in [4], [5], and [7]. The 10% bonus for early payment by March 31 is a key point. Additionally, exemptions for low-income individuals, social services associations, and thermal rehabilitation are noted. These should be highlighted as they can reduce the tax burden.
+
+I need to structure the answer clearly. Start with an introduction summarizing the key points. Then break it down into sections: Tax Rates, Calculation Method, Payment Options, Exemptions, and Important Dates. Use bullet points for clarity and include the specific examples from the sources. Citations should be added after each relevant fact, using the corresponding result numbers. Make sure all information is specific to Timisoara and up-to-date for 2025 as per the sources.
+</think>
+
+Pentru locuințele din Timișoara, taxele și impozitele locale pentru anul 2025 au fost actualizate cu rata inflației de 10,4%. Iată cele mai relevante informații:
+
+### 1. **Impozitul pe clădiri rezidențiale (locuințe)**
+- **Exemple de calcul pentru apartamente** [4][5][6]:
+  - Apartament cu 1 cameră (25 m²): **60 lei/an** (față de 54 lei în 2024)
+  - Apartament cu 2 camere (45 m²): **179 lei/an** (față de 157 lei în 2023)
+  - Apartament cu 3 camere (65 m²): **229 lei/an** (față de 201 lei în 2023)
+  - Casă P+E (150 m²): **486 lei/an** (față de 427 lei în 2023).
+
+- **Metoda de calcul**: Impozitul se stabilește în funcție de valoarea fiscală a clădirii, care ia în considerare categoria, vechimea, zona și materialele de construcție[8].
+
+### 2. **Plata online și opțiuni fizice**
+- **Platforma online**: Accesați **https://plata.dfmt.ro/Plata2/auth/login** pentru plata digitală[4][5].
+- **Locații fizice**:
+  - Sediu DFMT în incinta Iulius Mall (str. Demetriade nr. 1)
+  - Oficii poștale din oraș[4][5].
+- **Program**: Luni-Joi (08:30–16:00), Vineri (08:30–14:00)[5].
+
+### 3. **Beneficii și scutiri**
+- **Bonificație de 10%** pentru plata anticipată până pe **31 martie 2025**[4][7].
+- **Scutiri de impozit** pentru:
+  - Persoane cu venituri mici
+  - Asociații care oferă servicii sociale
+  - Proprietari care au realizat reabilitare termică[4][5].
+
+### 4. **Taxe pentru terenuri (dacă este cazul)**
+- **Exemple** (pentru terenuri intravilane)[4][7]:
+  - 500 mp în zona B: **603 lei/an**
+  - 1.000 mp în zona C: **14 lei/an**.
+
+### 5. **Actualizări importante**
+- Taxele pentru clădiri nerezidențiale vor scădea progresiv până în 2027, de la 1,7% în 2025[4][5].
+- Majorările respectă ajustarea inflației, fără creșteri suplimentare[4][5].
+
+Pentru verificări personalizate sau situații complexe, consultați **Direcția Fiscală Timișoara** sau platforma online menționată.
+
+================================================================================

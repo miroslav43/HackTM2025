@@ -1,0 +1,404 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+# Agent System Overview - Romanian Civic Information Assistant
+
+## 🎯 **Objective**
+This Agent is a specialized AI system designed to help Romanian citizens (specifically in Timișoara) get accurate, up-to-date information about local government services, administrative procedures, taxes, and civic matters. The Agent transforms simple user queries into comprehensive, well-researched responses using official Romanian sources through a multi-tool approach that combines query enhancement, regular web search, targeted government site filtering, intelligent final response synthesis, and local knowledge base integration (RAG).
+
+## 🏗️ **System Architecture**
+
+### Main Orchestrator
+- **agent.py** - Core system that coordinates the entire workflow between all five tools
+- **agent_config.json** - Single configuration file controlling all Agent behavior and tool parameters
+
+### Tools Directory
+The Agent utilizes five specialized tools located in `tools/`:
+
+#### 1. Query Reformulation Tool
+- **File**: `robust_user_querries.py`
+- **Purpose**: Uses Google Gemini API to transform simple/vague user queries into comprehensive, search-optimized queries
+- **Instructions**: `instructions/robust_improved_user_querry/`
+- **What it enables**: Converts queries like "cum imi reinoiesc buletinul?" into detailed questions covering procedure, documents, locations, fees, and online scheduling
+
+#### 2. TimPark Payment Tool 🆕
+- **File**: `timpark_payment_tool.py`
+- **Purpose**: Analyzes user intent for parking payment in Timișoara and conditionally executes integrated Selenium-based automated payment workflow
+- **Instructions**: `instructions/platire_timpark/system_prompt.txt`
+- **What it enables**: Detects payment intent, extracts duration (30min-12h), and automatically completes parking payment through integrated web automation
+- **Integration**: **Direct Selenium Integration** - Full automation logic integrated directly into the tool (no external script dependencies)
+- **Automation Features**: 
+  - Complete form filling automation for TimPark payment portal
+  - Dynamic duration setting from extracted user intent
+  - Pre-configured personal data for seamless payment processing
+  - Automatic browser management and cleanup
+  - Comprehensive error handling and status reporting
+- **Workflow Control**: **Conditionally terminates agent workflow** - when payment automation executes successfully, steps 3-5 are skipped for efficiency
+
+#### 3. Web Search Tool  
+- **File**: `perplexity_web_search.py`
+- **Purpose**: Uses Perplexity API with Romania-specific filters to find general information from diverse sources
+- **Instructions**: `instructions/web_search/`
+- **What it enables**: Provides comprehensive search results from various Romanian sources with geographic and temporal filtering
+
+#### 4. Trusted Sites Search Tool
+- **File**: `trusted_sites_search.py`
+- **Purpose**: Two-step process: Gemini 2.5 Flash selects relevant Romanian government domains, then Perplexity searches only those domains
+- **Instructions**: `instructions/trusted_sites/`
+- **What it enables**: Delivers highly accurate, official information from verified government sources with proper citations and structured formatting
+
+#### 5. Final Response Generation Tool 🆕
+- **File**: `concatenate_web_searches_into_final_response.py`
+- **Purpose**: Uses Gemini 2.5 Flash to synthesize results from all previous tools into a single, coherent, comprehensive response with optional RAG context integration
+- **Instructions**: `instructions/concatenate_responses_get_final_response/`
+- **What it enables**: Eliminates redundancy, prioritizes official sources, formats as actionable step-by-step instructions, integrates local knowledge, provides definitive final answer
+
+### RAG Context Integration 🆕
+- **Directory**: `rag_context/`
+- **Purpose**: Local knowledge base containing domain-specific information for enhanced accuracy
+- **Current Domains**: 
+  - `dfmt.ro` - Tax and financial information for Timișoara
+  - `timpark.ro` - Parking regulations and tariffs for Timișoara
+- **Format**: CSV files and structured text data organized by domain
+- **Integration**: Automatically triggered when relevant domains are selected during trusted sites search
+
+## ⚙️ **Configuration Options** (agent_config.json)
+
+### Query Processing
+- `use_robust_reformulation`: Enable/disable Gemini query enhancement
+- `gemini_model`: Specify Gemini model (gemini-2.0-flash, gemini-2.5-flash-preview-05-20, etc.)
+- `gemini_temperature`: Control creativity (0.1=focused, 1.0=creative)  
+- `gemini_max_tokens`: Limit reformulated query length (100-2000)
+
+### TimPark Payment Tool 🆕
+- `use_timpark_payment`: Enable/disable TimPark payment automation tool
+- `gemini_model`: Specify Gemini model for intent analysis (gemini-2.5-flash-preview-05-20 recommended)
+- `gemini_temperature`: Control creativity for intent analysis (0.1=focused for accuracy)
+- `gemini_max_tokens`: Max tokens for intent analysis response (500-2000)
+- `output`: Save TimPark tool results to separate file
+  - `save_to_file`: Enable/disable file output for this tool
+
+### Web Search (Regular)
+- `city_hint`: Romanian city context (timisoara, bucuresti, cluj, etc.)
+- `use_perplexity`: Enable/disable regular web search functionality
+- `perplexity_model`: Specify Perplexity model (sonar-reasoning-pro, sonar-pro, etc.)
+- `perplexity_temperature`: Control response randomness (0.0-1.0)
+- `perplexity_max_tokens`: Maximum response length (1000-15000)
+- `search_context_size`: Breadth of search results (low/medium/high)
+- `search_date_range`: Content publication date filters
+  - `search_after_date`: Content published after this date (M/D/YYYY format)
+  - `search_before_date`: Content published before this date (M/D/YYYY format)
+
+### Trusted Sites Search
+- `use_trusted_sites_search`: Enable/disable trusted Romanian government sites search
+- `gemini_domain_selection`: Configuration for domain selection step
+  - `gemini_temperature`: Control creativity for domain selection (0.1=focused)
+  - `gemini_max_tokens`: Max tokens for domain selection response (500-3000)
+  - `gemini_model`: Gemini model for domain selection (gemini-2.5-flash-preview-05-20 recommended)
+- `perplexity_filtered_search`: Configuration for filtered search step
+  - `perplexity_model`: Perplexity model for filtered search (sonar-reasoning-pro, sonar-pro, etc.)
+  - `perplexity_temperature`: Control randomness in filtered search results (0.0-1.0)
+  - `perplexity_max_tokens`: Maximum response length for filtered search (5000-15000)
+  - `city_hint`: Romanian city context for filtered search
+  - `search_context_size`: Breadth of filtered search results (low/medium/high)
+  - `search_after_date`: Content published after this date (M/D/YYYY format)
+  - `search_before_date`: Content published before this date (M/D/YYYY format)
+- `output`: Save trusted sites search results to separate file
+  - `save_to_file`: Enable/disable file output for this tool
+
+### Final Response Generation 🆕
+- `use_final_response_generation`: Enable/disable final response synthesis using Gemini 2.5 Flash
+- `gemini_model`: Gemini model for final synthesis (gemini-2.5-flash-preview-05-20 recommended)
+- `gemini_temperature`: Control creativity for final response (0.1=focused, factual)
+- `gemini_max_tokens`: Max tokens for final synthesized response (10000-20000)
+- `rag_context`: **🆕 RAG Context Integration**
+  - `use_rag_context`: Enable/disable RAG context integration from local knowledge files
+  - `rag_domains`: Array of domain names to check for RAG context files (e.g., ["dfmt.ro", "timpark.ro"])
+  - `rag_context_path`: Relative path from src/ to RAG context files directory (default: "rag_context")
+- `output`: Save final synthesized response to separate file
+  - `save_to_file`: Enable/disable file output for this tool
+
+### Output Management
+- `save_to_file`: Enable file output
+- `output_folder`: Directory for results (default: results/agent_results)
+- `include_reformulated_query`: Save query reformulation step separately (disabled for streamlined output)
+- `include_search_results`: Save final combined results
+- `file_naming`: Control timestamp and naming conventions
+  - `use_config_name`: Use question vs config name for filename
+  - `include_timestamp`: Add timestamp in MM_DD_HH_MM format
+
+### Test Settings
+- `question`: Default test query
+- `config_name`: Configuration identifier for file naming
+
+## 🔄 **Agent Workflow**
+
+1. **Input**: User provides a civic/administrative question
+2. **Step 1**: If enabled, Gemini reformulates the query into a comprehensive search query using configured model and parameters
+3. **Step 2**: 🆕 **TimPark Payment Tool (Conditional Workflow Controller)**:
+   - **2a**: Gemini 2.5 Flash analyzes query for parking payment intent in Timișoara
+   - **2b**: Extracts duration parameters (30min-12h) if payment intent is detected
+   - **2c**: **CRITICAL**: If payment intent is confirmed and automation executes successfully:
+     - **WORKFLOW STOPS HERE** - Steps 3, 4, and 5 are **SKIPPED**
+     - Agent returns automation results and terminates processing
+   - **2d**: If no payment intent detected or automation not executed, workflow **CONTINUES** to Step 3
+4. **Step 3**: **Conditional** - If enabled AND TimPark tool did NOT execute, Perplexity performs regular web search on Romanian sources with geographic and date filters
+5. **Step 4**: **Conditional** - If enabled AND TimPark tool did NOT execute, Trusted sites search performs two-step process:
+   - **4a**: Gemini 2.5 Flash analyzes query and selects most relevant Romanian government domains
+   - **4b**: Perplexity searches only those selected domains with domain filtering
+6. **Step 5**: **Conditional** - If enabled AND TimPark tool did NOT execute, Final response generation synthesizes all previous results:
+   - **5a**: Gemini 2.5 Flash analyzes all gathered information from steps 1-4
+   - **5b**: **🆕 RAG Context Integration**: If relevant domains match configured RAG domains, loads corresponding local knowledge files
+   - **5c**: Creates single, coherent response eliminating redundancy and prioritizing official sources
+   - **5d**: Integrates local knowledge (RAG) for enhanced accuracy on domain-specific topics
+   - **5e**: Formats response as actionable step-by-step instructions
+7. **Step 6**: Results compilation and file generation with comprehensive metadata
+
+### 🔀 **Conditional Workflow Logic**
+
+```
+User Query
+    ↓
+Step 1: Query Reformulation (optional)
+    ↓
+Step 2: TimPark Payment Analysis
+    ↓
+[DECISION POINT]
+    ↓
+┌─────────────────────────────────┬─────────────────────────────────┐
+│ SCENARIO A: Payment Intent      │ SCENARIO B: No Payment Intent   │
+│ Detected & Automation Executed  │ OR Automation Not Executed      │
+├─────────────────────────────────┼─────────────────────────────────┤
+│ ✅ Execute Selenium automation   │ ⏭️ Skip automation               │
+│ 🚗 Complete parking payment     │ 🔍 Continue to web searches     │
+│ 🛑 STOP workflow (skip 3,4,5)   │ ▶️ Proceed to Steps 3,4,5       │
+│ 📄 Return automation results    │ 📄 Return comprehensive results │
+└─────────────────────────────────┴─────────────────────────────────┘
+```
+
+**Benefits of Conditional Logic:**
+- **Efficiency**: No unnecessary web searches when parking payment is completed
+- **User Experience**: Immediate action execution for payment requests
+- **Resource Optimization**: Saves API calls and processing time when automation suffices
+- **Clear Intent Handling**: Direct automation execution for clear payment intentions
+
+## 📁 **Directory Structure**
+```
+src/
+├── tools/              # Agent capabilities (5 tools)
+│   ├── robust_user_querries.py                        # Query reformulation with Gemini
+│   ├── timpark_payment_tool.py                        # TimPark payment automation 🆕 (integrated Selenium)
+│   ├── perplexity_web_search.py                       # Regular web search with Perplexity
+│   ├── trusted_sites_search.py                        # Trusted government sites search
+│   ├── concatenate_web_searches_into_final_response.py # Final response synthesis 🆕
+│   └── completitions/                                  # Tool output samples and legacy scripts
+│       └── timpark_autocomplete.py                    # Legacy Selenium script (integrated into tool) 🗂️
+├── instructions/       # AI prompts for each tool
+│   ├── robust_improved_user_querry/                    # Gemini reformulation prompts
+│   ├── platire_timpark/                               # TimPark payment prompts 🆕
+│   │   └── system_prompt.txt                          # Intent analysis instructions
+│   ├── web_search/                                     # Perplexity regular search prompts
+│   ├── trusted_sites/                                  # Trusted sites search prompts
+│   ├── concatenate_responses_get_final_response/       # Final synthesis prompts 🆕
+│   └── idea/                                           # Project documentation
+├── rag_context/ 🆕     # Local knowledge base integration
+│   ├── dfmt(taxe,impozite)/                           # Tax and financial data
+│   │   └── csv/                                       # Structured tax information
+│   ├── timpark(strazi,abonamente)/                    # Parking regulations data
+│   │   └── csv/                                       # Parking tariffs and rules
+│   ├── dfmt.ro                                        # DFMT domain knowledge file
+│   └── timpark.ro                                     # TimPark domain knowledge file
+├── results/agent_results/                              # Generated outputs
+├── configs/                                            # Additional configuration files
+├── agent_config.json                                   # Main configuration
+├── agent.py                                            # System orchestrator
+└── test_integrated_agent.py                            # Testing script
+```
+
+## 🎯 **Target Use Cases**
+- Tax calculations and payment procedures (with official government sources + local DFMT knowledge)
+- Document requirements for government services (ID renewal, permits, etc.)
+- Administrative deadlines and procedures from verified sources
+- Parking regulations and tariffs (enhanced with TimPark local knowledge)
+- Local regulations (permits, etc.) with official citations
+- Official contact information and online services
+- Step-by-step government procedures with accurate, up-to-date information
+
+## 📄 **Output Format**
+The Agent now produces comprehensive files per query with:
+- **Filename Format**: `[question]_[month]_[day]_[hour]_[minute].txt` or `FINAL_[question]_[month]_[day]_[hour]_[minute].txt`
+- **Example**: `FINAL_obtinere_certificat_nastere_05_31_20_32.txt`
+- **Content**: 
+  - Original question and reformulated query (if enabled)
+  - Configuration details for all tools used
+  - **🎯 Final Synthesized Response (PRIMARY)** - Single, coherent answer prioritizing official sources with RAG context integration
+  - Regular web search results (for comparison)
+  - Trusted sites search results with domain selection details (for comparison)
+  - **🆕 RAG Context Integration Details** - Information about which local knowledge was used
+  - Summary of tools used and comparative analysis
+
+## 🚀 **Usage Examples**
+```python
+# Basic usage with all 5 tools enabled (including RAG context)
+agent = Agent('agent_config.json')
+agent.process_query()
+
+# SCENARIO A: TimPark Payment Query (Conditional Workflow - Steps 3-5 Skipped)
+agent.process_query('plateste parcarea 2 ore', 'parking_payment')
+# Result: TimPark tool activates → automation executes → workflow stops
+# Output: Payment automation results only (efficient)
+
+# SCENARIO B: Information Query (Full Workflow - All 5 Steps)
+agent.process_query('cum reinnoiesc buletinul', 'id_renewal')  
+# Result: TimPark tool skips → web searches proceed → full synthesis
+# Output: Comprehensive information synthesis with RAG context
+
+# Custom query with specific config name
+agent.process_query('taxe locuinta Timisoara', 'tax_inquiry')
+
+# Different city context (modify city_hint in config)
+# Modify agent_config.json: "city_hint": "bucuresti"
+agent.process_query('parcare centru', 'parking_bucuresti')
+
+# TimPark-specific examples (Conditional Workflow Scenarios)
+# These will trigger automation and stop workflow:
+agent.process_query('achita parcarea strada Daliei', 'parking_direct')
+agent.process_query('plateste parcarea 3 ore jumate', 'parking_duration')
+agent.process_query('vreau sa platesc parcarea centru', 'parking_intent')
+
+# These will NOT trigger TimPark and continue full workflow:
+agent.process_query('cat costa parcarea in centru?', 'parking_info')
+agent.process_query('unde pot parca gratuit?', 'parking_options')
+agent.process_query('plateste parcarea Cluj', 'parking_other_city')
+
+# Test specific tool combinations with RAG context
+# Enable only trusted sites + final synthesis + RAG
+# Modify agent_config.json: 
+# "use_perplexity": false, 
+# "use_trusted_sites_search": true,
+# "use_final_response_generation": true,
+# "rag_context": {"use_rag_context": true}
+agent.process_query('reinoire pasaport', 'passport_official_synthesis')
+
+# Enable all 5 tools + RAG for comprehensive analysis
+# Modify agent_config.json: all use_* flags to true
+agent.process_query('amenda parcare handicapati', 'parking_fine_complete')
+
+# RAG context examples
+# Tax query with DFMT knowledge integration
+agent.process_query('taxe locuinta Timisoara 2025', 'tax_with_rag')
+
+# Parking query with TimPark knowledge integration  
+agent.process_query('abonament parcare rezidenti', 'parking_with_rag')
+
+# Conditional workflow testing
+# Enable TimPark + disable other tools to test automation only
+# Modify agent_config.json:
+# "use_timpark_payment": true,
+# "use_perplexity": false,
+# "use_trusted_sites_search": false,
+# "use_final_response_generation": false
+agent.process_query('plateste parcarea 4 ore', 'automation_only')
+```
+
+## 🔧 **Key Features**
+- **Five-Tool Architecture**: Comprehensive information gathering and synthesis pipeline
+- **🆕 RAG Context Integration**: Local knowledge base integration for enhanced domain-specific accuracy
+- **Flexible Model Selection**: Choose specific Gemini and Perplexity models for each tool via config
+- **Temperature Control**: Fine-tune creativity/focus for all AI components independently
+- **Geographic Filtering**: City-specific search results for Romanian municipalities
+- **Date Range Filtering**: Focus on current, relevant information across all search tools
+- **Domain Filtering**: Intelligent selection and filtering of Romanian government domains
+- **Official Source Verification**: Trusted sites search ensures government-verified information
+- **🆕 Intelligent Synthesis**: Final response generation combines all results into single, coherent answer
+- **🆕 Redundancy Elimination**: Final tool removes duplicate information and conflicting sources
+- **🆕 Source Prioritization**: Official government sources automatically prioritized in final response
+- **🆕 Actionable Formatting**: Final response structured as clear, step-by-step instructions
+- **🆕 Local Knowledge Enhancement**: RAG context provides detailed, up-to-date local information
+- **Comparative Analysis**: All tool results presented side-by-side for quality assessment
+- **Streamlined Output**: Single comprehensive file with question-based naming and final synthesized response
+- **Complete Traceability**: All steps, configurations, and sources documented in output
+- **Modular Activation**: Each tool can be independently enabled/disabled via configuration
+
+## 🏛️ **Trusted Sites Search Benefits**
+- **Official Sources Only**: Results come exclusively from verified Romanian government websites
+- **Higher Accuracy**: Information is directly from official sources, reducing misinformation
+- **Proper Citations**: All results include proper government source citations
+- **Step-by-Step Official Procedures**: Government-verified instructions for administrative processes
+- **Current Information**: Official sources are typically more up-to-date for government procedures
+- **Domain Intelligence**: Gemini 2.5 Flash selects the most relevant government domains for each query type
+
+## 🎯 **Final Response Generation Benefits** 🆕
+- **Single Coherent Answer**: Eliminates need to read through multiple search results
+- **Redundancy Removal**: Automatically filters out duplicate or conflicting information
+- **Source Prioritization**: Official government sources automatically given highest priority
+- **Actionable Format**: Structured as clear, step-by-step instructions users can follow immediately
+- **Intelligent Synthesis**: Combines strengths of all previous search tools while minimizing weaknesses
+- **Consistency**: Provides definitive answer rather than multiple potentially conflicting sources
+- **User-Friendly**: Final response optimized for readability and practical application
+
+## 💳 **TimPark Payment Tool Benefits** 🆕
+- **Smart Intent Detection**: Automatically identifies parking payment requests for Timișoara
+- **Duration Extraction**: Intelligently parses time expressions (30min-12h) from natural language
+- **Conditional Automation**: Only executes payment automation when clear intent is detected
+- **Multi-Language Support**: Understands Romanian payment expressions and time formats
+- **Geographic Filtering**: Specifically designed for Timișoara parking system
+- **🆕 Integrated Selenium Automation**: Complete automation logic built directly into the tool
+- **🆕 Dynamic Form Filling**: Automatically fills all required payment form fields
+- **🆕 Real-time Duration Setting**: Dynamically sets parking duration from user intent
+- **🆕 Browser Management**: Handles Chrome browser lifecycle with automatic cleanup
+- **🆕 Workflow Control**: Intelligently terminates agent workflow when automation completes
+- **Error Handling**: Graceful handling of automation failures with detailed error reporting
+- **Integration Ready**: Seamlessly integrates with existing agent workflow
+- **User Safety**: Requires explicit payment intent before executing any automation
+- **Efficiency Optimization**: Skips unnecessary steps when payment action is completed
+- **Resource Conservation**: Saves API calls and processing time through conditional logic
+
+## 🔍 **RAG Context Integration Benefits** 🆕
+- **Enhanced Accuracy**: Local knowledge base provides detailed, domain-specific information
+- **Up-to-Date Local Data**: CSV files and structured data containing current regulations and tariffs
+- **Domain-Specific Expertise**: Deep knowledge about DFMT (taxes) and TimPark (parking) services
+- **Automatic Integration**: RAG context is automatically loaded when relevant domains are detected
+- **Structured Data**: CSV format allows for precise numerical data (fees, deadlines, etc.)
+- **Scalable**: Easy to add new domains and knowledge bases
+- **Contextual Enhancement**: Enriches AI responses with verified local information
+- **Consistency**: Ensures consistent, accurate information across all queries for specific domains
+
+## 🔧 **RAG Context Configuration**
+```json
+"rag_context": {
+    "use_rag_context": true,
+    "rag_domains": ["dfmt.ro", "timpark.ro"],
+    "rag_context_path": "rag_context"
+}
+```
+
+**Available RAG Domains:**
+- **dfmt.ro**: Tax calculations, payment procedures, deadlines, fees
+- **timpark.ro**: Parking regulations, tariffs, subscription types, zones
+
+**RAG Context Structure:**
+- Domain knowledge files: `rag_context/[domain].ro`
+- Structured data: `rag_context/@domain/csv/`
+- Automatic loading when domain matches trusted sites selection
+
+## ⚠️ **IMPORTANT MAINTENANCE NOTE**
+**This overview MUST be updated whenever major features or modifications are made to:**
+- Agent workflow logic in `agent.py` (especially if more tools are added beyond 5)
+- **🆕 Conditional workflow logic** (TimPark automation termination behavior)
+- Tool capabilities or new tools added to `tools/`
+- **🆕 TimPark Payment Tool automation logic or Selenium integration**
+- Configuration options in `agent_config.json`  
+- Instruction prompts in `instructions/`
+- Directory structure changes
+- Output format or file naming conventions
+- New tool integrations or workflow modifications
+- Final response generation logic or synthesis capabilities
+- **🆕 RAG context integration features or new knowledge domains**
+- **🆕 RAG context file structure or data format changes**
+- **🆕 Selenium automation scripts or browser automation logic**
+- **🆕 Intent detection and parameter extraction logic**
+
+This ensures the overview always accurately reflects the current Agent capabilities and architecture for proper codebase understanding and development guidance.

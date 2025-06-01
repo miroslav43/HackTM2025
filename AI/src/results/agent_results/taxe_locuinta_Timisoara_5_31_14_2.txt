@@ -1,0 +1,170 @@
+RAPORT AGENT - REZULTATE FINALE COMPLETE
+============================================================
+
+ÎNTREBARE ORIGINALĂ:
+taxe locuinta Timisoara
+
+QUERY REFORMULAT:
+"Care sunt taxele și impozitele locale datorate pentru o locuință (casă sau apartament) în Timișoara, România în 2025, cum se calculează, care este procedura oficială de plată online și fizică, unde se pot plăti, care sunt termenele limită și ce facilități fiscale sunt disponibile?"
+
+CONFIGURAȚIA FOLOSITĂ:
+- Config Name: default_agent_config
+- Reformulare activă: True
+- Căutare web activă: True
+- Căutare site-uri de încredere activă: True
+- Model Gemini: gemini-2.0-flash
+- Temperature Gemini: 0.1
+- Model Perplexity: sonar-reasoning-pro
+- Temperature Perplexity: 0.1
+- Context Size: high
+- Model Gemini Trusted Sites: gemini-2.5-flash-preview-05-20
+- Model Perplexity Trusted Sites: sonar-reasoning-pro
+
+TIMESTAMP: 2025-05-31 14:02:55
+
+REZULTAT CĂUTARE WEB REGULATĂ:
+----------------------------------------
+<think>
+Okay, let's tackle this query about local taxes and fees for a house or apartment in Timișoara, Romania, for 2025. The user wants to know the taxes, how they're calculated, payment methods (online and in-person), deadlines, and any available fiscal facilities. 
+
+First, I need to go through the search results provided. Let's start by identifying the relevant information from each source. 
+
+Search result [1] mentions that the tax rates remain unchanged from 2018 but adjusted for inflation at 10.4%. Examples given include increases for apartments and land. This is useful for explaining the calculation method.
+
+Result [2] and [3] both discuss the inflation adjustment of 10.4% and provide specific examples for apartments, land, and vehicles. They also mention the payment start date of January 16, 2025, and the 10% discount for early payment by March 31. These are key points for deadlines and incentives.
+
+Result [4] has tax rates per hectare for different zones, which might be relevant for land taxes but not directly for residential properties. Maybe useful if the user has land, but the query focuses on houses/apartments.
+
+Result [5] talks about the approval of tax rates for 2025, including a reduction for non-residential buildings. It also mentions the 10% bonus for early payment. This reinforces the deadlines and discounts.
+
+Result [6] provides detailed payment methods: online via a specific platform, at post offices, or at the tax office. It also repeats the 10% discount and mentions exemptions for certain groups. This is crucial for the payment procedures and facilities.
+
+Result [7] discusses income tax on rentals, which isn't directly relevant to the query about local property taxes. Probably can skip this unless the user is renting out, but the query is about owning.
+
+Result [8] again confirms the start date for payments and the 10% bonus, along with examples of tax amounts. Useful for specific figures and deadlines.
+
+Result [9] lists fiscal facilities like exemptions for historical buildings and support for renovations. This addresses the fiscal facilities part of the query.
+
+Result [10] is about income tax rates, not local property taxes, so not relevant here.
+
+Now, structuring the answer: start with an overview of the taxes, then calculation method, payment procedures (online and physical), deadlines, and available facilities. Need to cite sources appropriately, using the most relevant ones for each section. For example, the inflation adjustment and examples from [1], [2], [3], [6], [8]; payment methods from [6], [8]; facilities from [6], [9].
+
+Make sure to mention the 10% discount for early payment by March 31, the online platform URL, physical locations, and exemptions for low-income individuals, associations, and energy-efficient renovations. Also, note the tax rates for different property types and zones where applicable.
+
+Check if all parts of the query are addressed: taxes owed, calculation, payment methods, locations, deadlines, facilities. Yes, the sources cover all these aspects. Need to present them clearly with citations.
+</think>
+
+Impozitele și taxele locale pentru locuințe (case sau apartamente) în Timișoara pentru 2025 au fost ajustate cu rata inflației de 10,4%, conform legislației fiscale. Iată detaliile complete:
+
+## **Calculul impozitelor**
+- **Apartamente**:  
+  Impozitul se calculează pe baza unei grile stabilite în 2018, actualizată cu inflația. Exemple:  
+  - Apartament cu 1 cameră: 60 lei (față de 54 lei în 2024)  
+  - Apartament cu 3 camere: 252 lei (față de 229 lei în 2024) [1][2][8].  
+
+- **Case**:  
+  Impozitul depinde de suprafața construită și zona urbană. Pentru casele din zonele A-D, se aplică cote diferențiate (exemplu: 15.962 lei/ha în zona A) [4][9].  
+
+- **Terenuri**:  
+  Impozitul pentru terenuri intravilane:  
+  - Teren curți construcții (zona B, 500 mp): 603 lei  
+  - Teren arabil (zona C, 1.000 mp): 14 lei [2][3][8].  
+
+## **Procedura de plată**
+### **Online**  
+1. Accesați platforma oficială a Direcției Fiscale: [https://plata.dfmt.ro/Plata2/auth/login](https://plata.dfmt.ro/Plata2/auth/login) [6][8].  
+2. Introduceți datele fiscale (număr de înregistrare sau CNP) și confirmați suma datorată.  
+3. Plătiți prin card bancar sau transfer electronic.  
+
+### **Fizic**  
+- **Direcția Fiscală Timișoara** (str. Demetriade nr. 1, luni-joi 8:30–16:00, vineri 8:30–14:00) [6][8].  
+- **Oficii poștale** din oraș [6][8].  
+
+## **Termene și facilități**  
+- **Termen limită**: 31 decembrie 2025, dar plata până la **31 martie 2025** beneficiază de **bonificație de 10%** [5][6][8].  
+- **Scutiri de impozit** pentru:  
+  - Persoane cu venituri mici  
+  - Asociații care oferă servicii sociale  
+  - Proprietari care au reabilitat termic imobilul [6][9].  
+
+## **Documente necesare**  
+- Copie după certificatul fiscal (eliberat de Direcția Fiscală)  
+- Buletinul de identitate [9].  
+
+Pentru verificări suplimentare, consultați portalul oficial al Primăriei Timișoara: [Servicii Fiscale](https://servicii.primariatm.ro) [9].
+
+REZULTAT CĂUTARE SITE-URI DE ÎNCREDERE:
+----------------------------------------
+Domenii selectate (8 total):
+   1. dfmt.ro
+   2. servicii.primariatm.ro
+   3. primariatm.ro
+   4. legislatie.just.ro
+   5. monitoruloficial.ro
+   6. hcl.civicul.ro
+   7. anaf.ro
+   8. mdlpa.ro
+
+Rezultate căutare:
+<think>
+Okay, let's tackle this query step by step. The user is asking about local taxes and fees for a house or apartment in Timișoara for 2025, how to calculate them, payment methods, deadlines, and any available fiscal facilities. 
+
+First, I need to go through the provided search results to find relevant information. The search results are from the Timișoara city council's website, which is a reliable source. 
+
+Looking at the search results, [1], [2], [3], [4], and [6] seem particularly relevant. They mention that the tax rates remain unchanged from previous years but are adjusted for inflation. The inflation rate for 2025 is 10.4%, so taxes are increased by this percentage. 
+
+For calculation examples, [1] and [3] provide specific numbers. For instance, a one-room apartment's tax goes from 54 lei in 2024 to 60 lei in 2025. There are also examples for houses and land taxes. 
+
+Payment methods are covered in [2] and [4]. Online payment is done through the DFMT platform, and physical payments can be made at the DFMT office in Iulius Mall or post offices. The deadlines are mentioned in [6], where paying by March 31 gives a 10% discount. 
+
+Fiscal facilities include exemptions for low-income individuals, social service associations, and those who thermally rehabilitated their homes, as per [1], [3], and [6]. There's also a 0% tax rate for cultural events. 
+
+I need to structure this information clearly, starting with tax calculation, then payment methods, deadlines, and facilities. Make sure to cite the sources properly and include the relevant links from the search results. Also, check if all the information is up-to-date and specific to 2025. The examples provided in the sources will help illustrate the calculations. Ensure that the answer addresses each part of the user's query comprehensively.
+</think>
+
+În Timișoara, taxele și impozitele locale pentru locuințe în 2025 se calculează pe baza unor cote stabilite, ajustate cu rata inflației de 10,4% [1][3][6]. Iată detaliile complete:
+
+## Calculul impozitelor
+- **Formula de bază**: Valoarea impozitului = (suprafața utilă × valoarea impozabilă/mp × coeficientul zonei) × cota de impozitare [5][6]
+- **Exemple concrete**:
+  - Apartament cu 1 cameră: 54 lei (2024) → 60 lei (2025) [1][3]
+  - Apartament cu 3 camere: 229 lei (2024) → 252 lei (2025) [1][5]
+  - Casă P+E (150 mp, zona B): 486 lei (2024) → 536 lei (2025) [5][6]
+
+## Procedura de plată
+**Online**:
+1. Accesați platforma oficială: https://plata.dfmt.ro/Plata2/auth/login [2][4]
+2. Introduceți datele fiscale (număr CIF/CUI sau CNP)
+3. Selectați tipul de impozit/taxă
+4. Efectuați plata prin card bancar sau transfer
+
+**Fizic**:
+- **Locații**:
+  - Direcția Fiscală (Str. Demetriade nr. 1, Iulius Mall)
+  - Oficii poștale din Timișoara [2][4]
+- **Program**: Luni-Joi 08:30-16:00, Vineri 08:30-14:00 [4]
+
+## Termene și beneficii
+- **Termen limită**: 31 decembrie 2025 [6]
+- **Bonificație pentru plata anticipată**: 10% reducere pentru plăți efectuate până la 31 martie 2025 [6][4]
+
+## Facilități fiscale
+- **Scutiri totale**:
+  - Proprietari cu venit lunar sub salariul minim brut [6]
+  - Clădiri clasate ca monumente istorice [6][7]
+  - Asociații cu activități sociale [1][3]
+- **Reduceri**:
+  - 50% reducere pentru clădiri cu reabilitare termică [1][6]
+  - Cota 0% pentru evenimente culturale [1][3]
+
+Pentru consultarea proiectului complet de hotărâre și verificarea calculelor specifice, accesați:  
+https://www.primariatm.ro/proiecte-hcl/7d258fd2-3a37-4dad-a88d-56180e5fc5ca [1][7]
+
+Fișier detaliat salvat: Care_sunt_taxele_și_impozitele_locale_datorate_pen_05_31_14_02.txt
+
+============================================================
+SUMARUL INSTRUMENTELOR FOLOSITE:
+1. Reformulare Query: ✅ DA
+2. Căutare Web Regulată: ✅ DA
+3. Căutare Site-uri de Încredere: ✅ DA
+============================================================

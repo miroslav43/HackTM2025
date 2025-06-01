@@ -73,7 +73,7 @@ export const uploadAvatar = async (file: File): Promise<ProfileData> => {
     formData.append('avatar', file);
 
     const token = localStorage.getItem('authToken');
-    const response = await fetch('http://localhost:8000/api/users/profile/avatar', {
+    const response = await fetch('/api/users/profile/avatar', {
       method: 'POST',
       headers: {
         ...(token && { 'Authorization': `Bearer ${token}` })

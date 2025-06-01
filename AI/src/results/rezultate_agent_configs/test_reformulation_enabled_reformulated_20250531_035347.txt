@@ -1,0 +1,19 @@
+================================================================================
+AGENT - QUERY REFORMULAT CU GEMINI
+================================================================================
+
+Config folosit: test_reformulation_enabled
+Data procesării: 2025-05-31 03:53:47
+Reformulare activată: True
+Temperature Gemini: 0.1
+Max Tokens Gemini: 1000
+--------------------------------------------------------------------------------
+
+ÎNTREBAREA ORIGINALĂ:
+taxe locuinta Timisoara
+
+QUERY REFORMULAT:
+"Care sunt taxele și impozitele locale datorate pentru o locuință (casă sau apartament) în Timișoara, România în 2025, cum se calculează, care este procedura oficială de plată online și la ghișeu, unde se pot plăti, care sunt termenele limită și ce facilități fiscale sunt disponibile?"
+
+
+================================================================================

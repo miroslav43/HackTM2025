@@ -1,0 +1,51 @@
+================================================================================
+REZULTATE CĂUTARE PERPLEXITY AI - FOCUS PE ROMÂNIA
+================================================================================
+
+Întrebarea originală: Trebuie sa platesc parcarea pe strada Daliei, daca da cat ma costa si cum o platesc?
+Cererea îmbunătățită: În România,Timisoara: Trebuie sa platesc parcarea pe strada Daliei, daca da cat ma costa si cum o platesc?
+Data căutării: 2025-05-31 00:43:54
+Data de referință: 2025-05-30
+Model: sonar-pro
+--------------------------------------------------------------------------------
+
+FILTRE API DE CĂUTARE APLICATE:
+📅 Interval de date: 1/1/2005 până la 5/30/2025
+🇷🇴 Locație: România (RO)
+📍 Coordonate: 45.7489, 21.2087
+--------------------------------------------------------------------------------
+
+REZULTATELE CĂUTĂRII:
+--------------------
+În urma verificării informațiilor disponibile, strada Daliei din Timișoara nu apare menționată în listele oficiale ale străzilor incluse în sistemul de parcare TimPark conform rezultatelor căutării. 
+
+Sistemul de parcare TimPark din Timișoara funcționează pe anumite străzi specifice, împărțite în zone tarifare diferite (Zona Verde, Zona I, Zona II și Zona III)[4]. În total, conform informațiilor din 2022, sistemul cuprindea 206 străzi cu 19.455 locuri de parcare[4], iar ulterior s-a extins la aproximativ 300 de străzi până în ianuarie 2024[5].
+
+Totuși, este important să fiți atent la semnele de circulație și indicatoarele TimPark de pe strada Daliei, deoarece:
+
+1. Sistemul TimPark se extinde periodic, adăugând noi străzi. Ultima extindere menționată în rezultatele căutării a fost propusă în ianuarie 2024[5].
+
+2. Conform declarației directorului TimPark din ianuarie 2025, "vor mai fi introduse anumite zone de parcare unde s-au amenajat noi locuri de parcare" și "până nu se pun indicatoarele, nu se vor intra pe noile tarife"[6].
+
+Dacă observați indicatoare TimPark pe strada Daliei, atunci parcarea este cu plată și se aplică tarifele corespunzătoare zonei în care este încadrată strada. Tarifele pentru 2025 au rămas neschimbate față de 2024[6][9].
+
+În cazul în care strada Daliei ar fi inclusă în sistemul TimPark, puteți plăti parcarea prin următoarele metode:
+- SMS
+- Voucher
+- Card bancar
+- Abonament (în funcție de zona tarifară)[4]
+
+Pentru informații exacte și actualizate, vă recomand să:
+- Verificați prezența indicatoarelor TimPark pe strada Daliei
+- Contactați direct serviciul TimPark la numărul de telefon +40256.493.393[9]
+- Consultați site-ul oficial www.timpark.ro pentru lista completă a străzilor incluse în sistem[9]
+
+Sediul TimPark se află în Timișoara, pe Splaiul Nicolae Titulescu, nr. 10, și este deschis de luni până vineri între orele 08:00 și 20:00[1][9].
+
+================================================================================
+REZUMATUL CONFIGURAȚIEI DE CĂUTARE:
+- Restricție geografică: România (RO) prin filtrul de locație API
+- Restricție temporală: 2005-2025 prin filtrele de interval de date API
+- Prioritatea surselor: Guvern românesc > Instituții românești > Surse românești recente
+- Filtrele API asigură returnarea doar a surselor românești și recente
+================================================================================

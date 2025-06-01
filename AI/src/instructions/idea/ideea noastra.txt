@@ -1,0 +1,190 @@
+So now i want to create a set of new instructions following the metaprompt and fundamentals for improving perplexity ai web search:
+# Metaprompt: Crafting Effective Prompts for the Perplexity Web Search API
+
+**Objective:** To guide users in creating optimal prompts for the Perplexity Web Search API, leveraging its unique capabilities as a web-search-powered LLM and utilizing its advanced filtering options for precise and relevant results.
+
+## I. Core Principles: Understanding the API
+
+*   **Hybrid Model:** Remember, this API combines Large Language Model (LLM) capabilities with real-time web searches. The User Prompt is paramount for triggering effective searches.
+*   **Search-First Mentality:** Think like you're trying to get the best results from a search engine, then let the LLM synthesize the information.
+
+## II. System Prompt: Guiding the Output (Not the Search)
+
+*   **Purpose:** Use the System Prompt *only* to define the **style, tone, and language** of the AI's final response.
+*   **Limitation:** The System Prompt **does not influence the real-time search component.** Do not put search instructions or keywords here.
+*   **Example Use:**
+    *   "You are a helpful AI assistant specializing in concise summaries."
+    *   "Respond in a formal, academic tone."
+    *   "Provide answers in bullet points."
+
+## III. User Prompt: The Key to Effective Web Search & Response
+
+This is where you instruct the model on *what* to find and answer.
+
+### A. General Best Practices for User Prompts:
+
+1.  **Be Specific and Contextual:**
+    *   **Why:** Generic prompts yield scattered results.
+    *   **How:** Add 2-3 extra words of context.
+    *   **Good:** "Explain recent advances in climate prediction models for urban planning"
+    *   **Poor:** "Tell me about climate models"
+2.  **Think Like a Web Search User (with LLM Synthesis in Mind):**
+    *   **Why:** The model searches for terms likely to appear on relevant web pages.
+    *   **How:** Use search-friendly terms and phrasing an expert might use online.
+    *   **Good:** "Compare the energy efficiency ratings of heat pumps vs. traditional HVAC systems for residential use"
+    *   **Poor:** "Tell me which home heating is better"
+3.  **Provide Relevant, Concise Context:**
+    *   **Why:** Guides the search effectively.
+    *   **How:** Include critical context but keep the prompt focused.
+    *   **Good:** "Explain the impact of the 2023 EU digital markets regulations on app store competition for small developers"
+    *   **Poor:** "What are the rules for app stores?"
+4.  **Focus on One Topic Per Query:**
+    *   **Why:** Complex, multi-part requests confuse the search component.
+    *   **How:** Break down complex needs into separate, focused queries.
+    *   **Good:** "Explain quantum computing principles that might impact cryptography in the next decade."
+    *   **Avoid:** "Explain quantum computing, and also tell me about regenerative agriculture, and provide stock market predictions."
+
+### B. Pitfalls to Avoid in User Prompts:
+
+1.  **Avoid Few-Shot Prompting:**
+    *   **Why:** Confuses the model by triggering searches for your examples, not your actual query.
+    *   **Good:** "Summarize the current research on mRNA vaccine technology"
+    *   **Poor:** "Here’s an example of a good summary about vaccines: [example text]. Now summarize the current research on mRNA vaccines.”
+2.  **Avoid Overly Generic Questions:**
+    *   **Why:** Leads to unfocused responses.
+    *   **How:** Always narrow your scope.
+    *   **Avoid:** "What’s happening in AI?"
+    *   **Instead:** "What are the three most significant commercial applications of generative AI in healthcare in the past year?"
+3.  **Avoid Traditional LLM Prompting Techniques if They Hinder Search:**
+    *   **Why:** Strategies like extensive role-playing can be less effective.
+    *   **How:** Be direct with your information need.
+    *   **Avoid:** "Act as an expert chef and give me a recipe for sourdough bread. Start by explaining the history of sourdough, then list ingredients, then…”
+    *   **Instead:** "What’s a reliable sourdough bread recipe for beginners? Include ingredients and step-by-step instructions."
+4.  **Don't Assume Search Intent:**
+    *   **Why:** The model needs explicit direction.
+    *   **How:** Be explicit about the information you need.
+    *   **Avoid:** "Tell me about the latest developments."
+    *   **Instead:** "What are the latest developments in offshore wind energy technology announced in the past 6 months?"
+
+## IV. Advanced Techniques & Parameter Optimization
+
+**Note on Language Parameters (e.g., `temperature`):** Default settings are optimized. Avoid tuning unless you have a very specific need and understand the implications.
+
+### A. Search Domain Filter (`search_domain_filter`):
+
+*   **Purpose:** Restrict searches to trusted sources or exclude irrelevant ones.
+*   **How:** Provide a list of domain names in the request payload.
+    *   To **include** (allowlist): `"example.com"`
+    *   To **exclude** (denylist): `"-example.com"`
+*   **Syntax Example:**
+    ```json
+    "search_domain_filter": [
+      "nasa.gov",
+      "wikipedia.org",
+      "-pinterest.com"
+    ]
+    ```
+*   **Best Practices:**
+    *   Use simple domain names (e.g., `wikipedia.org`), no `https://` or `www.`.
+    *   Main domains (e.g., `nytimes.com`) filter all subdomains.
+    *   Combine inclusion and exclusion if needed.
+    *   Limit filter size (up to 10, but fewer targeted domains are often better).
+    *   Be aware: May slightly increase response time; overly restrictive filters can reduce result quality.
+
+### B. Search Context Size (`web_search_options.search_context_size`):
+
+*   **Purpose:** Adjust the breadth of information considered from search results.
+*   **How:**
+    *   `"high"`: For comprehensive research questions.
+    *   `"medium"`: (Default, good for general use).
+    *   `"low"`: For simple factual queries.
+*   **Syntax Example (within `web_search_options`):**
+    ```json
+    "web_search_options": {
+      "search_context_size": "high"
+    }
+    ```
+
+### C. Date Range Filter (`search_after_date_filter`, `search_before_date_filter`):
+
+*   **Purpose:** Restrict search results to a specific publication date range.
+*   **How:** Provide dates in `"%m/%d/%Y"` format (e.g., `"03/01/2025"` or `"3/1/2025"`).
+    *   `search_after_date_filter`: Content published on or after this date.
+    *   `search_before_date_filter`: Content published on or before this date.
+    *   Use one or both.
+*   **Syntax Example:**
+    ```json
+    "search_after_date_filter": "03/01/2025",
+    "search_before_date_filter": "03/05/2025"
+    ```
+*   **Best Practices:**
+    *   Adhere strictly to the `"%m/%d/%Y"` format.
+    *   Consider client-side validation (regex: `^(0?[1-9]|1[0-2])/(0?[1-9]|[12][0-9]|3[01])/[0-9]{4}$`).
+    *   Avoid over-restriction (too narrow a range might miss useful results).
+
+### D. User Location Filter (`web_search_options.user_location`):
+
+*   **Purpose:** Refine search results based on approximate geographic location for contextually relevant information (e.g., local businesses, regional news).
+*   **How:** Specify within `web_search_options.user_location`.
+    *   **Latitude/Longitude:**
+        ```json
+        "user_location": { "latitude": 37.7749, "longitude": -122.4194 }
+        ```
+    *   **Country Code (ISO 3166-1 alpha-2):**
+        ```json
+        "user_location": { "country": "RO" } // For Romania
+        ```
+    *   **Combined:**
+        ```json
+        "user_location": { "latitude": 44.4268, "longitude": 26.1025, "country": "RO" } // Bucharest, Romania
+        ```
+*   **Best Practices:**
+    *   **Specificity:** Use lat/long for high precision; country code for broader context. Combining can be powerful.
+    *   **Data Accuracy:** Ensure correct lat (-90 to 90), long (-180 to 180), and valid two-letter uppercase ISO country codes.
+    *   **Privacy:** Be mindful of user privacy when collecting/transmitting location data.
+
+## V. Tips for Different Query Types
+
+*   **Factual Research:**
+    *   Use highly specific questions.
+    *   Employ `search_domain_filter` for academic or trusted sources.
+    *   Consider `search_context_size: "high"`.
+*   **Creative Content Generation:**
+    *   Provide detailed style, tone, voice, and audience guidelines in the **System Prompt**.
+*   **Technical Questions:**
+    *   Include relevant technical context (e.g., "Python 3.9 error with pandas DataFrame").
+    *   Specify preferred programming language/framework.
+    *   Use `search_domain_filter` for documentation sites (e.g., `docs.python.org`, `stackoverflow.com`).
+*   **Analysis & Insights:**
+    *   Request step-by-step reasoning in your User Prompt.
+    *   Ask for specific metrics or criteria for the analysis.
+
+## VI. Pre-computation Checklist / Golden Rules:
+
+1.  Is my User Prompt specific and contextual?
+2.  Am I avoiding few-shot examples in the User Prompt?
+3.  Is my User Prompt phrased like an effective web search query?
+4.  Is my User Prompt focused on a single topic?
+5.  Have I explicitly stated what information I need, avoiding assumptions?
+6.  Is my System Prompt *only* for style, tone, and language of the output?
+7.  Do I need to filter by specific websites? (Use `search_domain_filter`)
+8.  Do I need information from a specific time period? (Use date filters)
+9.  Is geographic location relevant? (Use `user_location`)
+10. What `search_context_size` is appropriate for my query's depth?
+
+By following these guidelines, you will significantly improve the relevance, accuracy, and overall quality of the responses from the Perplexity Web Search API.
+This metaprompt should serve as a robust guide for anyone looking to write effective prompts for the Perplexity API. It emphasizes the unique aspects of the web search functionality and incorporates all the best practices and advanced features you provided.
+
+My ideea is having a chatgpt like application where citizens who live in Timisoara, Romania will be able to ask questions such as: 
+
+1. What documents do i need for the city council to get a new id if i changed my home location? 
+2. What documents do i need in order to get a passport? Or what documents do i need to open a new company in Timisoara, where do i need to sign and provide the certain documents, is there any official website which enables me to make an appointment so i don't have to wait in queue?
+3. What are the sanctions that i get for driving over the speed limit? If i park on this street which is "Strada Daliei" do i need to pay hourly are there any subscriptions which i can buy in order to not have any problems?
+4. What taxes do i need to pay early for my apartament in Timisoara? Are there any online calculators which tell me exactly what is the cost for my specific apartament?
+5. Are there any taxes on vehicles which i need to pay for my car in Romania?
+
+Create me a persona which will improve the perplexity ai web search for this specific topic so the model will search the web better.
+All my questions will have responses from the web in European Region and more specifically Romania.
+The web search results need to provide clear and up-to-date information because the legislative domain where the responses for these questions stay is dinamic and is constantly changing.
+The web search need to focus on a certain list of urls which are official website of the Romanian government and Timisoara City council or state council because the autenticity of the sources is a must because the responses need to be true not biased.
+The web search need to be up-to-date and it needs to search for information published after the year 2003 and the most important source of information need to present information closer to the present which is 30-05-2025.

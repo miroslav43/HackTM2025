@@ -3,7 +3,7 @@
  * Handles login, logout, registration, and user operations
  */
 
-const API_BASE = 'http://localhost:8000';
+const API_BASE = '/api';
 
 export interface LoginRequest {
   email: string;
@@ -21,11 +21,16 @@ export interface RegisterRequest {
 
 export interface User {
   id: string;
-  name: string;
+  first_name: string;
+  last_name: string;
+  name: string; // computed field from backend
   email: string;
   role: 'citizen' | 'official';
+  phone?: string;
+  address?: string;
+  cnp?: string;
   avatar?: string;
-  createdAt: string;
+  created_at: string;
 }
 
 export interface AuthResponse {
@@ -59,7 +64,7 @@ const createAuthHeaders = (): HeadersInit => {
  */
 export const loginUser = async (credentials: LoginRequest): Promise<AuthResponse> => {
   try {
-    const response = await fetch(`${API_BASE}/api/auth/login`, {
+    const response = await fetch(`${API_BASE}/auth/login`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -90,7 +95,7 @@ export const loginUser = async (credentials: LoginRequest): Promise<AuthResponse
  */
 export const registerUser = async (userData: RegisterRequest): Promise<AuthResponse> => {
   try {
-    const response = await fetch(`${API_BASE}/api/auth/register`, {
+    const response = await fetch(`${API_BASE}/auth/register`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -123,7 +128,7 @@ export const logoutUser = async (): Promise<void> => {
   try {
     const token = getAuthToken();
     if (token) {
-      await fetch(`${API_BASE}/api/auth/logout`, {
+      await fetch(`${API_BASE}/auth/logout`, {
         method: 'POST',
         headers: createAuthHeaders(),
       });
@@ -142,7 +147,7 @@ export const logoutUser = async (): Promise<void> => {
  */
 export const getCurrentUser = async (): Promise<User> => {
   try {
-    const response = await fetch(`${API_BASE}/api/auth/me`, {
+    const response = await fetch(`${API_BASE}/auth/me`, {
       headers: createAuthHeaders(),
     });
 
@@ -152,7 +157,7 @@ export const getCurrentUser = async (): Promise<User> => {
         const refreshed = await refreshToken();
         if (refreshed) {
           // Retry with new token
-          const retryResponse = await fetch(`${API_BASE}/api/auth/me`, {
+          const retryResponse = await fetch(`${API_BASE}/auth/me`, {
             headers: createAuthHeaders(),
           });
           if (retryResponse.ok) {
@@ -164,7 +169,8 @@ export const getCurrentUser = async (): Promise<User> => {
         localStorage.removeItem('refreshToken');
         throw new Error('Authentication failed');
       }
-      throw new Error('Failed to get user');
+      const errorText = await response.text();
+      throw new Error(`HTTP ${response.status}: ${errorText}`);
     }
     
     return await response.json();
@@ -184,7 +190,7 @@ export const refreshToken = async (): Promise<{ token: string } | null> => {
       throw new Error('No refresh token available');
     }
 
-    const response = await fetch(`${API_BASE}/api/auth/refresh`, {
+    const response = await fetch(`${API_BASE}/auth/refresh`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

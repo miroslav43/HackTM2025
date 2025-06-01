@@ -1,0 +1,149 @@
+RAPORT AGENT - REZULTATE FINALE COMPLETE (4 INSTRUMENTE)
+============================================================
+
+ÎNTREBARE ORIGINALĂ:
+Cat primesc amenda,daca parchez pe handicapati
+
+QUERY REFORMULAT:
+"Care este valoarea amenzii pentru parcarea neregulamentară pe locurile special amenajate pentru persoane cu handicap în Timișoara, România, conform legislației actualizate în 2025, și ce alte sancțiuni se pot aplica?"
+
+
+CONFIGURAȚIA FOLOSITĂ:
+- Config Name: default_agent_config
+- Reformulare activă: True
+- Căutare web activă: True
+- Căutare site-uri de încredere activă: True
+- Generare răspuns final activă: True
+- Model Gemini Reformulare: gemini-2.0-flash
+- Temperature Gemini Reformulare: 0.1
+- Model Perplexity: sonar-reasoning-pro
+- Temperature Perplexity: 0.1
+- Context Size: high
+- Model Gemini Trusted Sites: gemini-2.5-flash-preview-05-20
+- Model Perplexity Trusted Sites: sonar-reasoning-pro
+- Model Gemini Final Response: gemini-2.5-flash-preview-05-20
+- Temperature Final Response: 0.1
+
+TIMESTAMP: 2025-05-31 16:00:30
+
+🎯 RĂSPUNS FINAL SINTETIZAT (PRINCIPAL):
+==================================================
+Pentru parcarea neregulamentară pe locurile special amenajate pentru persoane cu handicap în Timișoara, sancțiunile sunt semnificative și sunt aplicate cu strictețe de către Poliția Locală. Iată detaliile, conform legislației actualizate și informațiilor recente:
+
+### 1. Valoarea Amendei
+
+*   **Intervalul amenzii:** Amenda pentru parcarea ilegală pe locurile destinate persoanelor cu dizabilități este cuprinsă între **2.000 și 10.000 de lei** [1][2][4][6].
+*   **Baza legală:** Aceste sancțiuni sunt prevăzute de Legea 448/2006 privind protecția și promovarea drepturilor persoanelor cu handicap, modificată prin Legea 145/2020, și de Legea 280/2023 [1][6].
+*   **Exemplu recent:** În februarie 2025, un șofer din Timișoara a fost amendat cu 2.000 de lei pentru o astfel de contravenție [4].
+
+### 2. Alte Sancțiuni Aplicabile
+
+Pe lângă amenda financiară, se pot aplica și următoarele măsuri:
+
+*   **Ridicarea autovehiculului:** Poliția Locală poate dispune evacuarea mașinii de pe locul rezervat, costurile de ridicare și depozitare fiind suportate de proprietar [1][2][7].
+*   **Blocarea roților:** Vehiculul poate fi imobilizat prin blocarea roților cu dispozitive speciale [5].
+*   **Aplicarea de colanți autoadezivi:** Pe parbrizul mașinii poate fi aplicat un colant autoadeziv pentru a semnaliza încălcarea regulilor de parcare [5].
+
+### 3. Baza Legală și Reguli Suplimentare
+
+*   **Dreptul de utilizare:** Doar posesorii unui **card-legitimație de parcare pentru persoane cu handicap**, emis conform legii, au dreptul să utilizeze aceste locuri [6].
+*   **Procentul locurilor:** Conform legislației, cel puțin 4% din numărul total al locurilor de parcare (sau minimum 2 locuri) trebuie rezervate și semnalizate corespunzător pentru persoanele cu dizabilități [1][8].
+*   **Aplicare:** Poliția Locală Timișoara desfășoară controale regulate și aplică sancțiuni zilnic pentru nerespectarea acestor reguli [2][3].
+
+### 4. Recomandare Importantă
+
+Deși informațiile de mai sus sunt consolidate din surse recente și relevante, inclusiv din 2025, legislația poate suferi modificări. Pentru cele mai precise și actualizate informații, în special în cazul unor modificări legislative de ultim moment, este întotdeauna recomandat să consultați direct:
+
+*   **Poliția Locală Timișoara:** Contactați-i la numărul de telefon 0256.246.112 [5] sau verificați site-ul oficial [politialoctm.ro](https://www.politialoctm.ro/).
+*   **Portalul Legislativ Național:** [legislatie.just.ro](https://legislatie.just.ro/) pentru a verifica cele mai recente modificări ale Legii 448/2006 și ale altor acte normative relevante.
+
+==================================================
+
+REZULTAT CĂUTARE WEB REGULATĂ (PENTRU COMPARAȚIE):
+----------------------------------------
+<think>
+Okay, let's tackle this query. The user is asking about the fines for illegal parking in spots designated for people with disabilities in Timișoara, Romania, according to 2025 legislation, and any other applicable sanctions.
+
+First, I need to check the search results provided. Let's go through each one to find relevant information. 
+
+Looking at result [1], it mentions that fines can range from 2000 to 10,000 lei according to Law 448/2006 and Law 280/2023. It also notes that vehicles can be towed. This is specific to Timișoara as the article references local police there.
+
+Result [2] confirms that fines in Timișoara are between 2000 and 10,000 lei, applied by local police. 
+
+Result [3] also states the maximum fine is 10,000 lei in Timișoara, with local police conducting raids.
+
+Result [4] gives an example of a driver fined 2000 lei in Timișoara for parking illegally in a disabled spot. It references Law 448/2006 again.
+
+Result [5] discusses fines up to 4000 lei in another city, but since the user asked about Timișoara, this might be less relevant. However, it's important to note that local enforcement can vary, but the user specified Timișoara.
+
+Result [6] cites Law 145/2020 amending Law 448/2006, setting fines between 2000 and 10,000 lei, applicable by local police. This aligns with the other sources.
+
+Result [7] talks about general parking fines in 2024, but the user is asking about 2025. However, since the current date in the context is May 2025, and the latest search result is from February 2025, it's possible the 2024 data might still be relevant if no newer laws were passed. But the other results specifically mention the higher fines for disabled parking, so the general parking fines might not apply here.
+
+Result [8] discusses regulations on the number of parking spots required but doesn't mention fines.
+
+Putting this together, the key points are:
+- The fines in Timișoara for parking in disabled spots range from 2000 to 10,000 lei, as per Laws 448/2006 and 280/2023, amended by 145/2020.
+- Additional sanctions include towing the vehicle.
+- Local police in Timișoara are actively enforcing these fines, as per recent articles from 2024 and 2025.
+
+The user also asked about 2025 legislation. Since the latest search result is from February 2025 and mentions the same fine range, it's safe to conclude that the laws haven't changed in 2025 regarding this matter. Therefore, the answer should reflect the current fines and sanctions as per the most recent data available.
+</think>
+
+În Timișoara, conform legislației actualizate, parcarea neregulamentară pe locurile rezervate persoanelor cu handicap atrage **amenzi între 2.000 și 10.000 de lei**, potrivit surselor recente. Iată detaliile:
+
+### Sancțiuni aplicabile:
+1. **Amendă financiară**  
+   - **Interval**: 2.000 – 10.000 lei, în funcție de gravitate[1][2][4][6].  
+   - **Exemplu concret**: Un șofer din Timișoara a primit amendă de 2.000 lei în februarie 2025 pentru parcare ilegală pe Calea Șagului[4].  
+
+2. **Ridicarea autovehiculului**  
+   - Poliția Locală poate dispune evacuarea mașinii de pe locul rezervat[1][6].  
+
+3. **Baza legală**  
+   - Legea 448/2006 (modificată prin Legea 145/2020)[1][6].  
+   - Legea 280/2023 (acces prioritar pentru femei gravide și părinți cu copii mici)[1].  
+
+### Reguli specifice:
+- **Documentație obligatorie**: Doar posesorii unui **card-legitimație de parcare pentru persoane cu handicap** au dreptul să folosească aceste locuri[6].  
+- **Procent minim**: 4% din locurile de parcare (sau minimum 2 locuri) trebuie rezervate persoanelor cu dizabilități[1][8].  
+
+Poliția Locală Timișoara a intensificat controalele în 2025, aplicând sancțiuni zilnic pentru încălcarea acestor reguli[2][3].
+
+REZULTAT CĂUTARE SITE-URI DE ÎNCREDERE (PENTRU COMPARAȚIE):
+----------------------------------------
+Domenii selectate (4 total):
+   1. timpark.ro
+   2. politialoctm.ro
+   3. legislatie.just.ro
+   4. monitoruloficial.ro
+
+Rezultate căutare:
+<think>
+Okay, let's tackle this query about the fines for illegal parking in handicap spots in Timișoara, Romania, updated to 2025. First, I need to check the search results provided to find relevant information.
+
+Looking at the sources, [1] is about Timpark and mentions parking zones and regulations, but doesn't specify fines. [2] and [7] discuss the Local Police's responsibilities, including enforcing parking rules. [5] mentions fines between 500-1000 lei for individuals and 1000-2000 lei for legal entities for parking violations, including in handicap spots. [3] and [6] are legal documents about handicap parking rights but don't mention 2025 updates. [4] is about purchasing parking permits.
+
+The user is asking specifically about 2025, but the latest info in the search results is from 2023 in [2]. Since there's no 2025 data, I'll have to rely on the most recent available. The fine ranges from [5] are still applicable unless there's a newer law. Also, [2] and [7] mention vehicle towing as an additional sanction. I need to present the fines, towing, and possible blocking with adhesive stickers as per [5]. Since the 2025 update isn't found, I'll note that the info is current up to the latest available sources.
+</think>
+
+Valoarea amenzii pentru parcarea neregulamentară pe locurile pentru persoane cu handicap în Timișoara este **cuprinsă între 500 și 1.000 de lei pentru persoane fizice**, respectiv **1.000-2.000 de lei pentru persoane juridice**, conform informațiilor actuale disponibile[5]. 
+
+**Alte sancțiuni aplicabile includ:**
+- **Ridicarea vehiculului** de către Poliția Locală, cu plata costurilor de depozitare[2][7]
+- **Blocarea roților** cu dispozitive speciale[5]
+- **Aplicarea de colanți autoadezivi** pe parbriz pentru a semnaliza încălcarea[5]
+
+Legislația menționată în surse (HCL 371/2007 și Legea 155/2010) nu indică modificări specifice pentru anul 2025. Informațiile rămân valabile conform ultimelor actualizări identificate în documente oficiale (până în decembrie 2023)[2][5][7]. 
+
+Pentru verificarea ultimelor modificări legislative, recomandăm consultarea directă a portalurilor instituțiilor românești competente sau contactarea Poliției Locale Timișoara la numărul 0256.246.112[5].
+
+Fișier detaliat salvat: Care_este_valoarea_amenzii_pentru_parcarea_neregul_05_31_16_00.txt
+
+============================================================
+SUMARUL INSTRUMENTELOR FOLOSITE:
+1. Reformulare Query: ✅ DA
+2. Căutare Web Regulată: ✅ DA
+3. Căutare Site-uri de Încredere: ✅ DA
+4. Generare Răspuns Final: ✅ DA
+============================================================

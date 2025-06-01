@@ -1,0 +1,87 @@
+================================================================================
+AGENT - REZULTATE FINALE
+================================================================================
+
+Config folosit: test_reformulation_enabled
+Data procesării: 2025-05-31 03:54:15
+--------------------------------------------------------------------------------
+
+CONFIGURAȚIA FOLOSITĂ:
+• Reformulare Gemini: True
+• Temperature: 0.1
+• Max Tokens: 1000
+• City Hint: timisoara
+• Folosește Perplexity: True
+--------------------------------------------------------------------------------
+
+ÎNTREBAREA ORIGINALĂ:
+taxe locuinta Timisoara
+
+QUERY FOLOSIT PENTRU CĂUTARE:
+"Care sunt taxele și impozitele locale datorate pentru o locuință (casă sau apartament) în Timișoara, România în 2025, cum se calculează, care este procedura oficială de plată online și la ghișeu, unde se pot plăti, care sunt termenele limită și ce facilități fiscale sunt disponibile?"
+
+
+Fișier cu query reformulat: rezultate_agent_configs\test_reformulation_enabled_reformulated_20250531_035347.txt
+
+--------------------------------------------------------------------------------
+
+REZULTATELE CĂUTĂRII:
+<think>
+Okay, let's tackle this query about local taxes and fees in Timișoara for 2025. The user wants to know the taxes for houses or apartments, how they're calculated, the payment procedures both online and in person, where to pay, deadlines, and any available fiscal facilities.
+
+First, I need to go through the search results provided. Let's start with result [1], which mentions that the tax rates remain unchanged from 2018 but adjusted for inflation at 10.4%. It gives examples for apartments with different numbers of rooms. For a one-room apartment, the tax increases from 54 lei in 2024 to 60 lei in 2025. That's a key point. Result [2] and [3] echo this information, so they can be used to corroborate the figures.
+
+Next, looking at result [5], it states that the local council approved the taxes for 2025, with a 10% bonus for early payment by March 31. This is important for the deadlines and facilities section. Result [6] adds that payments can start from January 16, 2025, and mentions the online platform https://plata.dfmt.ro/Plata2/auth/login. It also lists specific amounts for different property types and vehicles, which helps in detailing the tax rates.
+
+Result [4] provides tax rates per hectare for different zones (A, B, C, D), but the user is asking about residential properties, so maybe this is more relevant for land taxes. Still, it's good to note if the user has a house with land. However, the main focus is on the house or apartment itself.
+
+Result [7] talks about Ghiseul.ro, a national platform for online payments. Even though it's a general resource, it's useful to mention as an alternative payment method, especially since result [6] also mentions online payments through the local platform. The user might appreciate multiple options.
+
+Result [8] and [5] discuss reductions in tax rates for non-residential buildings, but the user is interested in residential, so maybe less relevant. However, result [8] mentions agreements between parties to lower rates over the years, which shows the context but not directly applicable here.
+
+Result [6] also details the tax rates for cars and motorcycles, but again, the user's focus is on residential properties. Still, if the user has a vehicle, this could be additional info, but the query specifically mentions a house or apartment.
+
+Now, for the calculation method. Results [1], [3], and [6] mention that taxes are adjusted based on inflation (10.4% for 2025). The formula seems to be the previous year's tax multiplied by 1.104. For example, 54 lei * 1.104 ≈ 60 lei. This should be explained clearly.
+
+Payment procedures: Result [6] states that payments can be made online via the local platform or in person at the tax office or post offices. The address is str. Demetriade nr. 1 (Iulius Mall). The schedule is Monday-Thursday 8:30-16:00 and Friday until 14:00. Ghiseul.ro (result [7]) is another online option, which is secure and quick.
+
+Deadlines: The bonus for early payment by March 31 is mentioned in results [5] and [6]. There's also a note in result [10] about starting payments from January, but the exact deadline for the year isn't specified beyond the March bonus. Typically, taxes are due by the end of the year, but the bonus is an incentive for early payment.
+
+Fiscal facilities: Result [3] and [6] mention exemptions for low-income individuals, associations providing social services, and those who thermally rehabilitated their homes. These should be listed as available facilities.
+
+I need to structure the answer with clear sections: Tax Rates, Calculation Method, Payment Procedures, Deadlines, and Fiscal Facilities. Each section should cite the relevant sources. Make sure to highlight the online platforms and in-person locations, and emphasize the 10% bonus for early payment. Also, mention the inflation adjustment and provide examples for clarity.
+</think>
+
+În Timișoara, taxele și impozitele locale pentru locuințe (case sau apartamente) în 2025 se bazează pe reglementări actualizate și proceduri clar definite. Iată detaliile esențiale:
+
+### 1. **Taxe și impozite pentru locuințe (2025)**
+- **Apartamente**:  
+  - 1 cameră: **60 lei** (față de 54 lei în 2024)  
+  - 3 camere: **252 lei** (față de 229 lei în 2024) [1][3][6].  
+- **Case**: Calculul se face în funcție de suprafața construită și zona urbană. De exemplu, pentru o casă în zona B, impozitul poate ajunge la **603 lei** pentru 500 mp [1][6].  
+- **Ajustare**: Toate taxele au crescut cu **10,4%** (rata inflației pentru 2025) [3][6].
+
+### 2. **Metoda de calcul**  
+Impozitul se calculează prin aplicarea cotei de impozitare (menținută din 2018) asupra valorii impozabile, ajustată cu inflația. Exemplu:  
+\( \text{Impozit 2025} = \text{Impozit 2024} \times 1,104 \) [1][6].
+
+### 3. **Procedura de plată**  
+#### **Online**  
+- **Platforma locală**: Accesați https://plata.dfmt.ro/Plata2/auth/login pentru plata directă [6].  
+- **Ghișeul.ro**: Opțiune națională pentru plata taxelor, cu conexiuni securizate [7].  
+
+#### **La ghișeu**  
+- **Sediu Direcție Fiscală**: str. Demetriade nr. 1 (în incinta Iulius Mall), program: Luni-Joi (08:30–16:00), Vineri (08:30–14:00) [6].  
+- **Oficii poștale**: Toate din Timișoara acceptă plăți [6].
+
+### 4. **Termene limită și facilități**  
+- **Bonificație 10%**: Pentru plățile efectuate **până la 31 martie 2025** [5][6][10].  
+- **Termen final**: De obicei, plățile pot fi efectuate până la sfârșitul anului fiscal, dar se recomandă respectarea termenului de bonificație [6].
+
+### 5. **Facilități fiscale**  
+- **Scutiri totale**: Pentru persoane cu venituri mici, asociații cu activități sociale sau proprietari care au realizat reabilitare termică [3][6].  
+- **Reduceri progresive**: Pentru clădirile nerezidențiale, cu scăderi planificate până în 2027 (1,7% în 2025, 1,5% în 2026) [5][8].
+
+Pentru verificări suplimentare sau calculatoare online, consultați portalul Primăriei Timișoara sau contactați Direcția Fiscală locală.
+
+================================================================================

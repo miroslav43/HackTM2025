@@ -1,4 +1,3 @@
-
 /**
  * API functions for document management
  * Handles all document-related backend operations
@@ -19,10 +18,26 @@ export interface DocumentData {
  */
 export const fetchUserDocuments = async (): Promise<DocumentData[]> => {
   try {
-    // Simulate API call - replace with actual backend endpoint
-    const response = await fetch('/api/user/documents');
+    const response = await fetch('/api/documents/', {
+      headers: {
+        'Authorization': `Bearer ${localStorage.getItem('authToken')}`,
+      },
+    });
+    
     if (!response.ok) throw new Error('Failed to fetch documents');
-    return await response.json();
+    
+    const data = await response.json();
+    
+    // Transform the backend response to match frontend interface
+    return data.map((doc: any) => ({
+      id: doc.id,
+      name: doc.name,
+      type: doc.type,
+      status: doc.status,
+      uploadDate: doc.uploaded_at ? new Date(doc.uploaded_at).toISOString().split('T')[0] : '',
+      size: doc.file_size ? `${(doc.file_size / 1024 / 1024).toFixed(1)} MB` : '0 MB',
+      verificationProgress: doc.verification_progress || 0
+    }));
   } catch (error) {
     console.error('Error fetching documents:', error);
     // Return mock data for development
@@ -56,15 +71,30 @@ export const uploadDocument = async (file: File, type: string): Promise<Document
   try {
     const formData = new FormData();
     formData.append('file', file);
+    formData.append('name', file.name);
     formData.append('type', type);
 
     const response = await fetch('/api/documents/upload', {
       method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${localStorage.getItem('authToken')}`,
+      },
       body: formData
     });
 
     if (!response.ok) throw new Error('Failed to upload document');
-    return await response.json();
+    const data = await response.json();
+    
+    // Transform response to match frontend interface
+    return {
+      id: data.id,
+      name: data.name,
+      type: data.type,
+      status: data.status,
+      uploadDate: data.uploaded_at ? new Date(data.uploaded_at).toISOString().split('T')[0] : '',
+      size: data.file_size ? `${(data.file_size / 1024 / 1024).toFixed(1)} MB` : '0 MB',
+      verificationProgress: data.verification_progress || 0
+    };
   } catch (error) {
     console.error('Error uploading document:', error);
     throw error;

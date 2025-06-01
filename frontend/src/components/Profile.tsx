@@ -12,6 +12,7 @@ import {
   uploadAvatar,
 } from "@/api/profileApi";
 import DocumentUploadSection from "@/components/documents/DocumentUploadSection";
+import PersonalInfoSection from "@/components/PersonalInfoSection";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import {
@@ -360,49 +361,48 @@ const Profile = () => {
               <CardContent className="space-y-4">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div className="space-y-2">
-                    <Label htmlFor="first_name">Nume</Label>
+                    <Label htmlFor="first_name">Prenume</Label>
                     <Input
                       id="first_name"
                       value={formData.first_name}
                       onChange={(e) =>
-                        handleInputChange("first_name", e.target.value)
+                        setFormData((prev) => ({
+                          ...prev,
+                          first_name: e.target.value,
+                        }))
                       }
                       disabled={!isEditing}
                     />
                   </div>
                   <div className="space-y-2">
-                    <Label htmlFor="last_name">Prenume</Label>
+                    <Label htmlFor="last_name">Nume</Label>
                     <Input
                       id="last_name"
                       value={formData.last_name}
                       onChange={(e) =>
-                        handleInputChange("last_name", e.target.value)
+                        setFormData((prev) => ({
+                          ...prev,
+                          last_name: e.target.value,
+                        }))
                       }
                       disabled={!isEditing}
                     />
                   </div>
-                  <div className="space-y-2">
-                    <Label htmlFor="email">Email</Label>
-                    <Input
-                      id="email"
-                      type="email"
-                      value={user?.email}
-                      disabled={true}
-                    />
-                    <p className="text-xs text-gray-500">
-                      Email-ul nu poate fi modificat
-                    </p>
-                  </div>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div className="space-y-2">
                     <Label htmlFor="phone">Telefon</Label>
                     <Input
                       id="phone"
                       value={formData.phone}
                       onChange={(e) =>
-                        handleInputChange("phone", e.target.value)
+                        setFormData((prev) => ({
+                          ...prev,
+                          phone: e.target.value,
+                        }))
                       }
                       disabled={!isEditing}
-                      placeholder="0712345678"
                     />
                   </div>
                   <div className="space-y-2">
@@ -410,26 +410,36 @@ const Profile = () => {
                     <Input
                       id="cnp"
                       value={formData.cnp}
-                      onChange={(e) => handleInputChange("cnp", e.target.value)}
-                      disabled={!isEditing}
-                      placeholder="1234567890123"
-                    />
-                  </div>
-                  <div className="space-y-2 md:col-span-2">
-                    <Label htmlFor="address">Adresa</Label>
-                    <Input
-                      id="address"
-                      value={formData.address}
                       onChange={(e) =>
-                        handleInputChange("address", e.target.value)
+                        setFormData((prev) => ({
+                          ...prev,
+                          cnp: e.target.value,
+                        }))
                       }
                       disabled={!isEditing}
-                      placeholder="Strada, numărul, orașul, județul"
                     />
                   </div>
                 </div>
+
+                <div className="space-y-2">
+                  <Label htmlFor="address">Adresa</Label>
+                  <Input
+                    id="address"
+                    value={formData.address}
+                    onChange={(e) =>
+                      setFormData((prev) => ({
+                        ...prev,
+                        address: e.target.value,
+                      }))
+                    }
+                    disabled={!isEditing}
+                  />
+                </div>
               </CardContent>
             </Card>
+
+            {/* AI Extracted Personal Information Section */}
+            <PersonalInfoSection />
           </div>
         </TabsContent>
 

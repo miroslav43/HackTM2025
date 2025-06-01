@@ -1,0 +1,202 @@
+RAPORT AGENT - REZULTATE FINALE COMPLETE (4 INSTRUMENTE)
+============================================================
+
+ÎNTREBARE ORIGINALĂ:
+reinnoire buletin timisoara
+
+QUERY REFORMULAT:
+"Care este procedura oficială pentru reînnoirea cărții de identitate în Timișoara, România, ce documente sunt necesare, care este costul actualizat, unde se depun actele și dacă este necesară programarea online?"
+
+
+CONFIGURAȚIA FOLOSITĂ:
+- Config Name: default_agent_config
+- Reformulare activă: True
+- Căutare web activă: True
+- Căutare site-uri de încredere activă: True
+- Generare răspuns final activă: True
+- Model Gemini Reformulare: gemini-2.0-flash
+- Temperature Gemini Reformulare: 0.1
+- Model Perplexity: sonar-reasoning-pro
+- Temperature Perplexity: 0.1
+- Context Size: high
+- Model Gemini Trusted Sites: gemini-2.5-flash-preview-05-20
+- Model Perplexity Trusted Sites: sonar-reasoning-pro
+- Model Gemini Final Response: gemini-2.5-flash-preview-05-20
+- Temperature Final Response: 0.1
+
+TIMESTAMP: 2025-05-31 15:35:13
+
+🎯 RĂSPUNS FINAL SINTETIZAT (PRINCIPAL):
+==================================================
+Pentru reînnoirea cărții de identitate în Timișoara, procedura oficială implică următorii pași, conform informațiilor actualizate din surse guvernamentale și locale:
+
+### 1. **Programare online obligatorie**
+*   Accesarea portalului **HUB Servicii MAI**: [https://hub.mai.gov.ro/cei/programari](https://hub.mai.gov.ro/cei/programari). Acesta este sistemul principal de programări, în special pentru Cartea Electronică de Identitate (CEI).
+*   Selectați județul Timiș și completați datele solicitate pentru a rezerva un interval orar.
+*   Începând cu 8 mai 2025, programările prin acest portal sunt dedicate preponderent eliberării Cărții Electronice de Identitate (CEI), care devine opțiunea standard.
+
+### 2. **Documente necesare**
+*   **Cerere tip**: Aceasta se completează electronic la ghișeu, în momentul depunerii actelor.
+*   **Actul de identitate expirat** (original și copie).
+*   **Certificatul de naștere** (original și copie).
+*   **Dovada adresei de domiciliu**:
+    *   Contract de vânzare-cumpărare, contract de închiriere, extras de carte funciară (original și copie).
+    *   Dacă nu sunteți proprietarul imobilului, este necesară prezența proprietarului cu actul de proprietate și actul său de identitate, sau o declarație notarială de consimțământ.
+*   **Certificatul de căsătorie** (original și copie), dacă este cazul.
+*   **Certificatul de divorț** (original și copie), dacă este cazul.
+*   **Chitanța de plată a taxei** (doar pentru cartea de identitate clasică, dacă se mai eliberează în cazuri excepționale).
+
+### 3. **Cost actualizat (2025)**
+*   **Cartea Electronică de Identitate (CEI)**: **Gratuită**, fiind finanțată prin fonduri PNRR.
+*   **Cartea de identitate clasică**: **24 lei** (taxa menționată pe site-ul Primăriei Timișoara pentru cazurile excepționale în care se mai eliberează acest tip de document).
+*   Anumite categorii de persoane (ex: persoane cu handicap, orfani, victime ale calamităților) pot beneficia de scutiri de la plata taxei.
+
+### 4. **Locul depunerii actelor**
+*   Documentele se depun personal la **Direcția de Evidență a Persoanelor Timișoara**, situată pe **Strada Gheorghe Lazăr nr. 1** (în sediul Primăriei Timișoara), la data și ora programate online.
+
+### 5. **Procesare și ridicare**
+*   **Termenul standard de eliberare**: Până la 30 de zile, cu posibilitatea de prelungire cu încă 15 zile în cazuri excepționale.
+*   La depunerea actelor, se vor prelua **amprentele și fotografia biometrică**.
+*   Actul de identitate vechi rămâne valabil până la ridicarea noului document.
+
+### **Note importante**
+*   **Cartea Electronică de Identitate (CEI)**: De la 8 mai 2025, CEI devine opțiunea standard. Aceasta include funcționalități suplimentare, cum ar fi semnătura electronică și posibilitatea de a fi utilizată ca document de călătorie în statele membre UE. Cărțile de identitate clasice se eliberează doar în situații excepționale, bine justificate.
+*   **Minorii peste 14 ani**: Pentru minorii care solicită primul act de identitate sau reînnoirea, este necesară prezența ambilor părinți sau a tutorelui legal.
+*   **Pierdere/Furt**: În cazul pierderii, furtului sau distrugerii actului de identitate, pe lângă documentele menționate, este necesară și o declarație pe propria răspundere privind circumstanțele evenimentului.
+*   **Sancțiuni**: Nerespectarea termenului legal pentru preschimbarea actului de identitate expirat (de obicei 15 zile de la expirare) poate atrage sancțiuni contravenționale.
+
+### **Resurse Oficiale Utile**
+*   **HUB Servicii MAI (pentru programări CEI)**: [https://hub.mai.gov.ro/cei/programari](https://hub.mai.gov.ro/cei/programari)
+*   **Primăria Municipiului Timișoara (Serviciul de Evidență a Persoanelor)**: [https://www.primariatm.ro/acte-de-identitate/](https://www.primariatm.ro/acte-de-identitate/)
+*   **Direcția pentru Evidența Persoanelor și Administrarea Bazelor de Date (DEPABD)**: [https://depabd.mai.gov.ro/](https://depabd.mai.gov.ro/)
+
+==================================================
+
+REZULTAT CĂUTARE WEB REGULATĂ (PENTRU COMPARAȚIE):
+----------------------------------------
+<think>
+Okay, let's tackle this query step by step. The user is asking about renewing their ID card in Timișoara, Romania. They want to know the official procedure, required documents, updated cost, where to submit the documents, and if online appointment is needed.
+
+First, I need to check the search results provided. Let's go through each source to gather the necessary information.
+
+Looking at source [1], it's from the Timișoara city services website. It lists the required documents: application form (Anexa 1), valid ID and voter card (if applicable), birth certificate, marriage certificate (if married), foreign documents if applicable, residence permit, citizenship certificate, etc. It also mentions that the old ID remains valid until the new one is issued. This seems crucial for the documents section.
+
+Source [2] mentions the need for an online appointment via the evpers.primariatm.ro link. It also provides a phone number for contact. So, online appointment is necessary, and there's a specific portal to use.
+
+Sources [3], [4], [5], [7], and [9] discuss the cost. They all state the fee is 7 lei for the ID card, payable at Posta Romana, CEC Bank, or at the office. Source [7] from the Timis County Council confirms the 7 lei fee and mentions that the provisional ID costs 1 leu. Also, some exemptions apply for certain groups like orphans, disabled individuals, etc.
+
+Regarding where to submit the documents, sources [3], [4], and [5] indicate that documents must be submitted in person at the local public service office based on domicile. If abroad, a proxy with specific requirements is needed.
+
+For the procedure, sources [2] and [8] detail the online appointment process. Source [8] explains the steps: accessing the primariatm.ro page, using the "Programare Online" button, entering a phone number for a code, filling in details, and receiving the appointment date. It also mentions online payment options to save time.
+
+Source [6] talks about the electronic ID card being available in Timișoara, which is free under PNRR until 2029. The documents required are the same as the classic ID. This is an optional detail but good to mention as an alternative.
+
+Putting this all together, the procedure involves making an online appointment, preparing the necessary documents (application form, birth certificate, proof of address, etc.), paying the 7 lei fee, submitting in person, and then collecting the new ID. The electronic ID is an option with the same documents but free for now.
+
+I need to structure this clearly, starting with the procedure steps, required documents, cost, submission locations, and online appointment details. Also, highlight the electronic ID option. Citations should be from the relevant sources, like [1] for documents, [2] and [8] for the appointment process, [3], [4], [7] for the cost, etc.
+
+Make sure to follow the formatting rules: no headers at the start, use sections with ##, lists for steps and documents, bold for subsections, and citations after each relevant sentence. Avoid any markdown in the thinking process, but the final answer should use proper formatting as specified.
+</think>
+
+Pentru reînnoirea cărții de identitate în Timișoara, procedura oficială implică următorii pași și cerințe:
+
+## Procedură pas cu pas
+1. **Programare online obligatorie**  
+   Accesați portalul [evpers.primariatm.ro](https://evpers.primariatm.ro/programare-carte-identitate) sau [HUB Servicii MAI](https://www.primariatm.ro/acte-de-identitate/), introduceți numărul de telefon pentru primirea unui cod SMS și selectați data dorită[2][8]. Programările se fac exclusiv online.
+
+2. **Pregătirea documentelor**  
+   Documentele necesare includ:
+   - Cererea tip (Anexa 1) completată și imprimată față-verso pe A4[1][5]
+   - Buletinul expirat și cartea de alegător[1][4]
+   - Certificatul de naștere original + copie[1][3]
+   - Certificatul de căsătorie/divorț/deces (după caz) original + copie[1][5]
+   - Dovada adresei de domiciliu (contract proprietate/chirie, adeverință de la asociație) original + copie[5][9]
+   - Chitanța de plată a taxei[4][7].
+
+3. **Plata taxei**  
+   Costul actualizat este **7 lei**, plătibil la ghișeul primăriei, Poșta Română sau CEC Bank[3][4][7]. Persoanele cu handicap, pensionarii și victimele calamităților sunt scutiți de taxă[4][7].
+
+4. **Depunerea actelor**  
+   Documentele se predau personal la **Direcția de Evidență a Persoanelor Timișoara** (Strada Gheorghe Lazăr 1), în intervalul orar programat[2][8]. Buletinul vechi rămâne valabil până la ridicarea noului document[1].
+
+5. **Ridicarea noului act**  
+   Durata de procesare este de ~10 zile lucrătoare. Nu este necesară programare pentru ridicare[8].
+
+## Opțiunea electronică (CEI)
+Începând din 2025, puteți opta pentru **Cartea Electronică de Identitate (CEI)** gratuită, valabilă ca document de călătorie în UE. Procedura și documentele sunt identice cu cele pentru buletinul clasic[6].
+
+## Important
+- Programările se fac cu cel puțin **15 zile** înainte de expirarea actului[4][9]
+- Pentru minorii peste 14 ani, se necesită prezența ambilor părinți/tutori[1]
+- În caz de pierdere/furt, adăugați declarația pe propria răspundere[5][9].
+
+REZULTAT CĂUTARE SITE-URI DE ÎNCREDERE (PENTRU COMPARAȚIE):
+----------------------------------------
+Domenii selectate (7 total):
+   1. depabd.mai.gov.ro
+   2. tm.prefectura.mai.gov.ro
+   3. hub.mai.gov.ro
+   4. servicii.primariatm.ro
+   5. primariatm.ro
+   6. legislatie.just.ro
+   7. monitoruloficial.ro
+
+Rezultate căutare:
+<think>
+Okay, let's tackle this query about renewing an ID card in Timișoara, Romania. The user wants to know the official procedure, required documents, updated cost, where to submit the documents, and if online appointment is needed.
+
+First, I'll check the search results provided. The main sources are from the Timișoara City Hall (primariatm.ro) and the General Directorate for Personal Records (depabd.mai.gov.ro). 
+
+Looking at result [1], it lists the necessary documents: application form, birth certificate, marriage certificate if applicable, proof of address, owner's consent if not the owner, and payment receipt. The processing time is 30 days, extendable by 15. It also mentions that the old ID remains valid until the new one is issued.
+
+Result [2] talks about online appointments for ID renewal, but when I check the link, it says no available slots. However, result [6] and [10] mention that starting May 8, 2025, electronic ID cards are being issued, and appointments must be made via the MAI HUB portal. So there's a shift to electronic IDs, which might affect the procedure.
+
+Result [6] states that the electronic ID is free under PNRR funds, while the classic one might have a fee. But in result [1], there's a mention of paying a fee, so I need to clarify if the electronic ID is free and the classic has a cost. The user asked for the updated cost, so I should check the latest info. Result [10] confirms the electronic ID is free, but doesn't mention the classic. However, result [1] from the City Hall's service page mentions a fee, so maybe the classic still has a cost unless replaced by the electronic one.
+
+Result [7] and [8] provide the MAI HUB portal link for appointments. It seems online booking is mandatory for the electronic ID, but maybe the classic can still be processed through the City Hall's system. However, result [2] shows that the City Hall's own appointment system for the old ID format isn't available, suggesting a transition to the electronic system.
+
+For submission location, result [6] and [10] indicate that the Direcția de Evidență a Persoanelor in Timișoara handles it, but appointments are via MAI HUB. The physical address isn't explicitly mentioned, but since it's the City Hall's service, likely their office.
+
+Putting it all together: The procedure now involves applying for the electronic ID via MAI HUB, required documents are similar to the classic, cost is free for electronic, submission is in person after online appointment, and processing time is up to 45 days. Need to mention both options if classic is still available, but the sources emphasize the electronic one now.
+</think>
+
+Procedura oficială pentru reînnoirea cărții de identitate în Timișoara implică următorii pași și documente:
+
+### 1. **Programare online obligatorie**
+- Accesați portalul **HUB Servicii MAI**: [https://hub.mai.gov.ro/cei/programari](https://hub.mai.gov.ro/cei/programari) [6][7][10]
+- Selectați județul Timiș și completați datele solicitate
+- Sistemul este disponibil **exclusiv pentru Cartea Electronică de Identitate (CEI)** începând din 8 mai 2025 [6][10]
+
+### 2. **Documente necesare**
+- **Cerere tip** (completată electronic la ghișeu) [10]
+- **Actul de identitate expirat** + copie [1][6]
+- **Certificatul de naștere** original + copie [1][6]
+- **Dovada adresei de domiciliu** (contract proprietate/extras CF + acord proprietar dacă nu sunteți titularul) [1][3]
+- **Certificat de căsătorie** original + copie (dacă e cazul) [1]
+- **Chitanță plată** (doar pentru cărțile clasice, CEI fiind gratuită) [1][6]
+
+### 3. **Cost actualizat (2025)**
+- **Cartea Electronică de Identitate**: gratuită (finanțată prin PNRR) [6][10]
+- **Cartea de identitate clasică**: 24 lei (taxa menționată pe site-ul Primăriei) [1]
+
+### 4. **Locul depunerii actelor**
+- **Direcția de Evidență a Persoanelor Timișoara**  
+  Adresă: Str. Gheorghe Lazăr nr. 1 (sediul Primăriei) [3][6]
+- Documentele se depun **exclusiv personal**, după programare [6][10]
+
+### 5. **Procesare și ridicare**
+- Termen de soluționare: **30 de zile** (extensibil cu 15 zile) [1]
+- Preluarea implică captarea **amprentelor și fotografie biometrică** [10]
+- Vechea carte rămâne valabilă până la ridicarea noii [1]
+
+**Important**: De la 8 mai 2025, procedura standard este pentru CEI. Cărțile clasice se eliberează doar în situații excepționale [6][10]. Pentru persoanele sub 14 ani, procesul rămâne neschimbat [10].
+
+Fișier detaliat salvat: Care_este_procedura_oficială_pentru_reînnoirea_căr_05_31_15_35.txt
+
+============================================================
+SUMARUL INSTRUMENTELOR FOLOSITE:
+1. Reformulare Query: ✅ DA
+2. Căutare Web Regulată: ✅ DA
+3. Căutare Site-uri de Încredere: ✅ DA
+4. Generare Răspuns Final: ✅ DA
+============================================================

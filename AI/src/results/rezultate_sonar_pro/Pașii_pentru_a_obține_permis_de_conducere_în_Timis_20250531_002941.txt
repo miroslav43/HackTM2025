@@ -1,0 +1,92 @@
+================================================================================
+REZULTATE CĂUTARE PERPLEXITY AI - FOCUS PE ROMÂNIA
+================================================================================
+
+Întrebarea originală: Pașii pentru a obține permis de conducere în Timisoara?
+Cererea îmbunătățită: Pașii pentru a obține permis de conducere în Timisoara?
+Data căutării: 2025-05-31 00:29:41
+Data de referință: 2025-05-30
+Model: sonar-pro
+--------------------------------------------------------------------------------
+
+FILTRE API DE CĂUTARE APLICATE:
+📅 Interval de date: 1/1/2005 până la 5/30/2025
+🇷🇴 Locație: România (RO)
+📍 Coordonate: 45.7489, 21.2087
+--------------------------------------------------------------------------------
+
+REZULTATELE CĂUTĂRII:
+--------------------
+Obținerea permisului de conducere în Timișoara implică mai multe etape obligatorii, de la înscrierea la școala de șoferi până la ridicarea permisului după promovarea examenului. Mai jos găsești pașii detaliați, condițiile și documentele necesare, adaptate pentru județul Timiș.
+
+## Pașii pentru obținerea permisului de conducere în Timișoara
+
+**1. Verifică eligibilitatea**
+- Trebuie să ai vârsta minimă de 18 ani împliniți pentru categoria B (autoturisme). Pentru alte categorii, vârsta minimă diferă (ex: 16 ani pentru AM/A1, 21 ani pentru C/CE, 24 ani pentru A/D)[5].
+- Să ai domiciliul sau reședința (flotant) în județul Timiș pentru a putea susține examenul aici[5].
+
+**2. Înscrierea la școala de șoferi**
+- Alege o școală de șoferi autorizată din Timișoara.
+- Pregătește dosarul de înscriere, care trebuie să conțină:
+  - Cartea de identitate (copie și original)
+  - Aviz psihologic (de la cabinet autorizat)
+  - Fișa medicală (de la policlinică autorizată)
+  - Cazier judiciar cu mențiunea „EXAMEN AUTO”
+  - Cerere de înscriere (se obține de la școala de șoferi)[6][7].
+
+**3. Parcurgerea cursurilor teoretice și practice**
+- Cursurile durează minim 12 săptămâni și includ:
+  - 24 de ore de teorie (legislație rutieră)
+  - 30 de ore de practică (condus efectiv)[6][7].
+- La final, vei primi fișa de școlarizare, semnată de instructor și de școală.
+
+**4. Depunerea dosarului pentru examen**
+- După finalizarea cursurilor, depune dosarul la Serviciul Public Comunitar Regim Permise de Conducere și Înmatriculare a Vehiculelor Timiș.
+- Dosarul trebuie să conțină:
+  - Fișa de școlarizare completată și avizată medical
+  - Cererea de examinare (se poate obține de la școală sau descărca online)
+  - Cazierul judiciar valabil
+  - Dovada achitării taxei pentru permis (89 lei, se poate plăti la BCR, CEC Bank, Trezorerie, SelfPay, online sau pe ghiseul.ro)
+  - Cartea de identitate (original și copie)[3][6].
+
+**5. Programarea și susținerea examenului auto**
+- Proba teoretică (sala): test grilă pe calculator, 26 de întrebări, minim 22 răspunsuri corecte pentru promovare[7].
+- Proba practică (traseul): se susține după promovarea teoriei, pe traseu în oraș, cu examinatorul.
+
+**6. Ridicarea permisului de conducere**
+- Dacă ai promovat ambele probe, permisul se eliberează în câteva zile lucrătoare.
+- Poate fi ridicat personal de la ghișeul Serviciului Permise sau poate fi trimis prin poștă, în funcție de opțiunea aleasă la depunerea dosarului[6].
+
+## Documente necesare (rezumat)
+
+- Carte de identitate (original și copie)
+- Aviz psihologic
+- Fișă medicală
+- Cazier judiciar (cu mențiunea „EXAMEN AUTO”)
+- Fișa de școlarizare (de la școala de șoferi)
+- Cerere de examinare
+- Dovada plății taxei pentru permis (89 lei)[3][6][7]
+
+## Link-uri utile și resurse oficiale
+
+- Programare online și informații oficiale: [Direcția Generală Permise de Conducere și Înmatriculări](https://dgpci.mai.gov.ro)[1][2]
+- Detalii despre documente și proceduri: [dgpci.mai.gov.ro/documents-and-forms/permise](https://dgpci.mai.gov.ro/documents-and-forms/permise)[1]
+- Informații locale și școli de șoferi: [timisoreni.ro](https://www.timisoreni.ro/despre/ce-ai-nevoie-pentru-a-incepe-cursurile-unei-scoli-de-soferi/)[7]
+
+> Pentru programări la examen sau depunerea dosarului, folosește platforma oficială a Direcției Generale Permise de Conducere și Înmatriculări sau verifică site-ul instituției pentru județul Timiș.
+
+## Observații
+
+- Toate documentele trebuie să fie valabile la data depunerii dosarului.
+- Dacă nu ai domiciliul stabil în Timiș, poți susține examenul doar dacă ai viză de flotant pe raza județului[5].
+- Procedura și taxele pot suferi modificări, verifică întotdeauna informațiile actualizate pe site-urile oficiale înainte de a începe demersurile.
+
+Respectând acești pași, vei putea obține permisul de conducere în Timișoara în mod legal și eficient.
+
+================================================================================
+REZUMATUL CONFIGURAȚIEI DE CĂUTARE:
+- Restricție geografică: România (RO) prin filtrul de locație API
+- Restricție temporală: 2005-2025 prin filtrele de interval de date API
+- Prioritatea surselor: Guvern românesc > Instituții românești > Surse românești recente
+- Filtrele API asigură returnarea doar a surselor românești și recente
+================================================================================

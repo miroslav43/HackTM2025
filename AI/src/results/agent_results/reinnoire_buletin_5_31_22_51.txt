@@ -1,0 +1,234 @@
+RAPORT AGENT - REZULTATE FINALE COMPLETE (4 INSTRUMENTE)
+============================================================
+
+ÎNTREBARE ORIGINALĂ:
+reinnoire buletin
+
+QUERY REFORMULAT:
+"Care este procedura oficială pentru reînnoirea cărții de identitate în Timișoara, România, ce documente sunt necesare, care este costul, unde trebuie depusă cererea și care este termenul de valabilitate al noii cărți de identitate?"
+
+
+CONFIGURAȚIA FOLOSITĂ:
+- Config Name: default_agent_config
+- Reformulare activă: True
+- Căutare web activă: True
+- Căutare site-uri de încredere activă: True
+- Generare răspuns final activă: True
+- Model Gemini Reformulare: gemini-2.0-flash
+- Temperature Gemini Reformulare: 0.1
+- Model Perplexity: sonar-reasoning-pro
+- Temperature Perplexity: 0.1
+- Context Size: high
+- Model Gemini Trusted Sites: gemini-2.5-flash-preview-05-20
+- Model Perplexity Trusted Sites: sonar-reasoning-pro
+- Model Gemini Final Response: gemini-2.5-flash-preview-05-20
+- Temperature Final Response: 0.1
+
+TIMESTAMP: 2025-05-31 22:51:42
+
+🎯 RĂSPUNS FINAL SINTETIZAT (PRINCIPAL):
+==================================================
+Pentru reînnoirea cărții de identitate în Timișoara, procedura oficială implică următorii pași, conform informațiilor actualizate din surse guvernamentale și generale:
+
+### 1. **Programare online obligatorie**
+*   Accesarea portalului [HUB Servicii MAI](https://hub.mai.gov.ro) sau a [platformei de programări a Primăriei Timișoara](https://evpers.primariatm.ro) este esențială pentru a rezerva un interval orar. Programarea ajută la evitarea aglomerației și asigură procesarea eficientă a cererii.
+
+### 2. **Documente necesare**
+*   **Cerere tip** (se completează la ghișeu sau se descarcă de pe site-ul oficial și se completează în prealabil).
+*   **Actul de identitate expirat** (original).
+*   **Certificatul de naștere** (original și copie).
+*   **Dovada adresei de domiciliu** (original și copie):
+    *   Act de proprietate (contract de vânzare-cumpărare, titlu de proprietate, etc.).
+    *   Contract de închiriere înregistrat la ANAF.
+    *   Adeverință de la asociația de proprietari/locatari.
+    *   Declarație notarială de la proprietarul imobilului, în cazul în care nu sunteți proprietar și nu aveți contract de închiriere înregistrat.
+    *   *Notă specială:* Dacă la adresa de domiciliu sunt înregistrate peste 10 persoane, este necesară o declarație suplimentară de la proprietar.
+*   **Certificatul de căsătorie** (original și copie) – dacă s-a schimbat numele în urma căsătoriei.
+*   **Hotărârea de divorț** (original și copie) – dacă s-a schimbat numele în urma divorțului.
+*   **Chitanța de plată a taxei** (dacă este cazul – vezi secțiunea "Costuri").
+
+### 3. **Costuri**
+*   **Cartea Electronică de Identitate (CEI):** Gratuită pentru primele 5 milioane de exemplare, costuri suportate de stat prin PNRR până în 2026.
+*   **Carte de identitate simplă (non-electronică):** Taxa standard este de 67 lei.
+*   **Cartea de identitate provizorie:** Taxa este de 1 leu.
+*   *Recomandare:* Verificați valoarea exactă a taxelor la momentul depunerii cererii, pe site-urile oficiale sau la ghișeu.
+
+### 4. **Locul depunerii cererii**
+*   Cererea se depune personal la **Serviciul Public Comunitar de Evidență a Persoanelor Timișoara**.
+*   Adresa exactă și programul de lucru pot fi verificate pe site-ul Primăriei Timișoara sau pe portalul DEPABD.
+
+### 5. **Procedura pas cu pas**
+*   **Verificați termenul de valabilitate:** Puteți preschimba cartea de identitate cu până la 180 de zile înainte de expirare.
+*   **Prezentare la ghișeu:** La data și ora programării, prezentați-vă cu dosarul complet de documente (originale și copii).
+*   **Preluarea imaginii:** Fotografia pentru noul act de identitate se realizează pe loc, la ghișeu.
+*   **Semnarea cererii:** Semnați cererea în prezența funcționarului.
+*   **Eliberarea documentului:** Veți primi un bon cu termenul de eliberare. La ridicare, este necesar să prezentați bonul și vechiul act de identitate.
+
+### 6. **Termen de valabilitate al noii cărți de identitate**
+*   **Pentru persoane între 14 și 18 ani:** 5 ani.
+*   **Pentru persoane între 18 și 60 de ani:** 10 ani.
+*   **Pentru persoane peste 60 de ani:** Valabilitate nelimitată (doar pentru cărțile de identitate simple).
+*   *Notă importantă:* Toate cărțile de identitate vechi (non-electronice) își pierd valabilitatea după 3 august 2031, indiferent de termenul de valabilitate înscris pe ele, conform reglementărilor UE.
+
+### 7. **Termen de eliberare**
+*   **Termen standard:** De obicei, 5 zile lucrătoare.
+*   **Termen maxim legal:** Până la 30 de zile, în situații excepționale sau complexe.
+
+### 8. **Note importante**
+*   **Cartea Electronică de Identitate (CEI):** Oferă funcționalități suplimentare, inclusiv semnătură electronică și poate fi utilizată ca document de călătorie în statele membre UE. Verificați disponibilitatea și procedura specifică de programare pentru CEI pe [HUB Servicii MAI](https://hub.mai.gov.ro).
+*   **Sancțiuni:** Nerespectarea termenului legal pentru preschimbarea actului de identitate expirat (de obicei 15 zile de la expirare) poate atrage sancțiuni contravenționale.
+*   **Minorii:** Pentru minorii sub 14 ani, este necesară prezența ambilor părinți sau a reprezentantului legal, cu acte de identitate valide.
+
+### Resurse Oficiale Utile
+*   Platforma de programări online a Primăriei Timișoara: [https://evpers.primariatm.ro](https://evpers.primariatm.ro)
+*   HUB Servicii MAI (pentru CEI și alte servicii): [https://hub.mai.gov.ro](https://hub.mai.gov.ro)
+*   Direcția pentru Evidența Persoanelor și Administrarea Bazelor de Date (DEPABD): [http://depabd.mai.gov.ro](http://depabd.mai.gov.ro)
+*   Primăria Timișoara (informații generale și contact): [https://primariatm.ro](https://primariatm.ro)
+
+==================================================
+
+REZULTAT CĂUTARE WEB REGULATĂ (PENTRU COMPARAȚIE):
+----------------------------------------
+<think>
+Okay, let's tackle this query about renewing the ID card in Timișoara, Romania. The user wants the official procedure, required documents, cost, where to apply, and the validity period. 
+
+First, I need to check the search results provided. Let's go through each source to gather the necessary information.
+
+From [1], it mentions that ID cards issued after age 25 expire on August 3, 2031, under EU Regulation 2019/1157. This is important for the validity period. Also, the Ministry of Internal Affairs is finalizing the infrastructure for the new electronic ID.
+
+Looking at [2], there's info on validity periods changing. For those over 18, it's 10 years, and over 70, it's unlimited. Also, the first five million electronic IDs are free, with a usual cost of 67 lei. This affects the cost section.
+
+Source [3] talks about required documents, like a declaration from the host if someone is staying at another's address. It also mentions submitting the application at the local community service where the applicant is domiciled. This is crucial for the procedure and documents needed.
+
+In [4], it reiterates the August 3, 2031, expiration for ID cards issued after August 2, 2021. So validity depends on when the ID was issued.
+
+Source [5] provides detailed validity periods: 4 years for 14-18, 7 years for 18-25, 10 years after 25, and permanent after 55. But this might be outdated since newer sources mention changes. Wait, [2] says 10 years after 18 and unlimited after 70. There's a conflict here. Need to check which is more recent. [2] is from avocatnet.ro and mentions recent changes, so probably the updated info is 10 years after 18 and unlimited after 70.
+
+[6] states that electronic IDs are mandatory for EU travel and that old IDs expire by August 3, 2031. Also, preschimbarea (early renewal) is allowed up to 180 days before expiration.
+
+[7] from DJEP Cluj mentions that the first electronic ID is free and appointments are made via the Ministry's portal. Even though this is Cluj, the procedure might be similar in Timișoara. Also, applicants under 18 need a parent or legal representative.
+
+Now, compiling the procedure: The user needs to make an online appointment, gather documents (ID, proof of address, birth certificate, etc.), submit in person, pay the fee (if applicable), and wait for processing. The validity depends on age, with the new electronic IDs having different periods. Cost is free for the first five million, otherwise 67 lei. Documents include application form, old ID, proof of address, birth certificate, and possibly a host declaration if applicable.
+
+Wait, [3] mentions a host declaration if there are more than 10 people registered at an address. That's specific and should be included as a conditional document. Also, [7] says the first electronic ID is free, which aligns with [2]'s info about state-covered costs initially.
+
+So putting it all together: Procedure involves online appointment, submitting documents at the local office, paying the fee (if applicable), and the new ID's validity is 10 years for adults, with some exceptions. The cost is currently free for the electronic ID under the PNRR funding until 2026, then 67 lei. Documents needed include the old ID, proof of address, birth certificate, and host declaration if necessary. The office in Timișoara would be the local community service, likely the Evidența Persoanelor office, and appointments are via the MAI portal.
+
+Need to ensure all info is specific to Timișoara. The search results don't have a Timișoara-specific link except [1] which mentions primariatm.ro. So including the link for appointments and document check from [1] and [7] would be helpful. Also, citing the relevant sources for each part.
+</think>
+
+Procedura oficială pentru reînnoirea cărții de identitate în Timișoara implică următorii pași și cerințe:
+
+### 1. **Documente necesare**
+- **Cererea completată** (formular disponibil la ghișeu sau online)
+- **Cartea de identitate expirată** sau cea aflată în termen de expirare
+- **Actul de naștere** (original sau copie certificată)
+- **Dovada domiciliului**: certificat de înmatriculare fiscală, contract de vânzare-cumpărare sau chirie înregistrat, sau declarație de la găzduitor (dacă locuiți la o altă adresă)[3][5]
+- **Două fotografii** recente, color, 3,5x4,5 cm
+- **Plată taxei** (dacă este cazul)
+
+**Condiții speciale**: Dacă la adresa de domiciliu sunt înregistrate peste 10 persoane, este necesară o declarație suplimentară de la proprietar[3].
+
+### 2. **Costuri**
+- **Prima carte electronică de identitate**: gratuită (cost suportat de stat prin PNRR până în 2026)[2][7]
+- **Carte de identitate simplă**: 67 de lei (taxă standard după 2026)[2]
+
+### 3. **Locul depunerii cererii**
+- **Serviciul Public Comunitar de Evidență a Persoanelor** din Timișoara  
+- **Programare online obligatorie** prin portalul Primăriei Timișoara: [https://evpers.primariatm.ro](https://evpers.primariatm.ro)[7]
+
+### 4. **Procedura pas cu pas
+1. **Verificați termenul de valabilitate**  
+   - Cărțile emise după 2 august 2021 expiră pe 3 august 2031[1][4][6]
+   - Permisă preschimbarea cu 180 de zile înainte de expirare[6][7]
+
+2. **Faceți programare online**  
+   - Accesați portalul MAI: [https://hub.mai.gov.ro](https://hub.mai.gov.ro)[7]
+
+3. **Pregătiți dosarul**  
+   - Colectați documentele enumerate mai sus
+
+4. **Depunere fizică**  
+   - Prezentați-vă la data programării cu dosarul complet
+
+5. **Primirea documentului**  
+   - Durată procesare: 7-14 zile lucrătoare
+   - Preluare cu buletinul expirat și talonul de înregistrare
+
+### 5. **Termen de valabilitate**
+- **14-18 ani**: 5 ani[2]
+- **18-70 ani**: 10 ani[2][5]
+- **Peste 70 ani**: nelimitat[2]
+
+**Important**: Toate cărțile de identitate vechi devin nevalabile după 3 august 2031, indiferent de termenul inscris[1][4][6]. Noile cărți electronice sunt obligatorii pentru călătorii în UE[6].
+
+REZULTAT CĂUTARE SITE-URI DE ÎNCREDERE (PENTRU COMPARAȚIE):
+----------------------------------------
+Domenii selectate (5 total):
+   1. depabd.mai.gov.ro
+   2. tm.prefectura.mai.gov.ro
+   3. legislatie.just.ro
+   4. hub.mai.gov.ro
+   5. monitoruloficial.ro
+
+Rezultate căutare:
+<think>
+Okay, let's tackle this query about renewing an ID card in Timișoara, Romania. The user wants to know the official procedure, required documents, cost, where to apply, and the validity period of the new ID. 
+
+First, I need to check the search results provided. The main sources are from Romanian government sites like hub.mai.gov.ro, legislatie.just.ro, depabd.mai.gov.ro, and others. 
+
+Looking at result [1], it outlines the situations when an ID card is issued, including renewal upon expiration. It mentions that the application is submitted at the local community service office, which in Timișoara would be the Primărie. The steps listed here are: submitting the application and documents, verification, photo capture, processing, and issuance. The processing time is 5 to 30 days. 
+
+Result [2] and [4] discuss the validity periods. From [4], the validity is 4 years for 14-18 years, 7 years for 18-25, 10 years after 25, and permanent after 55. However, [2] mentions changes in validity periods due to new laws, like 10 years after 18 and unlimited after 60 for simple ID cards. There's a discrepancy here, so I need to check which is more recent. The law in [2] is from 2020, which might override the older regulations. So the current validity is likely 10 years for adults over 18 and unlimited after 60.
+
+Result [3] and [5] provide additional info on required documents. [3] states that applicants need to prove name, date of birth, civil status, citizenship, and address. It also mentions the need for original and photocopies of documents. [6] lists specific documents for different cases, like change of address or expiration. For renewal due to expiration, they mention the old ID and proof of address.
+
+Regarding costs, none of the search results explicitly mention fees. This might mean there's no cost, but I should note that the user should verify this as sometimes fees aren't listed in legal texts but exist in practice.
+
+Location-wise, [1] specifies that applications are made at the local community service office, which in Timișoara is the Primăria Timișoara. The address isn't given, but the user can check the city hall's website or visit in person.
+
+Putting it all together, the procedure involves submitting documents at the local office, providing necessary proofs, getting a photo taken, and waiting up to 30 days. Documents needed are the old ID, proof of address, and possibly birth certificate or marriage certificate if there are changes. Validity depends on age, with the new law indicating 10 years for adults until 60. Cost isn't mentioned, so advising to confirm with the office.
+</think>
+
+Procedura oficială pentru reînnoirea cărții de identitate în Timișoara implică următorii pași și cerințe:
+
+### 1. **Documente necesare**
+- **Carte de identitate expirată** (original și copie) [1][4]
+- **Dovada domiciliului** (adeverință de la Asociația de Locatari, contract de închiriere sau act de proprietate) [1][3]
+- **Certificat de naștere** (în cazul modificărilor de stare civilă) [3][6]
+- **Certificat de căsătorie/divorț** (dacă s-au produs schimbări de nume) [3][6]
+
+### 2. **Locul de depunere**
+Cererea se depune la **Serviciul Public Comunitar de Evidență a Persoanelor din cadrul Primăriei Timișoara** (adresa exactă poate fi verificată pe [site-ul oficial](https://primariatm.ro)) [1][4].
+
+### 3. **Procedura pas cu pas
+1. **Programare online** (opțională, dacă este disponibilă pe [portalul primăriei](https://programari.primariatm.ro)) [1]
+2. **Depunerea documentelor** la ghișeu (originale și copii xerox) [1][3]
+3. **Preluarea imaginii** (fotografie realizată la fața locului) [1]
+4. **Semnarea cererii** în prezența funcționarului [1]
+5. **Plata taxei** (dacă este cazul – consultați ultima informație la ghișeu) [4]
+
+### 4. **Termen de valabilitate**
+- **10 ani** pentru persoanele peste 18 ani [2][4]
+- **Valabilitate nelimitată** pentru persoanele peste 60 de ani (doar pentru cărțile de identitate simple) [2][4]
+
+### 5. **Termen de eliberare**
+- **5 zile lucrătoare** în cazuri obișnuite [1]
+- **Maximum 30 de zile** în situații excepționale [1]
+
+### Observații importante
+- Pentru minorii sub 14 ani, este necesară prezența ambilor părinți cu acte de identitate valide [3][6]
+- Schimbările de adresă trebuie notificate în maxim 30 de zile [4]
+- Cărțile de identitate electronice au aceleași condiții de eliberare, dar necesită verificări biometrice suplimentare [5]
+
+Pentru informații actualizate, consultați [portalul Direcției pentru Evidența Persoanelor](http://depabd.mai.gov.ro) sau sunați la biroul local.
+
+Fișier detaliat salvat: Care_este_procedura_oficială_pentru_reînnoirea_căr_05_31_22_51.txt
+
+============================================================
+SUMARUL INSTRUMENTELOR FOLOSITE:
+1. Reformulare Query: ✅ DA
+2. Căutare Web Regulată: ✅ DA
+3. Căutare Site-uri de Încredere: ✅ DA
+4. Generare Răspuns Final: ✅ DA
+============================================================

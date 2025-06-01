@@ -137,8 +137,8 @@ const Layout = () => {
                     transition-all duration-200 hover:bg-primary-50
                     ${
                       isActive
-                        ? "bg-primary-100 text-primary-700 border-r-2 border-primary-700"
-                        : "text-gray-600 hover:text-primary-700"
+                        ? "navbar-link-active border-r-2 border-primary-700"
+                        : "navbar-link-inactive"
                     }
                   `}
                 >
@@ -158,8 +158,8 @@ const Layout = () => {
                     transition-all duration-200 hover:bg-primary-50
                     ${
                       isAutoArchiveActive
-                        ? "bg-primary-100 text-primary-700 border-r-2 border-primary-700"
-                        : "text-gray-600 hover:text-primary-700"
+                        ? "navbar-link-active border-r-2 border-primary-700"
+                        : "navbar-link-inactive"
                     }
                   `}
                 >
@@ -195,8 +195,8 @@ const Layout = () => {
                           transition-all duration-200 hover:bg-primary-50
                           ${
                             isSubActive
-                              ? "bg-primary-50 text-primary-700 font-medium"
-                              : "text-gray-600 hover:text-primary-700"
+                              ? "navbar-link-active border-r-2 border-primary-700"
+                              : "navbar-link-inactive"
                           }
                         `}
                       >

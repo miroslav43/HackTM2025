@@ -1,0 +1,156 @@
+RAPORT AGENT - REZULTATE FINALE COMPLETE (4 INSTRUMENTE)
+============================================================
+
+ÎNTREBARE ORIGINALĂ:
+Ce trebuie sa fac ca sa scot un CF in Timisoara?
+
+QUERY REFORMULAT:
+"Care este procedura oficială pentru obținerea unui extras de carte funciară (CF) în Timișoara, România, ce documente sunt necesare, unde trebuie depusă cererea și care sunt taxele aferente, incluzând informații despre obținerea online a extrasului CF?"
+
+
+CONFIGURAȚIA FOLOSITĂ:
+- Config Name: default_agent_config
+- Reformulare activă: True
+- Căutare web activă: True
+- Căutare site-uri de încredere activă: True
+- Generare răspuns final activă: True
+- Model Gemini Reformulare: gemini-2.0-flash
+- Temperature Gemini Reformulare: 0.1
+- Model Perplexity: sonar-reasoning-pro
+- Temperature Perplexity: 0.1
+- Context Size: high
+- Model Gemini Trusted Sites: gemini-2.5-flash-preview-05-20
+- Model Perplexity Trusted Sites: sonar-reasoning-pro
+- Model Gemini Final Response: gemini-2.5-flash-preview-05-20
+- Temperature Final Response: 0.1
+
+TIMESTAMP: 2025-05-31 18:04:36
+
+🎯 RĂSPUNS FINAL SINTETIZAT (PRINCIPAL):
+==================================================
+Pentru a obține un extras de carte funciară (CF) în Timișoara, procedura implică atât opțiuni online, cât și fizice, cu documente și taxe specifice. Iată pașii pe care trebuie să îi urmați:
+
+### 1. **Tipuri de extras de carte funciară**
+Există două tipuri principale de extrase de carte funciară:
+*   **Extras de carte funciară pentru informare:** Oferă informații generale despre imobil (proprietar, sarcini, suprafață etc.) și este valabil 10 zile.
+*   **Extras de carte funciară pentru autentificare:** Este solicitat de notari pentru tranzacții imobiliare (vânzări, ipoteci etc.) și blochează cartea funciară pentru o perioadă, asigurând că nu se pot înregistra alte operațiuni în acel interval. Este valabil 10 zile.
+
+### 2. **Documente necesare**
+Indiferent de modalitatea de obținere, veți avea nevoie de următoarele:
+*   **Cererea standardizată:** Un formular tipizat, disponibil la ghișeele Oficiului de Cadastru și Publicitate Imobiliară (OCPI) sau online.
+*   **Actul de identitate:** Copie și original pentru verificare.
+*   **Dovada plății taxei:** Chitanță bancară sau confirmare electronică a plății.
+*   **Date de identificare a imobilului:** Numărul cadastral, numărul cărții funciare și adresa exactă a proprietății.
+*   **Acte suplimentare (doar pentru extrasul de autentificare, solicitate de notar):** Contract de vânzare-cumpărare, certificat de moștenitor sau alte acte relevante pentru tranzacția respectivă.
+
+### 3. **Procedura de obținere**
+
+#### **a. Online (recomandat pentru rapiditate)**
+Aceasta este cea mai rapidă și convenabilă metodă:
+*   **Accesați platforma ANCPI:** Intrați pe site-ul oficial ePayment al Agenției Naționale de Cadastru și Publicitate Imobiliară (ANCPI), la adresa [https://epay.ancpi.ro/](https://epay.ancpi.ro/).
+*   **Creați un cont:** Dacă nu aveți deja unul, va trebui să vă înregistrați cu datele personale și CNP-ul.
+*   **Selectați tipul de extras:** Alegeți dacă doriți un extras de informare sau de autentificare.
+*   **Completați datele imobilului:** Introduceți numărul cadastral și/sau numărul cărții funciare și adresa.
+*   **Plătiți taxa online:** Efectuați plata direct pe platformă.
+*   **Primiți extrasul:** Extrasul de carte funciară în format PDF va fi trimis pe adresa dumneavoastră de email, de obicei în termen de 2 zile lucrătoare.
+
+#### **b. Depunere fizică**
+Dacă preferați să depuneți cererea personal:
+*   **Locații:**
+    *   **Oficiul Cadastral și de Publicitate Imobiliară (OCPI) Timiș:** Adresa este Str. Gheorghe Lazăr nr. 2, Timișoara.
+    *   **Birouri notariale autorizate:** Notarii pot solicita și obține extrase de carte funciară în numele dumneavoastră, mai ales pentru extrasul de autentificare.
+*   **Programare:** Verificați dacă este necesară o programare online prealabilă pentru depunerea dosarului la ghișeu.
+*   **Depunere dosar:** Prezentați-vă la ghișeu cu toate documentele necesare și dovada plății taxei.
+
+### 4. **Taxe (valabile pentru anul 2024)**
+Costurile pot varia în funcție de tipul extrasului și de urgență:
+
+| Tip extras                | Cost                | Valabilitate |
+| :------------------------ | :------------------ | :----------- |
+| **Extras de informare**   | 20 lei/exemplar     | 10 zile      |
+| **Extras extens**         | 5 lei/pagină        | 10 zile      |
+| **Extras de autentificare** | 40 lei/exemplar     | 10 zile      |
+| **Taxă de urgență**       | 100–200 lei         | -            |
+
+*   Pentru solicitările online, există și pachete, de exemplu, un pachet de 50 de extrase de informare poate costa 900 lei/12 luni.
+
+### 5. **Recomandări și informații suplimentare**
+*   **Verificați datele imobilului:** Asigurați-vă că aveți numărul cadastral și numărul cărții funciare corecte înainte de a depune cererea. Acestea pot fi verificate pe site-ul Primăriei Timișoara sau la OCPI.
+*   **Extrasul pentru autentificare:** Acesta necesită implicarea unui notar, deoarece notarul este cel care solicită blocarea cărții funciare.
+*   **Evitați întârzierile:** Documentele incomplete sau neplata taxei pot întârzia procesul cu 1-3 zile.
+*   **Asistență:** Oficiul Cadastral Timiș oferă consultanță telefonică sau la ghișeu pentru clarificări suplimentare.
+
+Asigurați-vă că verificați întotdeauna cele mai recente informații pe site-urile oficiale ale ANCPI sau OCPI Timiș, deoarece taxele și procedurile pot suferi modificări.
+
+==================================================
+
+REZULTAT CĂUTARE WEB REGULATĂ (PENTRU COMPARAȚIE):
+----------------------------------------
+<think>
+Bun, trebuie să răspund la întrebarea despre procedura oficială de obținere a unui extras de carte funciară în Timișoara. Încep prin a analiza sursele oferite. 
+
+Prima sursă [1] menționează că se poate comanda online, cu pași simpli. Apoi, sursa [4] detaliază taxele: 20 de lei pentru informare, 5 lei pe pagină pentru extenso, 40 de lei pentru autentificare, plus taxă de urgență. Termenul este de 2 zile lucrătoare. De asemenea, se poate obține online prin ANCPI. 
+
+Sursa [5] enumeră documentele necesare: cerere, act de identitate, dovadă plată taxă, și acte suplimentare în funcție de scop. Sursa [6] confirmă necesitatea cererii tip și a actelor de identitate, iar [9] adaugă detalii despre documentația cadastrală. 
+
+Sursa [10] specifică că extrasele online se obțin pe site-ul ANCPI, cu link direct. Taxele sunt menționate în [7] și [8], unde se precizează și tarifele pentru servicii online. 
+
+Trebuie să organizez informațiile în secțiuni clare: documente necesare, procedură (online și fizic), taxe. Asigur că toate detaliile sunt acoperite și că sursele sunt corect citate. Verific dacă există diferențe între surse și prioritizez cele oficiale, cum ar fi [10] pentru procedura online. Apoi, structurarea răspunsului conform regulilor de formatare, cu liste și link-uri integrate.
+</think>
+
+Pentru a obține un extras de carte funciară (CF) în Timișoara, procedura oficială implică următorii pași și documente:
+
+### **Documente necesare**  
+- **Cererea standardizată** (formular disponibil la ghișee sau online) [6][9]  
+- **Actul de identitate** (copie și original pentru verificare) [4][5]  
+- **Dovada plății taxei** (chitanță bancară sau confirmare electronică) [4][7]  
+- **Date de identificare a imobilului**: număr cadastral, număr CF, adresa exactă [4][9]  
+- **Acte suplimentare** pentru autentificare (solicitate de notar): contract de vânzare-cumpărare, certificat de moștenitor etc. [5][6]  
+
+---
+
+### **Procedura de obținere**  
+**1. Online (recomandat pentru rapiditate):**  
+- Accesează platforma ANCPI: [https://epay.ancpi.ro/](https://epay.ancpi.ro/) [10]  
+- Creează cont pe ePayment ANCPI (date personale, CNP, adresă) [7]  
+- Selectează tipul extrasului (informare/autentificare) și completează datele imobilului [4][10]  
+- Plătește taxa online și primești extrasul PDF pe email în 2 zile lucrătoare [7][10]  
+
+**2. Depunere fizică:**  
+- **Locații**:  
+  - Oficiul Cadastral și de Publicitate Imobiliară Timiș (Str. Gheorghe Lazăr nr. 2) [9]  
+  - Birouri notariale autorizate [3][5]  
+- Programare online (dacă este necesară) și depunere dosar la ghișeu [1][9]  
+
+---
+
+### **Taxe (2024)**  
+| Tip extras                | Cost                | Valabilitate |  
+|---------------------------|---------------------|--------------|  
+| **Informare**             | 20 lei/exemplar     | 10 zile [4][7] |  
+| **Extens**                | 5 lei/pagină        | 10 zile [4][7] |  
+| **Autentificare**         | 40 lei/exemplar     | 10 zile [4][7] |  
+| **Taxă de urgență**       | 100–200 lei         | -            |  
+
+Pentru solicitări online, costul pentru un pachet de 50 de extrase de informare este 900 lei/12 luni [8].  
+
+---
+
+### **Recomandări**  
+- Verifică datele imobilului înainte de cerere (număr cadastral pe site-ul Primăriei Timișoara) [9]  
+- Extrasele pentru autentificare necesită implicarea notarului [3][6]  
+- Documentele incomplete sau neplata taxei întârzie procesul cu 1-3 zile [4][5]  
+
+Dacă ai nevoie de asistență suplimentară, Oficiul Cadastral Timiș oferă consultanță telefonică sau la ghișeu [9][10].
+
+REZULTAT CĂUTARE SITE-URI DE ÎNCREDERE (PENTRU COMPARAȚIE):
+----------------------------------------
+Căutarea a eșuat: Domain selection failed
+
+============================================================
+SUMARUL INSTRUMENTELOR FOLOSITE:
+1. Reformulare Query: ✅ DA
+2. Căutare Web Regulată: ✅ DA
+3. Căutare Site-uri de Încredere: ✅ DA
+4. Generare Răspuns Final: ✅ DA
+============================================================

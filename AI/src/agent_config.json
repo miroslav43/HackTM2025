@@ -1,0 +1,173 @@
+{
+    "query_processing": {
+        "use_robust_reformulation": true,
+        "gemini_model": "gemini-2.0-flash",
+        "gemini_temperature": 0.1,
+        "gemini_max_tokens": 500
+    },
+    "timpark_payment": {
+        "use_timpark_payment": true,
+        "gemini_model": "gemini-2.5-flash-preview-05-20",
+        "gemini_temperature": 0.1,
+        "gemini_max_tokens": 1000,
+        "output": {
+            "save_to_file": true
+        }
+    },
+    "web_search": {
+        "city_hint": "timisoara",
+        "use_perplexity": true,
+        "perplexity_model": "sonar-reasoning-pro",
+        "perplexity_temperature": 0.1,
+        "perplexity_max_tokens": 10000,
+        "search_context_size": "high",
+        "search_date_range": {
+            "search_after_date": "1/1/2005",
+            "search_before_date": "5/30/2025"
+        }
+    },
+    "trusted_sites_search": {
+        "use_trusted_sites_search": true,
+        "gemini_domain_selection": {
+            "gemini_temperature": 0.1,
+            "gemini_max_tokens": 2000,
+            "gemini_model": "gemini-2.5-flash-preview-05-20"
+        },
+        "perplexity_filtered_search": {
+            "perplexity_model": "sonar-reasoning-pro",
+            "perplexity_temperature": 0.1,
+            "perplexity_max_tokens": 10000,
+            "city_hint": "timisoara",
+            "search_context_size": "high",
+            "search_after_date": "1/1/2005",
+            "search_before_date": "5/30/2025"
+        },
+        "output": {
+            "save_to_file": true
+        }
+    },
+    "final_response_generation": {
+        "use_final_response_generation": true,
+        "gemini_model": "gemini-2.5-flash-preview-05-20",
+        "gemini_temperature": 0.1,
+        "gemini_max_tokens": 15000,
+        "rag_context": {
+            "use_rag_context": true,
+            "rag_domains": ["dfmt.ro", "timpark.ro"],
+            "rag_context_path": "rag_context"
+        },
+        "output": {
+            "save_to_file": true
+        }
+    },
+    "output": {
+        "save_to_file": true,
+        "output_folder": "results/agent_results",
+        "include_reformulated_query": false,
+        "include_search_results": true,
+        "file_naming": {
+            "use_config_name": false,
+            "include_timestamp": true
+        }
+    },
+    "current_test": {
+        "question": "plateste parcarea 2 ore",
+        "config_name": "default_agent_config"
+    },
+    "_comments": {
+        "description": "Agent Configuration - Control all behavior from this single file",
+        "query_processing": {
+            "use_robust_reformulation": "true/false - Enable Gemini query reformulation",
+            "gemini_model": "String - Gemini model to use (gemini-2.0-flash, gemini-2.5-flash-preview-05-20, etc.)",
+            "gemini_temperature": "0.1-1.0 - Controls creativity (0.1=focused, 1.0=creative)",
+            "gemini_max_tokens": "100-2000 - Max tokens for reformulated query"
+        },
+        "timpark_payment": {
+            "use_timpark_payment": "true/false - Enable/disable TimPark payment automation tool",
+            "gemini_model": "String - Gemini model for intent analysis (gemini-2.5-flash-preview-05-20 recommended)",
+            "gemini_temperature": "0.1-1.0 - Controls creativity for intent analysis (0.1=focused for accuracy)",
+            "gemini_max_tokens": "500-2000 - Max tokens for intent analysis response",
+            "output": {
+                "save_to_file": "true/false - Save TimPark tool results to separate file"
+            }
+        },
+        "web_search": {
+            "city_hint": "String - Romanian city for search context (timisoara, bucuresti, cluj, etc.)",
+            "use_perplexity": "true/false - Enable/disable Perplexity web search",
+            "perplexity_model": "String - Perplexity model (sonar-reasoning-pro, sonar-pro, etc.)",
+            "perplexity_temperature": "0.0-1.0 - Controls randomness in responses (0.1=focused)",
+            "perplexity_max_tokens": "1000-15000 - Maximum response length",
+            "search_context_size": "low/medium/high - Breadth of search results",
+            "search_date_range": {
+                "search_after_date": "String - Format: M/D/YYYY - Content published after this date",
+                "search_before_date": "String - Format: M/D/YYYY - Content published before this date"
+            }
+        },
+        "trusted_sites_search": {
+            "use_trusted_sites_search": "true/false - Enable/disable trusted Romanian sites search with domain filtering",
+            "gemini_domain_selection": {
+                "gemini_temperature": "0.1-1.0 - Controls creativity for domain selection (0.1=focused)",
+                "gemini_max_tokens": "500-3000 - Max tokens for domain selection response",
+                "gemini_model": "String - Gemini model for domain selection (gemini-2.5-flash-preview-05-20 recommended)"
+            },
+            "perplexity_filtered_search": {
+                "perplexity_model": "String - Perplexity model (sonar-reasoning-pro, sonar-pro, etc.)",
+                "perplexity_temperature": "0.0-1.0 - Controls randomness in filtered search results",
+                "perplexity_max_tokens": "5000-15000 - Maximum response length for filtered search",
+                "city_hint": "String - Romanian city context (timisoara, bucuresti, cluj, etc.)",
+                "search_context_size": "low/medium/high - Breadth of filtered search results",
+                "search_after_date": "String - Format: M/D/YYYY - Content published after this date",
+                "search_before_date": "String - Format: M/D/YYYY - Content published before this date"
+            },
+            "output": {
+                "save_to_file": "true/false - Save trusted sites search results to separate file"
+            }
+        },
+        "final_response_generation": {
+            "use_final_response_generation": "true/false - Enable/disable final response synthesis using Gemini 2.5 Flash",
+            "gemini_model": "String - Gemini model for final synthesis (gemini-2.5-flash-preview-05-20 recommended)",
+            "gemini_temperature": "0.1-1.0 - Controls creativity for final response (0.1=focused, factual)",
+            "gemini_max_tokens": "10000-20000 - Max tokens for final synthesized response",
+            "rag_context": {
+                "use_rag_context": "true/false - Enable/disable RAG context integration from local knowledge files",
+                "rag_domains": "Array of strings - Domain names to check for RAG context files (e.g., ['dfmt.ro', 'timpark.ro'])",
+                "rag_context_path": "String - Relative path from src/ to RAG context files directory (default: 'rag_context')"
+            },
+            "output": {
+                "save_to_file": "true/false - Save final synthesized response to separate file"
+            }
+        },
+        "output": {
+            "save_to_file": "true/false - Save results to files",
+            "output_folder": "String - Relative path from src/ or absolute path",
+            "include_reformulated_query": "true/false - Save reformulated query to separate file",
+            "include_search_results": "true/false - Save final combined results",
+            "file_naming": {
+                "use_config_name": "true/false - Use config name vs question for filename",
+                "include_timestamp": "true/false - Add timestamp to filenames"
+            }
+        },
+        "current_test": {
+            "question": "String - Default question to process if none provided",
+            "config_name": "String - Config identifier for file naming"
+        },
+        "examples": {
+            "basic_usage": "agent = Agent('agent_config.json'); agent.process_query()",
+            "custom_question": "agent.process_query('parcare centru Timisoara', 'parking_test')",
+            "temperature_values": "Gemini: 0.1=very focused, 0.3=balanced, 0.8=creative; Perplexity: 0.1=consistent, 0.5=varied",
+            "city_hints": "timisoara, bucuresti, cluj, constanta, brasov, iasi",
+            "perplexity_models": "sonar-reasoning-pro (best), sonar-pro (faster), sonar-medium (basic)",
+            "search_context": "low=quick facts, medium=standard, high=comprehensive research",
+            "trusted_sites_workflow": "Step 1: Gemini selects relevant Romanian government domains -> Step 2: Perplexity searches only those domains",
+            "trusted_sites_benefits": "More accurate, official information from government sources with proper citations",
+            "final_response_workflow": "Step 4: Gemini 2.5 Flash synthesizes all search results into comprehensive final answer",
+            "final_response_benefits": "Single coherent response avoiding redundancy, prioritizing official sources, formatted as actionable instructions",
+            "rag_context_workflow": "When enabled and matching domains are selected, corresponding RAG context files are automatically loaded and integrated",
+            "rag_context_benefits": "Enhanced accuracy with detailed local knowledge, up-to-date regulations, and domain-specific information",
+            "rag_context_examples": "Enable: 'use_rag_context': true; Add domains: 'rag_domains': ['dfmt.ro', 'timpark.ro']; Custom path: 'rag_context_path': 'my_contexts'",
+            "timpark_payment_workflow": "Step 1: Gemini analyzes user intent for parking payment -> Step 2: If payment intent detected for Timisoara, executes automation script",
+            "timpark_payment_benefits": "Automated parking payment for Timisoara with smart intent detection, supports 30min-12h durations",
+            "timpark_payment_examples": "Enable: 'use_timpark_payment': true; Queries: 'plateste parcarea 2 ore', 'achita parcarea in centru'"
+        }
+    }
+}

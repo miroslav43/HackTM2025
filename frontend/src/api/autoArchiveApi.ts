@@ -1,4 +1,4 @@
-const BASE_URL = 'http://localhost:8000/api/auto-archive';
+const BASE_URL = '/api/auto-archive';
 
 /**
  * Get authentication token from localStorage

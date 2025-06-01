@@ -1,0 +1,178 @@
+RAPORT AGENT - REZULTATE FINALE COMPLETE (4 INSTRUMENTE)
+============================================================
+
+ÎNTREBARE ORIGINALĂ:
+Ce trebuie sa fac ca sa scot un CF in Timisoara?
+
+QUERY REFORMULAT:
+"Care este procedura oficială pentru obținerea unui extras de carte funciară (CF) în Timișoara, România, ce documente sunt necesare, unde trebuie depusă cererea și care sunt taxele aferente, inclusiv modalitățile de plată disponibile?"
+
+
+CONFIGURAȚIA FOLOSITĂ:
+- Config Name: default_agent_config
+- Reformulare activă: True
+- Căutare web activă: True
+- Căutare site-uri de încredere activă: True
+- Generare răspuns final activă: True
+- Model Gemini Reformulare: gemini-2.0-flash
+- Temperature Gemini Reformulare: 0.1
+- Model Perplexity: sonar-reasoning-pro
+- Temperature Perplexity: 0.1
+- Context Size: high
+- Model Gemini Trusted Sites: gemini-2.5-flash-preview-05-20
+- Model Perplexity Trusted Sites: sonar-reasoning-pro
+- Model Gemini Final Response: gemini-2.5-flash-preview-05-20
+- Temperature Final Response: 0.1
+
+TIMESTAMP: 2025-05-31 20:07:47
+
+🎯 RĂSPUNS FINAL SINTETIZAT (PRINCIPAL):
+==================================================
+Pentru a obține un extras de carte funciară (CF) în Timișoara, procedura implică următorii pași și cerințe, conform informațiilor oficiale:
+
+### 1. Tipuri de extrase de carte funciară
+Există mai multe tipuri de extrase, fiecare cu un scop specific:
+*   **Extras de carte funciară pentru informare**: Oferă informații generale despre imobil (proprietar, sarcini, descriere). Este cel mai frecvent solicitat.
+*   **Extras de carte funciară pentru autentificare**: Este necesar pentru tranzacții imobiliare (vânzare, cumpărare, ipotecă) și poate fi solicitat *doar de către un notar public*.
+*   **Extras de carte funciară în extenso**: Conține istoricul complet al înregistrărilor din cartea funciară.
+
+### 2. Documente necesare
+Indiferent de tipul extrasului solicitat, veți avea nevoie de:
+*   **Cerere tip** completată. Aceasta poate fi descărcată de pe site-ul Agenției Naționale de Cadastru și Publicitate Imobiliară (ANCPI) sau al Oficiului de Cadastru și Publicitate Imobiliară (OCPI) Timiș.
+*   **Dovada achitării taxei** aferente (chitanță bancară sau confirmare electronică de plată).
+*   **Actul de identitate** al solicitantului (copie).
+*   **Date de identificare ale imobilului**: numărul cărții funciare, numărul cadastral sau identificatorul electronic al imobilului.
+
+### 3. Unde se depune cererea
+Puteți depune cererea în două moduri principale:
+*   **Fizic**: La sediul Biroului de Cadastru și Publicitate Imobiliară (BCPI) Timișoara, situat pe Str. Take Ionescu nr. 46. Verificați programul de lucru pe site-ul OCPI Timiș.
+*   **Online**: Prin portalul oficial de plăți al ANCPI, epay.ancpi.ro. Această metodă permite solicitarea și plata online, iar extrasul este livrat electronic (în format PDF cu semnătură electronică). Există și servicii online partenere autorizate care facilitează acest proces, dar pot implica costuri suplimentare.
+
+### 4. Taxe și modalități de plată
+Taxele variază în funcție de tipul extrasului și de urgența solicitării:
+*   **Extras de carte funciară pentru informare**: 20 lei/exemplar.
+*   **Extras de carte funciară în extenso**: 5 lei/pagină.
+*   **Extras de carte funciară pentru autentificare**: 40 lei/exemplar (solicitat de notar).
+*   **Taxă de urgență**: Pentru procesare rapidă, se aplică o taxă suplimentară, care poate varia între 100 și 200 lei.
+*   **Modalități de plată**:
+    *   **Online**: Cu cardul bancar, direct pe portalul epay.ancpi.ro.
+    *   **La ghișeu**: În numerar sau cu cardul, la sediul BCPI Timișoara.
+    *   **Prin bancă**: Prin virament bancar, folosind conturile indicate de ANCPI/OCPI Timiș.
+
+### 5. Pași pentru obținerea extrasului
+1.  **Identificați tipul de extras** de care aveți nevoie.
+2.  **Descărcați și completați cererea tip** de pe site-ul oficial.
+3.  **Achitați taxa** aferentă prin una dintre modalitățile disponibile.
+4.  **Depuneți cererea și documentele necesare**:
+    *   Personal, la ghișeul BCPI Timișoara.
+    *   Online, prin platforma epay.ancpi.ro, încărcând documentele scanate.
+5.  **Primiți extrasul**:
+    *   **Termen normal**: De obicei, extrasul este eliberat în 2 zile lucrătoare.
+    *   **Termen de urgență**: Pentru cererile urgente, extrasul poate fi disponibil chiar și în 30 de minute (în cazul solicitărilor online prin anumite servicii).
+    *   Extrasul electronic este livrat în format PDF, semnat digital.
+
+### 6. Aspecte importante de reținut
+*   **Extrasul pentru autentificare** poate fi solicitat *doar de către un notar public*, nu direct de către proprietar.
+*   **Începând cu 2 iunie 2025**, extrasele de carte funciară pentru informare vor fi gratuite pentru proprietari, atât la ghișeu, cât și online. Până la această dată, taxele menționate mai sus sunt aplicabile.
+*   Pentru imobilele înregistrate după anul 2011, este util să aveți la îndemână identificatorul electronic al imobilului, care se găsește în contractele de vânzare-cumpărare sau alte acte de proprietate.
+
+### Resurse Oficiale Utile
+*   **Portalul de plăți ANCPI**: [epay.ancpi.ro](https://epay.ancpi.ro)
+*   **Site-ul Agenției Naționale de Cadastru și Publicitate Imobiliară (ANCPI)**: [www.ancpi.ro](https://www.ancpi.ro) (pentru informații generale și formulare)
+*   **Oficiul de Cadastru și Publicitate Imobiliară (OCPI) Timiș**: Căutați pe site-ul ANCPI secțiunea dedicată OCPI Timiș pentru detalii specifice de contact și program.
+
+==================================================
+
+REZULTAT CĂUTARE WEB REGULATĂ (PENTRU COMPARAȚIE):
+----------------------------------------
+<think>
+Okay, let's tackle this query about obtaining an extract from the land register (carte funciară) in Timișoara, Romania. The user wants the official procedure, required documents, where to apply, the fees, and payment methods. 
+
+First, I need to check the search results provided. Let's go through each one to gather the necessary information.
+
+From [1], there's a list of required documents for different types of extracts. It mentions a standard application form (CERERE TIP) in PDF or DOC format, proof of full payment, and specific documents depending on the type of request. For example, changing the administrative address requires a certificate from the city hall. Notarized copies might be needed in some cases.
+
+Result [2] talks about ordering online through a service called Extras Online, which outlines steps: fill a form, verification, processing, and delivery. It's a third-party service, but the official procedure might be similar.
+
+[3] is a payment portal (epay.ancpi.ro) for cadastral extracts, indicating online payment options. The extract is provided in PDF with an electronic signature.
+
+[4] from Storia.ro explains the types of extracts: informare (information), autentificare (authentication), and in extenso. Fees are 20 lei for informare, 5 lei per page for in extenso, and 40 lei for autentificare. Urgent fees are 100-200 lei. The normal processing time is two working days. Applications can be made at ANCPI or territorial units, online via ANCPI's website. For authentication, a notary must request it, and the applicant needs ID, property details, and communication method.
+
+[5] on Risco.ro emphasizes the need for the application form, ID copy, payment proof, and additional documents for specific cases like transactions. It mentions online applications through ANCPI's platform or authorized services.
+
+[6] from cf.ro details an online service for Timișoara, costing 59 lei + VAT, processed by BCPI Timișoara. They mention needing the CF number, cadastral number, or electronic identifier. Delivery is within 30 minutes for urgent requests.
+
+[7] from Atria Resort confirms the fees: 20 lei for informare, 5 lei/page for in extenso, 40 lei for autentificare. Processing is two days, with urgent options. Applications can be submitted in person or online via ANCPI's ePayment system, requiring an account with personal details.
+
+[8] mentions that starting April 7, 2025, extracts for information are free for property owners, both in person and online from June 2, 2025. However, this might be a future update, so current procedures still apply fees.
+
+[9] from eghiseul.ro offers an online service with delivery within 30 minutes during working hours via WhatsApp or email, but this is a third-party service.
+
+Now, compiling the official procedure from ANCPI sources:
+
+**Documents Needed**: Application form, ID copy, proof of payment, property details (CF number, cadastral number). For authentication, a notary's request is required.
+
+**Where to Apply**: ANCPI offices in Timișoara or online via ANCPI's ePayment portal. Third-party services like cf.ro or Extras Online are alternatives but may charge extra.
+
+**Fees**: 20 lei for informare, 5 lei/page for in extenso, 40 lei for autentificare. Urgent fee is 100-200 lei. Third-party services have different fees (e.g., 59 lei + VAT on cf.ro).
+
+**Payment Methods**: Online via ANCPI's portal, bank transfer, or at the office. Third-party services use secure payment gateways like ING.
+
+**Procedure Steps**: Fill form, submit with documents and payment proof, wait 2 days (or urgent), receive extract electronically or in person.
+
+Need to check for conflicting info, especially regarding free extracts from [8]. Since the current date in the prompt is May 31, 2025, and the free service starts June 2, 2025, the user's query is just before that. So, current fees still apply unless the user is asking post-June 2, but the date is May 31, so the free service isn't active yet. Thus, the answer should include the standard fees.
+
+Also, note that authentication extracts can only be requested by a notary. The user should be directed to the official ANCPI website or local office for the most accurate info.
+</think>
+
+Pentru a obține un extras de carte funciară (CF) în Timișoara, procedura oficială implică următorii pași și cerințe:
+
+### **1. Documente necesare**
+- **Cerere tip** completată (disponibilă în format PDF sau DOC pe site-ul OCPI Timișoara) [1][4]
+- **Act de identitate** (copie legalizată) [4][5]
+- **Dovada achitării taxei** (chitanță bancară sau confirmare electronică) [1][4]
+- **Date de identificare ale imobilului**: număr carte funciară, număr cadastral sau identificator electronic [6][7]
+- **Adeverință de la primărie** (doar pentru schimbarea adresei administrative) [1]
+
+### **2. Locuri de depunere a cererii**
+- **Biroul de Cadastru și Publicitate Imobiliară Timișoara** (BCPI): Str. Take Ionescu nr. 46, program 8:30-14:30 [6]
+- **Online** prin platforma ANCPI (epay.ancpi.ro) sau servicii autorizate (cf.ro, extras-online.ro) [3][6][9]
+
+### **3. Taxe și modalități de plată**
+- **Extras pentru informare**: 20 lei/exemplar [4][7]
+- **Extras în extenso**: 5 lei/pagină [4][7]
+- **Extras pentru autentificare**: 40 lei/exemplar (solicitat exclusiv de notar) [1][7]
+- **Taxă de urgență**: 100-200 lei [4][7]
+- **Plata online** cu cardul prin portalul ANCPI sau servicii partenere [3][6]
+- **Plată la ghișeu** în numerar sau cu cardul [1]
+
+### **4. Procedura pas cu pas**
+1. **Selectați tipul de extras** (informare, autentificare sau în extenso)
+2. **Descărcați și completați cererea** de pe site-ul OCPI Timișoara [1]
+3. **Achitați taxa** prin canalul ales (online sau la bancă)
+4. **Depuneți dosarul**:
+   - **În persoană**: la sediul BCPI Timișoara [6]
+   - **Online**: pe platforma ANCPI sau parteneri autorizați [3][6]
+5. **Primiți extrasul**:
+   - În 2 zile lucrătoare pentru regim normal [4][7]
+   - În 30 de minute pentru servicii urgente [6][9]
+   - Electronici (PDF semnat digital) sau fizic [3][6]
+
+### **5. Observații importante**
+- Extrasele pentru autentificare necesită implicarea unui notar public [1][7]
+- Verificați actualizările legislative după 2 iunie 2025 pentru posibile modificări de tarife [8]
+- Pentru imobilele noi, folosiți identificatorul electronic din contractele post-2011 [6]
+
+Pentru verificări suplimentare, accesați portalul oficial ANCPI: [www.ancpi.ro](https://www.ancpi.ro) [4][5].
+
+REZULTAT CĂUTARE SITE-URI DE ÎNCREDERE (PENTRU COMPARAȚIE):
+----------------------------------------
+Căutarea a eșuat: Domain selection failed
+
+============================================================
+SUMARUL INSTRUMENTELOR FOLOSITE:
+1. Reformulare Query: ✅ DA
+2. Căutare Web Regulată: ✅ DA
+3. Căutare Site-uri de Încredere: ✅ DA
+4. Generare Răspuns Final: ✅ DA
+============================================================
