@@ -204,11 +204,18 @@ class ChatService:
         agent_result: Dict[str, Any]
     ) -> AgentExecution:
         """Create an agent execution record"""
+        # Handle config_used - can be string or dict
+        config_used = agent_result.get("config_used", {})
+        if isinstance(config_used, str):
+            config_used = {"config_name": config_used}
+        elif not isinstance(config_used, dict):
+            config_used = {}
+            
         execution = AgentExecution(
             message_id=message_id,
             original_question=agent_result.get("original_question", ""),
             reformulated_query=agent_result.get("reformulated_query"),
-            config_used=agent_result.get("config_used", {}),
+            config_used=config_used,
             execution_time=agent_result.get("execution_time"),
             tools_executed=agent_result.get("tools_executed", []),
             workflow_stopped_early=agent_result.get("workflow_stopped_early", False),

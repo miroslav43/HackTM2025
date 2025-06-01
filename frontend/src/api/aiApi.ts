@@ -16,7 +16,7 @@ export interface AgentQueryRequest {
     timpark_payment?: {
       use_timpark_payment?: boolean;
     };
-    [key: string]: any;
+    [key: string]: unknown;
   };
 }
 
@@ -63,7 +63,72 @@ export interface AgentConfig {
     use_perplexity: boolean;
     search_context_size: 'low' | 'medium' | 'high';
   };
-  [key: string]: any;
+  [key: string]: unknown;
+}
+
+export interface ToolConfigSchema {
+  display_name: string;
+  description: string;
+  model_type: 'gemini' | 'perplexity' | 'mixed';
+  available_models?: string[];
+  default_model?: string;
+  temperature_range?: [number, number];
+  default_temperature?: number;
+  max_tokens_range?: [number, number];
+  default_max_tokens?: number;
+  gemini_config?: {
+    available_models: string[];
+    default_model: string;
+    temperature_range: [number, number];
+    default_temperature: number;
+    max_tokens_range: [number, number];
+    default_max_tokens: number;
+  };
+  perplexity_config?: {
+    available_models: string[];
+    default_model: string;
+    temperature_range: [number, number];
+    default_temperature: number;
+    max_tokens_range: [number, number];
+    default_max_tokens: number;
+  };
+}
+
+export interface ToolConfig {
+  model: string;
+  temperature: number;
+  max_tokens: number;
+}
+
+export interface TrustedSitesToolConfig {
+  gemini: ToolConfig;
+  perplexity: ToolConfig;
+}
+
+export interface CurrentToolConfigs {
+  query_reformulation: ToolConfig;
+  timpark_payment: ToolConfig;
+  web_search: ToolConfig;
+  trusted_sites_search: TrustedSitesToolConfig;
+  final_response_generation: ToolConfig;
+}
+
+export interface ToolConfigUpdateRequest {
+  tool_configs: {
+    [toolName: string]: ToolConfig | { gemini?: ToolConfig; perplexity?: ToolConfig };
+  };
+}
+
+export interface ToolConfigUpdateResponse {
+  success: boolean;
+  updated_tools?: string[];
+  message: string;
+  error?: string;
+}
+
+export interface AvailableModels {
+  gemini_models: string[];
+  perplexity_models: string[];
 }
 
 export interface AgentHealthStatus {
@@ -89,8 +154,11 @@ export const sendAgentQuery = async (request: AgentQueryRequest): Promise<AgentQ
   try {
     const response = await apiClient.post('/ai/agent/query', request);
     return response.data;
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error('Error sending agent query:', error);
+    
+    // Handle different error types
+    const apiError = error as { response?: { data?: { detail?: string } }; message?: string };
     
     // Return a structured error response
     return {
@@ -101,7 +169,7 @@ export const sendAgentQuery = async (request: AgentQueryRequest): Promise<AgentQ
       timpark_executed: false,
       processing_time: 0,
       timestamp: new Date().toISOString(),
-      error: error.response?.data?.detail || error.message || 'Unknown error'
+      error: apiError.response?.data?.detail || apiError.message || 'Unknown error'
     };
   }
 };
@@ -114,7 +182,7 @@ export const sendChatMessage = async (
   sessionId?: number,
   createNewSession: boolean = false,
   agentConfig?: Partial<AgentConfig>
-): Promise<any> => {
+): Promise<unknown> => {
   try {
     const response = await apiClient.post('/ai/chat', {
       message,
@@ -130,9 +198,9 @@ export const sendChatMessage = async (
 };
 
 /**
- * Get chat sessions
+ * Get all chat sessions for the current user
  */
-export const getChatSessions = async (includeArchived: boolean = false, limit: number = 50): Promise<ChatSession[]> => {
+export const getChatSessions = async (includeArchived: boolean = false, limit: number = 50) => {
   try {
     const queryParams = new URLSearchParams({
       include_archived: includeArchived.toString(),
@@ -147,9 +215,9 @@ export const getChatSessions = async (includeArchived: boolean = false, limit: n
 };
 
 /**
- * Get specific chat session with messages
+ * Get a specific chat session with messages
  */
-export const getChatSession = async (sessionId: number, limit: number = 100): Promise<any> => {
+export const getChatSession = async (sessionId: number, limit: number = 100) => {
   try {
     const queryParams = new URLSearchParams({
       limit: limit.toString()
@@ -163,11 +231,13 @@ export const getChatSession = async (sessionId: number, limit: number = 100): Pr
 };
 
 /**
- * Create new chat session
+ * Create a new chat session
  */
-export const createChatSession = async (title: string): Promise<ChatSession> => {
+export const createChatSession = async (title?: string) => {
   try {
-    const response = await apiClient.post('/ai/chat/sessions', { title });
+    const response = await apiClient.post('/ai/chat/sessions', {
+      title: title || null
+    });
     return response.data;
   } catch (error) {
     console.error('Error creating chat session:', error);
@@ -176,9 +246,48 @@ export const createChatSession = async (title: string): Promise<ChatSession> => 
 };
 
 /**
+ * Update chat session (e.g., change title)
+ */
+export const updateChatSession = async (sessionId: number, updates: { title?: string }) => {
+  try {
+    const response = await apiClient.put(`/ai/chat/sessions/${sessionId}`, updates);
+    return response.data;
+  } catch (error) {
+    console.error('Error updating chat session:', error);
+    throw error;
+  }
+};
+
+/**
+ * Delete (archive) a chat session
+ */
+export const deleteChatSession = async (sessionId: number) => {
+  try {
+    const response = await apiClient.delete(`/ai/chat/sessions/${sessionId}`);
+    return response.data;
+  } catch (error) {
+    console.error('Error deleting chat session:', error);
+    throw error;
+  }
+};
+
+/**
+ * Get chat statistics
+ */
+export const getChatStats = async () => {
+  try {
+    const response = await apiClient.get('/ai/chat/stats');
+    return response.data;
+  } catch (error) {
+    console.error('Error getting chat stats:', error);
+    throw error;
+  }
+};
+
+/**
  * Get agent configuration
  */
-export const getAgentConfig = async (): Promise<{ config: AgentConfig; tools: any[]; description: string }> => {
+export const getAgentConfig = async (): Promise<{ config: AgentConfig; tools: unknown[]; description: string }> => {
   try {
     const response = await apiClient.get('/ai/agent/config');
     return response.data;
@@ -191,7 +300,7 @@ export const getAgentConfig = async (): Promise<{ config: AgentConfig; tools: an
 /**
  * Get available agent tools
  */
-export const getAgentTools = async (): Promise<{ tools: any[]; total_tools: number; description: string }> => {
+export const getAgentTools = async (): Promise<{ tools: unknown[]; total_tools: number; description: string }> => {
   try {
     const response = await apiClient.get('/ai/agent/tools');
     return response.data;
@@ -204,7 +313,7 @@ export const getAgentTools = async (): Promise<{ tools: any[]; total_tools: numb
 /**
  * Test agent with custom query (development/debugging)
  */
-export const testAgent = async (query: string, config?: any): Promise<any> => {
+export const testAgent = async (query: string, config?: unknown): Promise<unknown> => {
   try {
     const queryParams = new URLSearchParams({
       query,
@@ -232,14 +341,97 @@ export const getAgentHealth = async (): Promise<AgentHealthStatus> => {
 };
 
 /**
- * Get chat statistics
+ * Get configuration schema for all tools
  */
-export const getChatStats = async (): Promise<any> => {
+export const getAgentConfigSchema = async (): Promise<{
+  success: boolean;
+  schema: Record<string, ToolConfigSchema>;
+  description: string;
+}> => {
   try {
-    const response = await apiClient.get('/ai/chat/stats');
+    const response = await apiClient.get('/ai/agent/config/schema');
     return response.data;
   } catch (error) {
-    console.error('Error getting chat stats:', error);
+    console.error('Error getting agent config schema:', error);
     throw error;
   }
 };
+
+/**
+ * Get current configuration for all tools
+ */
+export const getCurrentAgentConfig = async (): Promise<{
+  success: boolean;
+  current_configs: CurrentToolConfigs;
+  available_models: AvailableModels;
+  description: string;
+}> => {
+  try {
+    const response = await apiClient.get('/ai/agent/config/current');
+    return response.data;
+  } catch (error) {
+    console.error('Error getting current agent config:', error);
+    throw error;
+  }
+};
+
+/**
+ * Update tool configurations
+ */
+export const updateAgentConfig = async (
+  toolConfigs: ToolConfigUpdateRequest['tool_configs']
+): Promise<ToolConfigUpdateResponse> => {
+  try {
+    const response = await apiClient.post('/ai/agent/config/update', {
+      tool_configs: toolConfigs
+    });
+    return response.data;
+  } catch (error) {
+    console.error('Error updating agent config:', error);
+    throw error;
+  }
+};
+
+/**
+ * Get available models for each tool type
+ */
+export const getAvailableAgentModels = async (): Promise<{
+  success: boolean;
+  models: AvailableModels;
+  description: string;
+}> => {
+  try {
+    const response = await apiClient.get('/ai/agent/models');
+    return response.data;
+  } catch (error) {
+    console.error('Error getting available models:', error);
+    throw error;
+  }
+};
+
+// Add interfaces for conversation history
+export interface ChatSessionListItem {
+  id: number;
+  title?: string;
+  created_at: string;
+  updated_at: string;
+  message_count: number;
+  last_message_at?: string;
+}
+
+export interface ChatSessionWithMessages {
+  id: number;
+  title?: string;
+  created_at: string;
+  updated_at: string;
+  message_count: number;
+  last_message_at?: string;
+  messages: ChatMessage[];
+}
+
+export interface ChatStats {
+  total_sessions: number;
+  total_messages: number;
+  total_agent_executions: number;
+  most_used_tools: string[];
+}

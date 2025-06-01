@@ -37,10 +37,10 @@ class TimParkPaymentTool:
             
             genai.configure(api_key=api_key)
             self.model = genai.GenerativeModel(
-                model_name=config["gemini_model"],
+                model_name=config["model"],
                 generation_config={
-                    "temperature": config["gemini_temperature"],
-                    "max_output_tokens": config["gemini_max_tokens"]
+                    "temperature": config["temperature"],
+                    "max_output_tokens": config["max_tokens"]
                 }
             )
             
@@ -305,7 +305,7 @@ class TimParkPaymentTool:
 
             # Pauză finală ca să poată fi procesată plata
             print("⏳ Aștept finalizarea procesului de plată...")
-            time.sleep(3600)  # Reduced from 3600 seconds for practical use
+            time.sleep(5)  # Reduced from 3600 seconds for testing
             
             print(f"🎉 Automatizarea plății parcării pentru {numar_ore} a fost completată cu succes!")
             

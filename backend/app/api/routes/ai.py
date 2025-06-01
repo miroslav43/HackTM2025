@@ -2,10 +2,11 @@
 AI Agent API routes - Romanian Civic Information Assistant
 """
 
-from fastapi import APIRouter, Depends, HTTPException, status
+from fastapi import APIRouter, Depends, HTTPException, status, Query
 from sqlalchemy.ext.asyncio import AsyncSession
 from typing import List, Dict, Any, Optional
 from datetime import datetime
+from pydantic import BaseModel
 
 from app.db.database import get_db
 from app.models.user import User
@@ -399,4 +400,90 @@ async def direct_agent_query(
         raise HTTPException(
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
             detail=f"Agent processing failed: {str(e)}"
-        ) 
+        )
+
+
+class AgentQueryRequest(BaseModel):
+    query: str
+    config: Optional[Dict[str, Any]] = None
+
+class ToolConfigRequest(BaseModel):
+    tool_configs: Dict[str, Any]
+
+class ToolConfigResponse(BaseModel):
+    success: bool
+    updated_tools: Optional[List[str]] = None
+    message: str
+    error: Optional[str] = None
+
+@router.get("/agent/config/schema")
+async def get_agent_config_schema():
+    """Get the configuration schema for all tools"""
+    try:
+        schema = agent_service.get_tool_config_schema()
+        return {
+            "success": True,
+            "schema": schema,
+            "description": "Configuration schema for all AI agent tools"
+        }
+    except Exception as e:
+        logger.error(f"Error getting config schema: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+@router.get("/agent/config/current")
+async def get_current_agent_config():
+    """Get current configuration for all tools"""
+    try:
+        current_configs = agent_service.get_current_tool_configs()
+        available_models = agent_service.get_available_models()
+        
+        return {
+            "success": True,
+            "current_configs": current_configs,
+            "available_models": available_models,
+            "description": "Current configuration settings for all AI agent tools"
+        }
+    except Exception as e:
+        logger.error(f"Error getting current config: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+@router.post("/agent/config/update", response_model=ToolConfigResponse)
+async def update_agent_config(request: ToolConfigRequest):
+    """Update configuration for specific tools"""
+    try:
+        result = agent_service.update_tool_config(request.tool_configs)
+        
+        if result["success"]:
+            return ToolConfigResponse(
+                success=True,
+                updated_tools=result["updated_tools"],
+                message=result["message"]
+            )
+        else:
+            return ToolConfigResponse(
+                success=False,
+                message=result["message"],
+                error=result.get("error")
+            )
+            
+    except Exception as e:
+        logger.error(f"Error updating agent config: {e}")
+        return ToolConfigResponse(
+            success=False,
+            message="Failed to update configuration",
+            error=str(e)
+        )
+
+@router.get("/agent/models")
+async def get_available_models():
+    """Get all available models for each tool type"""
+    try:
+        models = agent_service.get_available_models()
+        return {
+            "success": True,
+            "models": models,
+            "description": "Available AI models for each tool type"
+        }
+    except Exception as e:
+        logger.error(f"Error getting available models: {e}")
+        raise HTTPException(status_code=500, detail=str(e)) 
