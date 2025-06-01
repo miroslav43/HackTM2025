@@ -111,6 +111,9 @@ CREATE TABLE document_analysis (
     document_id UUID REFERENCES documents(id) ON DELETE CASCADE,
     accuracy_score DECIMAL(5, 4),
     extracted_data JSONB,
+    confidence_score VARCHAR, -- OCR confidence level (0.0 - 1.0)
+    transcribed_text TEXT, -- Full OCR text output
+    processing_method VARCHAR(50) DEFAULT 'gemini_ocr', -- OCR method used
     suggestions TEXT[],
     errors TEXT[],
     analyzed_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,

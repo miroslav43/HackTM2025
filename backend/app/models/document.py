@@ -75,14 +75,17 @@ class ArchiveDocument(Base):
 
 class DocumentAnalysis(Base):
     """
-    AI analysis results for documents
+    AI analysis results for documents including OCR processing
     """
     __tablename__ = "document_analysis"
     
     id = Column(UUID(as_uuid=True), primary_key=True, server_default=text("gen_random_uuid()"))
     document_id = Column(UUID(as_uuid=True), ForeignKey("documents.id", ondelete="CASCADE"), nullable=False)
     accuracy_score = Column(String)  # DECIMAL(5, 4) equivalent
-    extracted_data = Column(JSONB)
+    extracted_data = Column(JSONB)  # OCR extracted fields (nume, cnp, adresa, etc.)
+    confidence_score = Column(String)  # OCR confidence level (0.0 - 1.0)
+    transcribed_text = Column(Text)  # Full OCR text output
+    processing_method = Column(String(50), server_default="'gemini_ocr'")  # OCR method used
     suggestions = Column(ARRAY(Text))
     errors = Column(ARRAY(Text))
     analyzed_at = Column(DateTime, server_default=func.current_timestamp())

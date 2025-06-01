@@ -4,6 +4,7 @@
  * Uses Gemini AI for metadata extraction from personal documents
  */
 
+import { uploadDocumentWithOCR } from "@/api/documentsApi";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
@@ -168,38 +169,35 @@ const PersonalDocumentUploadDialog: React.FC<
     setProgress(10);
 
     try {
-      const formData = new FormData();
-      formData.append("file", file);
-      formData.append("documentType", documentType.id);
+      setProgress(30);
 
-      // Upload and process with Gemini
-      const response = await fetch(
-        "/api/personal-documents/upload-and-process",
-        {
-          method: "POST",
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("authToken")}`,
-          },
-          body: formData,
-        }
-      );
+      // Use the new API function for upload with OCR
+      const result = await uploadDocumentWithOCR(file, documentType.id);
 
       setProgress(70);
 
-      if (!response.ok) {
-        const errorData = await response.json().catch(() => ({}));
-        throw new Error(errorData.detail || "Încărcarea a eșuat");
-      }
+      if (result.success && result.metadata) {
+        setProgress(100);
 
-      const result = await response.json();
-      setProgress(100);
+        // Convert OCR metadata to PersonalDocumentMetadata format
+        const personalMetadata: PersonalDocumentMetadata = {
+          id: result.metadata.id || "temp-id",
+          extractedData: result.metadata.extractedData,
+          confidence: result.metadata.confidence,
+          filePath: result.metadata.filePath || "",
+          fileSize: result.metadata.fileSize || file.size,
+          processingDate:
+            result.metadata.processingDate || new Date().toISOString(),
+        };
 
-      if (result.success) {
-        setResult(result.metadata);
-        onDocumentProcessed(result.metadata);
+        setResult(personalMetadata);
+        onDocumentProcessed(personalMetadata);
+
         toast({
-          title: "Procesare completă!",
-          description: `Documentul a fost procesat cu succes folosind AI.`,
+          title: "Document procesat cu succes!",
+          description: `Informațiile au fost extrase automat cu ${Math.round(
+            result.metadata.confidence * 100
+          )}% încredere.`,
         });
       } else {
         throw new Error(result.error || "Procesarea a eșuat");
@@ -208,7 +206,7 @@ const PersonalDocumentUploadDialog: React.FC<
       console.error("Upload error:", error);
       setError(error instanceof Error ? error.message : "Eroare la încărcare");
       toast({
-        title: "Eroare la procesare",
+        title: "Eroare la încărcare",
         description:
           error instanceof Error
             ? error.message

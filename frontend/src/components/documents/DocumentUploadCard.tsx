@@ -3,7 +3,12 @@
  * Handles individual document type upload and display
  */
 
-import { DocumentData } from "@/api/documentsApi";
+import {
+  DocumentData,
+  downloadDocument,
+  getDocumentOCRMetadata,
+  OCRMetadata,
+} from "@/api/documentsApi";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
@@ -19,6 +24,7 @@ import {
   Check,
   Clock,
   CreditCard,
+  Download,
   Eye,
   FileText,
   MapPin,
@@ -26,7 +32,8 @@ import {
   User,
   X,
 } from "lucide-react";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { toast } from "sonner";
 import PersonalDocumentUploadDialog from "./PersonalDocumentUploadDialog";
 
 interface DocumentType {
@@ -69,6 +76,53 @@ const DocumentUploadCard: React.FC<DocumentUploadCardProps> = ({
   const [isUploadDialogOpen, setIsUploadDialogOpen] = useState(false);
   const [extractedMetadata, setExtractedMetadata] =
     useState<PersonalDocumentMetadata | null>(null);
+  const [ocrMetadata, setOcrMetadata] = useState<OCRMetadata | null>(null);
+  const [isLoadingOCR, setIsLoadingOCR] = useState(false);
+  const [showJsonView, setShowJsonView] = useState(false);
+
+  // Load OCR metadata when document exists
+  useEffect(() => {
+    if (existingDoc && existingDoc.id) {
+      loadOCRMetadata();
+    }
+  }, [existingDoc]);
+
+  const loadOCRMetadata = async () => {
+    if (!existingDoc?.id) return;
+
+    try {
+      setIsLoadingOCR(true);
+      const metadata = await getDocumentOCRMetadata(existingDoc.id);
+      setOcrMetadata(metadata);
+    } catch (error) {
+      console.error("Error loading OCR metadata:", error);
+    } finally {
+      setIsLoadingOCR(false);
+    }
+  };
+
+  const handleDownload = async () => {
+    if (!existingDoc?.id) return;
+
+    try {
+      const blob = await downloadDocument(existingDoc.id);
+
+      // Create download link
+      const url = window.URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = existingDoc.name || "document";
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      window.URL.revokeObjectURL(url);
+
+      toast.success("Document descărcat cu succes!");
+    } catch (error) {
+      console.error("Error downloading document:", error);
+      toast.error("Eroare la descărcarea documentului");
+    }
+  };
 
   const getStatusIcon = (status: string) => {
     switch (status) {
@@ -112,6 +166,8 @@ const DocumentUploadCard: React.FC<DocumentUploadCardProps> = ({
   const handleDocumentProcessed = (metadata: PersonalDocumentMetadata) => {
     setExtractedMetadata(metadata);
     setIsUploadDialogOpen(false);
+    // Reload OCR metadata after new upload
+    loadOCRMetadata();
   };
 
   const handleReplaceClick = () => {
@@ -193,9 +249,14 @@ const DocumentUploadCard: React.FC<DocumentUploadCardProps> = ({
             </div>
             <div className="flex items-center space-x-2">
               {existingDoc && (
-                <Button variant="outline" size="sm">
-                  <Eye className="h-4 w-4" />
-                </Button>
+                <>
+                  <Button variant="outline" size="sm">
+                    <Eye className="h-4 w-4" />
+                  </Button>
+                  <Button variant="outline" size="sm" onClick={handleDownload}>
+                    <Download className="h-4 w-4" />
+                  </Button>
+                </>
               )}
               <Button variant="outline" size="sm" onClick={handleReplaceClick}>
                 <Upload className="h-4 w-4 mr-2" />
@@ -217,8 +278,85 @@ const DocumentUploadCard: React.FC<DocumentUploadCardProps> = ({
             </div>
           )}
 
-          {/* Display extracted metadata if available */}
-          {extractedMetadata && (
+          {/* Display OCR metadata from backend */}
+          {ocrMetadata && (
+            <div className="mt-4 p-4 bg-blue-50 rounded-lg border border-blue-200">
+              <div className="flex items-center justify-between mb-3">
+                <h4 className="font-medium text-blue-900 flex items-center space-x-2">
+                  <FileText className="h-4 w-4" />
+                  <span>Informații extrase cu AI</span>
+                </h4>
+                <div className="flex items-center space-x-2">
+                  <Badge variant="secondary" className="text-xs">
+                    Încredere: {Math.round(ocrMetadata.confidence * 100)}%
+                  </Badge>
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={() => setShowJsonView(!showJsonView)}
+                    className="text-xs h-6"
+                  >
+                    {showJsonView ? "Ascunde JSON" : "Vezi JSON"}
+                  </Button>
+                </div>
+              </div>
+
+              {showJsonView ? (
+                <div className="bg-gray-800 text-green-400 p-3 rounded font-mono text-xs overflow-auto max-h-60">
+                  <pre>
+                    {JSON.stringify(ocrMetadata.extractedData, null, 2)}
+                  </pre>
+                </div>
+              ) : (
+                <div className="grid grid-cols-1 gap-2 text-sm">
+                  {Object.entries(ocrMetadata.extractedData)
+                    .filter(([_, value]) => value && value.trim() !== "")
+                    .map(([field, value]) => (
+                      <div key={field} className="flex items-center space-x-2">
+                        {getMetadataIcon(field)}
+                        <span className="font-medium text-gray-700 min-w-0 flex-shrink-0">
+                          {getFieldLabel(field)}:
+                        </span>
+                        <span className="text-gray-900 truncate" title={value}>
+                          {value}
+                        </span>
+                      </div>
+                    ))}
+                </div>
+              )}
+
+              <p className="text-xs text-blue-600 mt-2">
+                Procesat la:{" "}
+                {ocrMetadata.analyzedAt
+                  ? new Date(ocrMetadata.analyzedAt).toLocaleDateString(
+                      "ro-RO",
+                      {
+                        year: "numeric",
+                        month: "long",
+                        day: "numeric",
+                        hour: "2-digit",
+                        minute: "2-digit",
+                      }
+                    )
+                  : "Necunoscut"}
+              </p>
+            </div>
+          )}
+
+          {/* Loading state for OCR */}
+          {isLoadingOCR && (
+            <div className="mt-4 p-4 bg-gray-50 rounded-lg border border-gray-200">
+              <div className="flex items-center space-x-2">
+                <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-blue-600"></div>
+                <span className="text-sm text-gray-600">
+                  Se încarcă datele OCR...
+                </span>
+              </div>
+            </div>
+          )}
+
+          {/* Display old extracted metadata if available (fallback) */}
+          {extractedMetadata && !ocrMetadata && (
             <div className="mt-4 p-4 bg-blue-50 rounded-lg border border-blue-200">
               <div className="flex items-center justify-between mb-3">
                 <h4 className="font-medium text-blue-900 flex items-center space-x-2">

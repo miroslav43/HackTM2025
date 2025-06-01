@@ -13,6 +13,25 @@ export interface DocumentData {
   verificationProgress: number;
 }
 
+export interface OCRMetadata {
+  extractedData: {
+    nume?: string;
+    prenume?: string;
+    cnp?: string;
+    dataEmiterii?: string;
+    dataExpirarii?: string;
+    serieNumar?: string;
+    adresa?: string;
+    tipDocument?: string;
+    autoritate?: string;
+    observatii?: string;
+  };
+  confidence: number;
+  transcribedText?: string;
+  processingMethod?: string;
+  analyzedAt?: string;
+}
+
 /**
  * Fetch all documents for the current user
  */
@@ -97,6 +116,86 @@ export const uploadDocument = async (file: File, type: string): Promise<Document
     };
   } catch (error) {
     console.error('Error uploading document:', error);
+    throw error;
+  }
+};
+
+/**
+ * Download a document
+ */
+export const downloadDocument = async (documentId: string): Promise<Blob> => {
+  try {
+    const response = await fetch(`/api/personal-documents/download/${documentId}`, {
+      method: 'GET',
+      headers: {
+        'Authorization': `Bearer ${localStorage.getItem('authToken')}`,
+      },
+    });
+
+    if (!response.ok) throw new Error('Failed to download document');
+    
+    return await response.blob();
+  } catch (error) {
+    console.error('Error downloading document:', error);
+    throw error;
+  }
+};
+
+/**
+ * Get OCR metadata for a document
+ */
+export const getDocumentOCRMetadata = async (documentId: string): Promise<OCRMetadata | null> => {
+  try {
+    const response = await fetch(`/api/personal-documents/ocr-metadata/${documentId}`, {
+      method: 'GET',
+      headers: {
+        'Authorization': `Bearer ${localStorage.getItem('authToken')}`,
+        'Content-Type': 'application/json',
+      },
+    });
+
+    if (!response.ok) throw new Error('Failed to get OCR metadata');
+    
+    const data = await response.json();
+    
+    if (data.success) {
+      return data.metadata;
+    } else {
+      return null; // No OCR data available
+    }
+  } catch (error) {
+    console.error('Error getting OCR metadata:', error);
+    throw error;
+  }
+};
+
+/**
+ * Upload a document with OCR processing
+ */
+export const uploadDocumentWithOCR = async (file: File, documentType: string): Promise<{
+  success: boolean;
+  metadata?: OCRMetadata;
+  error?: string;
+}> => {
+  try {
+    const formData = new FormData();
+    formData.append('file', file);
+    formData.append('documentType', documentType);
+
+    const response = await fetch('/api/personal-documents/upload-and-process', {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${localStorage.getItem('authToken')}`,
+      },
+      body: formData
+    });
+
+    if (!response.ok) throw new Error('Failed to upload and process document');
+    
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error('Error uploading document with OCR:', error);
     throw error;
   }
 };

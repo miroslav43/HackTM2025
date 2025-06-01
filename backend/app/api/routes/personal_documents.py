@@ -13,6 +13,7 @@ import json
 from pathlib import Path
 from typing import Optional, Dict, Any
 from fastapi import APIRouter, HTTPException, UploadFile, File, Form, Depends
+from fastapi.responses import FileResponse
 from pydantic import BaseModel
 from sqlalchemy.ext.asyncio import AsyncSession
 
@@ -20,7 +21,7 @@ from app.services.ocr_processor import LegalDocumentOCR
 from app.db.database import get_db
 from app.core.dependencies import get_current_user
 from app.models.user import User
-from app.models.document import Document
+from app.models.document import Document, DocumentAnalysis
 from app.services.document_service import DocumentService
 import logging
 
@@ -173,11 +174,10 @@ async def upload_and_process_personal_document(
             # Store in database using document service
             document_service = DocumentService(db)
             
-            # Map document type to supported types
             doc_type_mapping = {
                 "id": "id",
-                "passport": "other", 
-                "license": "other",
+                "passport": "other",
+                "license": "other", 
                 "birth": "other",
                 "marriage": "other"
             }
@@ -190,7 +190,7 @@ async def upload_and_process_personal_document(
                 file_path=str(final_path),
                 file_size=final_path.stat().st_size,
                 mime_type=file.content_type,
-                verification_progress=100,  # Personal docs are auto-"verified"
+                verification_progress=100,
                 status="verified"
             )
             
@@ -198,7 +198,21 @@ async def upload_and_process_personal_document(
             await db.commit()
             await db.refresh(db_document)
             
-            # Prepare response
+            # Store OCR analysis results
+            analysis_record = DocumentAnalysis(
+                document_id=db_document.id,
+                extracted_data=personal_metadata,
+                confidence_score=str(personal_metadata.get("confidence_score", 0.8)),
+                transcribed_text=ocr_result["transcribed_text"],
+                processing_method="gemini_ocr",
+                accuracy_score="0.85"  # Default score
+            )
+            
+            db.add(analysis_record)
+            await db.commit()
+            await db.refresh(analysis_record)
+            
+            # Prepare response with OCR data
             response_metadata = PersonalDocumentMetadata(
                 id=str(db_document.id),
                 extractedData={k: v for k, v in personal_metadata.items() if k != "confidence_score"},
@@ -208,7 +222,7 @@ async def upload_and_process_personal_document(
                 processingDate=datetime.datetime.now().isoformat()
             )
             
-            logger.info(f"Personal document processed successfully for user {current_user.id}")
+            logger.info(f"Personal document uploaded and processed with OCR for user {current_user.id}")
             
             return PersonalDocumentResponse(
                 success=True,
@@ -216,12 +230,14 @@ async def upload_and_process_personal_document(
             )
             
         finally:
-            # Clean up temp file if it still exists
+            # Clean up temporary file if it still exists
             if os.path.exists(temp_file_path):
                 os.unlink(temp_file_path)
                 
+    except HTTPException:
+        raise
     except Exception as e:
-        logger.error(f"Error processing personal document: {str(e)}")
+        logger.error(f"Unexpected error in personal document upload: {str(e)}")
         return PersonalDocumentResponse(
             success=False,
             error=str(e)
@@ -385,8 +401,7 @@ async def scan_personal_document(
 
 async def extract_personal_document_metadata(text: str, document_type: str) -> Dict[str, Any]:
     """
-    Extract personal document metadata using the OCR processor's existing method
-    Simplified to extract only the most important metadata fields
+    Extract personal document metadata using a specialized prompt for Romanian identity documents
     """
     if not OCR_ENABLED or not ocr_processor:
         return {
@@ -395,26 +410,104 @@ async def extract_personal_document_metadata(text: str, document_type: str) -> D
         }
     
     try:
-        # Use the existing metadata extraction method from OCR processor
-        metadata = await ocr_processor.extract_metadata_from_text(text, document_type)
+        # Create specialized prompt for personal documents
+        personal_prompt = f"""
+Ești un expert în analiza documentelor de identitate românești. Analizează următorul text OCR și extrage TOATE informațiile personale disponibile.
+
+TEXTUL DOCUMENTULUI:
+{text}
+
+TIPUL DOCUMENTULUI: {document_type}
+
+INSTRUCȚIUNI:
+- Identifică și extrage toate datele personale în format JSON
+- Pentru câmpurile care nu sunt găsite, returnează null
+- Fii atent la formatele românești de date și CNP
+- Returnează doar JSON valid, fără explicații
+
+JSON OBLIGATORIU:
+{{
+    "nume": "numele de familie (dacă este găsit)",
+    "prenume": "prenumele (dacă este găsit)",
+    "cnp": "codul numeric personal (dacă este găsit)",
+    "dataEmiterii": "data emiterii în format DD.MM.YYYY (dacă este găsită)",
+    "dataExpirarii": "data expirării în format DD.MM.YYYY (dacă este găsită)",
+    "serieNumar": "seria și numărul documentului (dacă este găsit)",
+    "adresa": "adresa de domiciliu (dacă este găsită)",
+    "tipDocument": "tipul documentului identificat",
+    "autoritate": "autoritatea emitentă (dacă este găsită)",
+    "observatii": "alte informații relevante găsite",
+    "confidence_score": 0.95
+}}
+"""
         
-        # Simplify to only the most important fields for personal documents
-        simplified_metadata = {
-            "nume": metadata.get("title", "Document fără titlu"),
-            "tipDocument": metadata.get("category", document_type),
-            "autoritate": metadata.get("authority", "Nespecificat"),
-            "dataDocument": metadata.get("issue_date"),
-            "observatii": metadata.get("description", "Fără descriere"),
-            "confidence_score": metadata.get("confidence_score", 0.0)
-        }
+        # Use Gemini directly for personal document analysis
+        import google.generativeai as genai
         
-        logger.info(f"Successfully extracted simplified personal document metadata: {list(simplified_metadata.keys())}")
-        return simplified_metadata
+        api_key = os.getenv('GEMINI_API_KEY')
+        if not api_key:
+            raise ValueError("GEMINI_API_KEY not available")
+        
+        genai.configure(api_key=api_key)
+        model = genai.GenerativeModel("gemini-2.0-flash-exp")
+        
+        generation_config = genai.GenerationConfig(
+            temperature=0.1,  # Low temperature for consistency
+            top_p=0.95,
+            max_output_tokens=1000
+        )
+        
+        response = model.generate_content(personal_prompt, generation_config=generation_config)
+        response_text = response.text.strip()
+        
+        # Clean and parse JSON response
+        if response_text.startswith('```json'):
+            json_start = response_text.find('```json') + 7
+            json_end = response_text.rfind('```')
+            response_text = response_text[json_start:json_end].strip()
+        elif response_text.startswith('```'):
+            json_start = response_text.find('```') + 3
+            json_end = response_text.rfind('```')
+            response_text = response_text[json_start:json_end].strip()
+        
+        try:
+            metadata = json.loads(response_text)
+            
+            # Validate and clean the extracted data
+            cleaned_metadata = {
+                "nume": metadata.get("nume"),
+                "prenume": metadata.get("prenume"),
+                "cnp": metadata.get("cnp"),
+                "dataEmiterii": metadata.get("dataEmiterii"),
+                "dataExpirarii": metadata.get("dataExpirarii"),
+                "serieNumar": metadata.get("serieNumar"),
+                "adresa": metadata.get("adresa"),
+                "tipDocument": metadata.get("tipDocument", document_type),
+                "autoritate": metadata.get("autoritate"),
+                "observatii": metadata.get("observatii"),
+                "confidence_score": min(max(metadata.get("confidence_score", 0.8), 0.0), 1.0)
+            }
+            
+            logger.info(f"Successfully extracted personal document metadata: {list(cleaned_metadata.keys())}")
+            return cleaned_metadata
+            
+        except json.JSONDecodeError as e:
+            logger.error(f"Error parsing JSON from Gemini response: {e}")
+            logger.error(f"Raw response: {response_text}")
+            
+            # Fallback - try to extract basic info from text
+            return {
+                "nume": "Eroare la parsarea datelor",
+                "tipDocument": document_type,
+                "observatii": f"Text parțial extras: {text[:100]}...",
+                "confidence_score": 0.3
+            }
         
     except Exception as e:
         logger.error(f"Error extracting personal document metadata: {str(e)}")
         return {
             "nume": "Eroare la procesare",
+            "tipDocument": document_type,
             "observatii": f"Eroare: {str(e)}",
             "confidence_score": 0.0
         }
@@ -459,4 +552,91 @@ async def get_user_personal_documents(
         raise HTTPException(
             status_code=500,
             detail=f"Failed to retrieve documents: {str(e)}"
-        ) 
+        )
+
+
+@router.get("/download/{document_id}")
+async def download_personal_document(
+    document_id: int,
+    current_user: User = Depends(get_current_user),
+    db: AsyncSession = Depends(get_db)
+):
+    """Download a personal document - only accessible by the document owner"""
+    try:
+        document_service = DocumentService(db)
+        document = await document_service.get_document_by_id(document_id)
+        
+        if not document:
+            raise HTTPException(status_code=404, detail="Document not found")
+        
+        # Verify that the document belongs to the current user
+        if document.user_id != current_user.id:
+            raise HTTPException(status_code=403, detail="Access denied")
+        
+        # Check if file exists
+        file_path = Path(document.file_path)
+        if not file_path.exists():
+            raise HTTPException(status_code=404, detail="Document file not found")
+        
+        # Return the file
+        return FileResponse(
+            path=str(file_path),
+            filename=document.name,
+            media_type=document.mime_type or 'application/octet-stream'
+        )
+    
+    except HTTPException:
+        raise
+    except Exception as e:
+        logger.error(f"Error downloading document {document_id}: {str(e)}")
+        raise HTTPException(status_code=500, detail="Failed to download document")
+
+
+@router.get("/ocr-metadata/{document_id}")
+async def get_document_ocr_metadata(
+    document_id: str,
+    current_user: User = Depends(get_current_user),
+    db: AsyncSession = Depends(get_db)
+):
+    """Get OCR metadata for a personal document"""
+    try:
+        from sqlalchemy import select
+        from app.models.document import DocumentAnalysis
+        
+        document_service = DocumentService(db)
+        document = await document_service.get_document_by_id(document_id)
+        
+        if not document:
+            raise HTTPException(status_code=404, detail="Document not found")
+        
+        # Verify that the document belongs to the current user
+        if document.user_id != current_user.id:
+            raise HTTPException(status_code=403, detail="Access denied")
+        
+        # Get OCR analysis data
+        stmt = select(DocumentAnalysis).where(DocumentAnalysis.document_id == document.id)
+        result = await db.execute(stmt)
+        analysis = result.scalar_one_or_none()
+        
+        if not analysis:
+            return {
+                "success": False,
+                "message": "No OCR data available for this document"
+            }
+        
+        return {
+            "success": True,
+            "metadata": {
+                "extractedData": analysis.extracted_data,
+                "confidence": float(analysis.confidence_score) if analysis.confidence_score else 0.0,
+                "transcribedText": analysis.transcribed_text,
+                "processingMethod": analysis.processing_method,
+                "analyzedAt": analysis.analyzed_at.isoformat() if analysis.analyzed_at else None
+            }
+        }
+    
+    except HTTPException:
+        raise
+    except Exception as e:
+        logger.error(f"Error retrieving OCR metadata for document {document_id}: {str(e)}")
+        raise HTTPException(status_code=500, detail="Failed to retrieve OCR metadata") 
